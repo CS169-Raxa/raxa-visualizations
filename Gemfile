@@ -50,4 +50,6 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
+gem 'haml'
+
 gem 'factory_girl_rails'
