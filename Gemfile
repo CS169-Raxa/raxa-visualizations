@@ -51,3 +51,5 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'haml'
+
+gem 'factory_girl_rails'
