@@ -11,6 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20121013174055) do
+
+  create_table "drug_delta", :force => true do |t|
+    t.datetime "timestamp"
+    t.float    "amount"
+    t.string   "description"
+    t.integer  "drug_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "drug_delta", ["drug_id"], :name => "index_drug_delta_on_drug_id"
+
+  create_table "drugs", :force => true do |t|
+    t.string   "name"
+    t.float    "quantity"
+    t.float    "estimated_rate"
+    t.float    "user_rate"
+    t.float    "alert_level"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
 end
