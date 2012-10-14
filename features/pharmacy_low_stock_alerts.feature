@@ -14,11 +14,11 @@ Background: drugs in database
 
 Scenario: manually set the low_stock_point for an existing drug
   When I manually set the low_stock_point for "drug2" to 200
-  Then the low_stock_pint for "drug2" should be 200
+  Then the low_stock_point for "drug2" should be 200
 
 Scenario: automatically set the low_stock_point for an existing drug
   When I automatically set the low_stock_point for "drug2" to 200
-  Then the low_stock_pint for "drug2" should be 200
+  Then the low_stock_point for "drug2" should be 200
 
 Scenario: display alert when quantity of a drug is below its low_stock_point
   When I am on the pharmacy dashboard
