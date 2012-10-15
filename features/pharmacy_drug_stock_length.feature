@@ -13,30 +13,23 @@ Background: drugs have been added to database, pharmacist is logged in
 	| drug C | 10       | pills | 20 per day            | 40              |
 	| drug D |          |       | 20 per day            | 40              |
 	| drug E | 10       | pills |                       | 40              |
-	| drug F | 5        | pills	| 10 per day            | 			      | 
+	| drug F | 5        | pills | 10 per day            |                 | 
 		
 	And I am logged in as a pharmacist
 	And I am on the pharmacy page
 
 Scenario: pharmacy page should show drug name and estimated time left based off of estimated rate of usage
 	Then I should see "drug A"
-	And next to "drug A" I should see "5 days left"
-	And next to "drug A" I should not see "10 pills/day"
-	And I should see "drug B"
-	And next to "drug B" I should see "1 days left"
-	And I should see "drug C"
-	And next to "drug C" I should see "0 days left"
-	And I should see "drug F"
-	And next to "drug F" I should see "0 days left"
+	And "drug A" should have 5 days left
+	And "drug B" should have 1 day left
+	And "drug C" should have 0 days left
+	And "drug F" should have 0 days left
 
 Scenario: drugs with missing information can't caluculate estimated time left
-	Then I should see "drug D"
-	And next to "drug D" I should see "Not enough information to estimate time left"
-	And I should see "drug E"
-	And next to "drug E" I should see "Not enough information to estimate time left"
+	Then "drug D" should not have enough information to estimate the time left
+	And "drug E" should not have enough information to estimate the time left
 
 Scenario: only see an alert when stock is running low
 	Then "drug A" should not have an alert
 	And "drug B" should have an alert
-	And "drug C" should have an alert
 	And "drug F" should not have an alert
