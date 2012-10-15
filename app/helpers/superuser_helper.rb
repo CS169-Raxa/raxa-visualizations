@@ -1,0 +1,2 @@
+module SuperuserHelper
+end

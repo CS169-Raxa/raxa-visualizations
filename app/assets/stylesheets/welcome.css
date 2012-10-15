@@ -1,0 +1,20 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.modules {
+  margin: auto;
+  border: 0;
+}
+
+.modules img {
+  border: 1px transparent solid;
+  padding: 5px;
+  height: 144px;
+  width: 144px;
+}
+
+.modules img:hover {
+  border: 1px #888 solid;
+}
