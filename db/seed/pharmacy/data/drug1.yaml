@@ -1,0 +1,21 @@
+# Drug 1: used steadily each day of the week, and is not in danger of running
+#         out.
+---
+name: Drug1
+quantity: 2000
+#units: mg
+---
+- amount: -10
+  timestamp: 1 day ago
+- amount: -10
+  timestamp: 2 days ago
+- amount: -10
+  timestamp: 3 days ago
+- amount: -10
+  timestamp: 4 days ago
+- amount: -10
+  timestamp: 5 days ago
+- amount: -10
+  timestamp: 6 days ago
+- amount: -10
+  timestamp: 7 days ago
