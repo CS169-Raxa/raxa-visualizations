@@ -46,9 +46,14 @@ RaxaVisualizations::Application.routes.draw do
   #     resources :products
   #   end
 
+  match 'pharmacy' => 'pharmacy#index', :as => 'pharmacy'
+  match 'superuser' => 'superuser#index', :as => 'superuser'
+  match 'registration' => 'registration#index', :as => 'registration'
+  match 'screener' => 'screener#index', :as => 'screener'
+
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'welcome#index', :as => 'root'
 
   # See how all your routes lay out with "rake routes"
 
