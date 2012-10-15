@@ -47,12 +47,12 @@ When /^the quantity of "(.*?)" is set to (\d+)$/ do |name, amt|
   drug.quantity = amt
 end
 
-Then /^the low stock alert for "(.*?)" should be False$/ do |name|
+Then /^the low stock alert for "(.*?)" should be off$/ do |name|
   drug = Drug.find_by_name(name)
   assert_equal(False, drug.low_stock_alert)
 end
 
-Then /^the low stock alert for "(.*?)" should be True$/ do |arg1|
+Then /^the low stock alert for "(.*?)" should be on$/ do |arg1|
   drug = Drug.find_by_name(name)
   assert_equal(True, drug.low_stock_alert)
 end
