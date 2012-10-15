@@ -7,19 +7,19 @@ Given /^the following drugs exist:$/ do |table|
   end
 end
 
-When /^I manually set the low_stock_point for "(.*?)" to (\d+)$/ do |name, amt|
+When /^I manually set the low stock point for "(.*?)" to (\d+)$/ do |name, amt|
   drug = Drug.find_by_name(name)
   visit('/#{drug.id}/edit')
   fill_in('Low Stock Point', :with => amt)
   click_button('submit')
 end
 
-Then /^the low_stock_point for "(.*?)" should be (\d+)$/ do |name, amt|
+Then /^the low stock point for "(.*?)" should be (\d+)$/ do |name, amt|
   drug = Drug.find_by_name(name)
   assert_equal(amt, drug.low_stock_point)
 end
 
-When /^I automatically set the low_stock_point for "(.*?)" to (\d+)$/ do |name, amt|
+When /^I automatically set the low stock point for "(.*?)" to (\d+)$/ do |name, amt|
   drug = Drug.find_by_name(name)
   drug.low_stock_point = amt
 end
@@ -47,17 +47,17 @@ When /^the quantity of "(.*?)" is set to (\d+)$/ do |name, amt|
   drug.quantity = amt
 end
 
-Then /^the low_stock_alert for "(.*?)" should be False$/ do |name|
+Then /^the low stock alert for "(.*?)" should be False$/ do |name|
   drug = Drug.find_by_name(name)
   assert_equal(False, drug.low_stock_alert)
 end
 
-Then /^the low_stock_alert for "(.*?)" should be True$/ do |arg1|
+Then /^the low stock alert for "(.*?)" should be True$/ do |arg1|
   drug = Drug.find_by_name(name)
   assert_equal(True, drug.low_stock_alert)
 end
 
-When /^the low_stock_point of "(.*?)" is set to (\d+)$/ do |name, amt|
+When /^the low stock point of "(.*?)" is set to (\d+)$/ do |name, amt|
   drug = Drug.find_by_name(name)
   drug.low_stock_point = amt
 end
