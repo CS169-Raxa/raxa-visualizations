@@ -56,3 +56,5 @@ gem 'haml'
 gem 'haml-rails'
 
 gem 'factory_girl_rails'
+
+gem 'chronic'
