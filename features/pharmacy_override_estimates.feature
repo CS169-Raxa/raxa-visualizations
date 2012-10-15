@@ -9,7 +9,6 @@ Feature: Override estimates of drug usage rates
       | name   | quantity | units | calculated_usage_rate | low_stock_alert |
       | drug A | 20       | pills | 10 per day            | 20              |
       | drug B | 20       | pills | 10 per day            | 10              |
-    And I am logged in as a pharmacist
     And I am on the pharmacy page
 
   Scenario: pharmacy page should use the set usage rate instead of the calculate usage rate
@@ -23,3 +22,7 @@ Feature: Override estimates of drug usage rates
     Given I have changed the usage rate for "drug A" to 20 per day
     When I reset the usage rate for "drug A"
     Then "drug A" should have 2 days left
+
+  Scenario: pharmacy page should validate inputs
+    When I change the usage rate for "drug A" to "qbrnknbr"
+    Then I should see an error
