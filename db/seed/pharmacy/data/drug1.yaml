@@ -3,7 +3,6 @@
 ---
 name: Drug1
 quantity: 2000
-#units: mg
 ---
 - amount: -10
   timestamp: 1 day ago
