@@ -1,17 +1,15 @@
 %h1 Modules
 
-%table.modules
-  %tr
-    %td
-      = link_to pharmacy_path do
-        = image_tag 'pharmacy.png', :alt => 'Pharmacy', :width => 144, :height => 144
-    %td
-      = link_to screener_path do
-        = image_tag 'screener.png', :alt => 'Screener', :width => 144, :height => 144
-  %tr
-    %td
-      = link_to registration_path do
-        = image_tag 'registration.png', :alt => 'Registration', :width => 144, :height => 144
-    %td
-      = link_to superuser_path do
-        = image_tag 'superuser.png', :alt => 'Superuser', :width => 144, :height => 144
+%ul.modules
+  %li
+    = link_to pharmacy_path do
+      = image_tag 'pharmacy.png', :alt => 'Pharmacy', :width => 144, :height => 144
+  %li
+    = link_to screener_path do
+      = image_tag 'screener.png', :alt => 'Screener', :width => 144, :height => 144
+  %li
+    = link_to registration_path do
+      = image_tag 'registration.png', :alt => 'Registration', :width => 144, :height => 144
+  %li
+    = link_to superuser_path do
+      = image_tag 'superuser.png', :alt => 'Superuser', :width => 144, :height => 144

@@ -4,8 +4,15 @@
 */
 
 .modules {
+  display: block;
   margin: auto;
+  padding: 0;
   border: 0;
+  width: 320px;
+}
+
+.modules li {
+  display: inline-block;
 }
 
 .modules img {
