@@ -1,4 +1,8 @@
 RaxaVisualizations::Application.routes.draw do
+  scope :path => '/pharmacy' do
+    resources :drugs
+  end
+
   get "pharmacy/index"
 
   # The priority is based upon order of creation:

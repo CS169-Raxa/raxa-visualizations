@@ -18,12 +18,12 @@
             %div.details_left
               %p
                 Estimated rate: 200mg/week
-              = form_tag
-              %label{:for => 'override'} Override:
-              = text_field_tag 'override'
-              %label{:for => 'alert'} Alert if stock falls below:
-              = text_field_tag 'alert'
-              = submit_tag 'Update', :class => 'submit'
+              = form_tag pharmacy_drug_path(drug.id), :method => :put do
+                %label{:for => 'override'} Override:
+                = text_field_tag 'override'
+                %label{:for => 'alert'} Alert if stock falls below:
+                = text_field :drug, :alert_level, :value => drug.alert_level
+                = submit_tag 'Update', :class => 'submit'
             %div.details_right
               %div.bigsparkline{:id => "bigsparkline-#{drug.id}"}
                 Sparkline unavailable
