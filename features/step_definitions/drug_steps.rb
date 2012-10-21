@@ -56,12 +56,12 @@ end
 
 Then /^the low stock alert for "(.*?)" should be off$/ do |name|
   drug = Drug.find_by_name(name)
-  assert_equal(False, drug.low_stock_alert)
+  assert_equal(0, drug.alert_level)
 end
 
-Then /^the low stock alert for "(.*?)" should be on$/ do |arg1|
+Then /^the low stock alert for "(.*?)" should be on$/ do |name|
   drug = Drug.find_by_name(name)
-  assert_equal(True, drug.low_stock_alert)
+  assert_equal(1, drug.alert_level)
 end
 
 When /^the low stock point of "(.*?)" is set to (\d+)$/ do |name, amt|
