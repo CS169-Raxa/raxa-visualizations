@@ -6,4 +6,15 @@ $(document).ready(function() {
   $('.info').bind('click', function() {
       $(this).next().find('div').slideToggle();
   });
+  $('.drug_form').submit(function() {
+    $.ajax({
+      type: 'PUT',
+      url: '/pharmacy/drugs/' + $(this).data('id'),
+      data: {
+        user_rate: $(this).find('.override_field').val(),
+        alert_level: $(this).find('.alert_field').val(),
+      }
+    });
+    return false;
+  });
 });

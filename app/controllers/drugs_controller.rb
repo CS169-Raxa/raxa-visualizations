@@ -3,15 +3,12 @@ class DrugsController < ApplicationController
     puts params
     id = params[:id]
     drug = Drug.find(id)
-    override = params[:override]
-    alert_level = params[:drug][:alert_level]
-    if override
-      drug.user_rate = override
-    end
-    if alert_level
-      drug.alert_level = alert_level
-    end
+
+    drug.user_rate = params[:user_rate]
+    drug.alert_level = params[:alert_level]
     drug.save!
+
+    render :nothing => true
   end
 end
 
