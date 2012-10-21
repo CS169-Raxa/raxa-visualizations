@@ -1,6 +1,5 @@
 class DrugsController < ApplicationController
   def update
-    puts params
     id = params[:id]
     drug = Drug.find(id)
 
