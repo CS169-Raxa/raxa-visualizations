@@ -90,7 +90,7 @@ end
 
 # Override estimates
 
-Then /^"(.*?)" should have "(.*?") left/ do |drug_name, time_left|
+Then /^"(.*?)" should have "(.*?)" left/ do |drug_name, time_left|
   drug = Drug.find_by_name(drug_name)
   page.find("#drug#{drug.id} .info").should have_content time_left
 end
