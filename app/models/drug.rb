@@ -17,4 +17,17 @@ class Drug < ActiveRecord::Base
     end
     quantities
   end
+
+  # Based on total consumption of the previous week
+  def estimated_rate
+    recent_deltas(1.week).consumed.sum(:amount).abs/1.week
+  end
+
+  def time_left
+    if user_rate
+      quantity/user_rate
+    elsif estimated_rate
+      quantity/estimated_rate
+    end
+  end
 end
