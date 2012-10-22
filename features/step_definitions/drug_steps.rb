@@ -92,12 +92,12 @@ end
 
 Then /^"(.*?)" should have (.*?) left/ do |drug_name, time_left|
   drug = Drug.find_by_name(drug_name)
-  assert page.find("#drug#{drug.id} .info").should have_content time_left
+  page.find("#drug#{drug.id} .info").should have_content time_left
 end
 
 When /^I (have )?change(d)? the usage rate for "(.*?)" to "(.*?)"/ do |_, _, drug_name, override|
   drug = Drug.find_by_name(drug_name)
-  fill_in "drug#{drug.id}", :with => override
+  find("#drug#{drug.id} .override_field").set(override)
   click_button 'Update'
 end
 
