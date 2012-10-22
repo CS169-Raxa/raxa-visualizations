@@ -1,6 +1,6 @@
 RaxaVisualizations::Application.routes.draw do
-  scope :path => '/pharmacy' do
-    resources :pharmacy_drugs
+  scope 'pharmacy' do
+    resources :drugs, :as => :pharmacy
   end
 
   get "pharmacy/index"
