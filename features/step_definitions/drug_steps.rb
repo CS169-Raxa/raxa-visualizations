@@ -11,17 +11,15 @@ end
 
 Given /^the following drug deltas exist:$/ do |table|
   table.hashes.each do |drug_delta|
+    drug_delta['timestamp'] = Chronic::parse(drug_delta['timestamp'])
     params = {}
     drug_delta.each do |key, value|
-      if key != 'drug_id'
+      if key != 'drug_id' and key != 'drug_name'
         params[key] = value
       end
     end
-    delta = DrugDelta.create(params)
-    if drug_delta['drug_id']
-      delta.drug = Drug.find(drug_delta['drug_id'])
-    end
-    delta.save!
+    drug = Drug.find_by_name(drug_delta['drug_name'])
+    drug.drug_deltas << DrugDelta.create(params)
   end
 end
 
@@ -77,16 +75,13 @@ end
 
 # Sparklines
 
-Then /^I should see a sparkline in the row for drug "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^I should see a sparkline in the row for drug "(.*?)"$/ do |drug_name|
+  @drug = Drug.find_by_name drug_name
+  page.should have_selector("svg#smallSparkline-#{@drug.id}")
 end
 
-Then /^the sparkline should have (\d+) points$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^I should see a missing history notification in the row for drug "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^I should see a missing history notification in the row for drug "(.*?)"$/ do |drug_name|
+  page.should have_selector("table #drug#{Drug.find_by_name(drug_name).id} .missingSparklineHistory")
 end
 
 Then /^I should see a flat sparkline in the row for drug "(.*?)"$/ do |arg1|
