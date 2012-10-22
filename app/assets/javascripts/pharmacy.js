@@ -36,7 +36,7 @@ $(function() {
     var amounts = data.map(function(el) { return el[1]; })
     var y_scale = d3.scale.linear()
       .domain([d3.min(amounts), d3.max(amounts)])
-      .range([2, 14]);
+      .range([14, 2]);
 
     var line = d3.svg.line()
       .x(function(d) { return x_scale(d[0]); })
