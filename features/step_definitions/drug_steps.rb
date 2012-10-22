@@ -76,19 +76,15 @@ end
 
 # Sparklines
 
-Then /^I should see a sparkline in the row for drug "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^the sparkline should have (\d+) points$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^I should see a sparkline in the row for drug "(.*?)"$/ do |drug_name|
+  @drug = Drug.find_by_name drug_name
+  page.should have_selector("#smallSparkline-#{@drug.id}")
 end
 
 Then /^I should see a missing history notification in the row for drug "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+  pending
 end
 
 Then /^I should see a flat sparkline in the row for drug "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
-
