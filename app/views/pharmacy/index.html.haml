@@ -10,14 +10,14 @@
     %tbody
       %tr.info
         %td.name= drug.name
-        %td.time= drug.time_left
+        %td.time= distance_of_time_in_words(drug.time_left)
         %td.sparkline sparkline FIXME
       %tr
         %td.details{:colspan => 3}
           %div
             %div.details_left
               %p
-                Estimated rate: 200mg/week
+                Estimated rate:
               = form_tag pharmacy_drug_path(drug.id),
                 :class => :drug_form,
                 :data => {:id => drug.id},
