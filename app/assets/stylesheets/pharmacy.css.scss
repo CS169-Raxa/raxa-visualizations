@@ -30,6 +30,17 @@
 
   td.sparkline {
     border-width: 1px 1px 0 0;
+
+    svg.smallSparkline {
+      height: 16px;
+      width: 150px;
+
+      .line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+      }
+    }
   }
 
   td.details {

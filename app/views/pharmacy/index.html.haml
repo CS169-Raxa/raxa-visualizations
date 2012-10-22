@@ -1,3 +1,5 @@
+= content_for :head, javascript_include_tag("d3.v2.min.js")
+
 %h1 Pharmacy stock
 %p Click a row to show additional details and options.
 %table#drugs
@@ -11,7 +13,11 @@
       %tr.info
         %td.name= drug.name
         %td.time= drug.time_left ? distance_of_time_in_words(drug.time_left.to_i) : 'Estimate unavailable'
-        %td.sparkline sparkline FIXME
+        %td.sparkline
+          - if (drug_history = drug.history(1.week))
+            %svg.smallSparkline{:id => "smallSparkline-#{drug.id}", 'data-points' => drug_history.to_json}
+          - else
+            %span.missingSparklineHistory Missing History
       %tr
         %td.details{:colspan => 3}
           %div
@@ -28,12 +34,11 @@
                 :data => {:id => drug.id},
                 :method => :put do
                 %label{:for => 'user_rate'} Override:
-                = text_field_tag 'user_rate', drug.user_rate,
-                  :class => 'override_field'
+                = text_field_tag 'user_rate', drug.user_rate, :class => 'override_field'
                 %label{:for => 'alert_level'} Alert if stock falls below:
                 = text_field_tag 'alert_level', drug.alert_level,
                   :class => 'alert_field'
                 = submit_tag 'Update', :class => 'submit'
             %div.details_right
-              %div.bigsparkline{:id => "bigsparkline-#{drug.id}"}
+              %div.bigSparkline{:id => "bigSparkline-#{drug.id}"}
                 Sparkline unavailable
