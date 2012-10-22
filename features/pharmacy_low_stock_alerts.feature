@@ -8,9 +8,9 @@ Background: drugs in database
 
   Given the following drugs exist:
   | name    | quantity | units      | estimated_rate | user_rate | low_stock_point | alert_level  |
-  | drug1   |     1000 | milligram  |             50 |           |             500 | 0            |
-  | drug2   |     3205 | pack       |             30 |           |             300 | 0            |
-  | drug3   |      255 | pill       |            100 |           |            1000 | 1            |
+  | drug1   |     1000 | milligram  |             50 |        50 |             500 | 0            |
+  | drug2   |     3205 | pack       |             30 |        50 |             300 | 0            |
+  | drug3   |      255 | pill       |            100 |        50 |            1000 | 1            |
 
 Scenario: manually set the low stock point for an existing drug
   When I manually set the low stock point for "drug2" to 200
