@@ -57,8 +57,10 @@ class Drug < ActiveRecord::Base
   def time_left
     if user_rate and user_rate > 0
       quantity/user_rate_per_second
-    elsif estimated_rate
+    elsif estimated_rate and estimated_rate > 0
       quantity/estimated_rate
+    else
+      false
     end
   end
 end
