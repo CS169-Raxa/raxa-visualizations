@@ -12,6 +12,7 @@ Feature: Override estimates of drug usage rates
     Given the following drug deltas exist:
       | drug_id | amount | description         | timestamp      |
       |       1 |    -70 | something           | #{2.days.ago}  |
+      |       1 |    -70 | something           | #{1.day.ago}  |
       |       2 |    -70 | something           | #{2.days.ago}  |
     And I am on the pharmacy dashboard
 
@@ -26,7 +27,3 @@ Feature: Override estimates of drug usage rates
     Given I have changed the usage rate for "drug A" to "20"
     When I reset the usage rate for "drug A"
     Then "drug A" should have "2 days" left
-
-  Scenario: pharmacy page should validate inputs
-    When I change the usage rate for "drug A" to "qbrnknbr"
-    Then I should see an error
