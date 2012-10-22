@@ -6,22 +6,26 @@ Feature: Override estimates of drug usage rates
 
   Background: drugs have been added to database, pharmacist is logged in
     Given the following drugs exist:
-      | name   | quantity | units | calculated_usage_rate | low_stock_alert |
-      | drug A | 20       | pills | 10 per day            | 20              |
-      | drug B | 20       | pills | 10 per day            | 10              |
-    And I am on the pharmacy page
+      | id | name   | quantity | units | user_rate | low_stock_point |
+      | 1  | drug A | 20       | pills |           | 20              |
+      | 2  | drug B | 20       | pills |           | 10              |
+    Given the following drug deltas exist:
+      | drug_id | amount | description         | timestamp      |
+      |       1 |    -70 | something           | #{2.days.ago}  |
+      |       2 |    -70 | something           | #{2.days.ago}  |
+    And I am on the pharmacy dashboard
 
   Scenario: pharmacy page should use the set usage rate instead of the calculate usage rate
-    Then "drug A" should have 2 days left
-    And  "drug B" should have 2 days left
-    When I change the usage rate for "drug A" to 20 per day
-    Then "drug A" should have 1 day left
-    And  "drug B" should have 2 days left
+    Then "drug A" should have "2 days" left
+    And  "drug B" should have "2 days" left
+    When I change the usage rate for "drug A" to "20"
+    Then "drug A" should have "1 day" left
+    And  "drug B" should have "2 days" left
 
   Scenario: pharmacy page should revert to calculated estimates when manual estimates are reset
-    Given I have changed the usage rate for "drug A" to 20 per day
+    Given I have changed the usage rate for "drug A" to "20"
     When I reset the usage rate for "drug A"
-    Then "drug A" should have 2 days left
+    Then "drug A" should have "2 days" left
 
   Scenario: pharmacy page should validate inputs
     When I change the usage rate for "drug A" to "qbrnknbr"
