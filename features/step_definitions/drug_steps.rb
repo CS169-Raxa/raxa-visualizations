@@ -13,7 +13,7 @@ Given /^the following drug deltas exist:$/ do |table|
   table.hashes.each do |drug_delta|
     params = {}
     drug_delta.each do |key, value|
-      if key != 'drug_id'
+      if key != 'drug_id' and key != 'drug_name'
         params[key] = value
       end
     end
