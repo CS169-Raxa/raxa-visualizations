@@ -15,7 +15,9 @@
   }
 
   tr.info {
-    background-color: #eee;
+    @if true {
+      background-color: #eee;
+    }
   }
 
   td.name {
