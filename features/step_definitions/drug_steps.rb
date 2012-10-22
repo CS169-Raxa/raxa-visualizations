@@ -90,7 +90,7 @@ end
 
 # Override estimates
 
-Then /^"(.*?)" should have "(.*?)" left/ do |drug_name, time_left|
+Then /^"(.*?)" should have (.*?) left/ do |drug_name, time_left|
   drug = Drug.find_by_name(drug_name)
   page.find("#drug#{drug.id} .info").should have_content time_left
 end
@@ -103,4 +103,13 @@ end
 
 When /^I reset the usage rate for "(.*)"/ do |drug_name|
   step %Q[I change the usage rate for "#{drug_name}" to ""]
+end
+
+Then /^"(.*?)" should not have enough information to estimate the time left$/ do |drug_name|
+  drug = Drug.find_by_name(drug_name)
+  assert page.find("#drug#{drug.id} .info").should have_content ("Estimate unavailable")
+end
+
+Then /^I should see "(.*?)"$/ do |drug|
+  page.should have_content(drug)
 end
