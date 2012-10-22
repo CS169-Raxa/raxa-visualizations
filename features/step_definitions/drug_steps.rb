@@ -25,7 +25,6 @@ end
 When /^I manually set the low stock point for "(.*?)" to (\d+)$/ do |name, amt|
   drug = Drug.find_by_name(name)
   visit('/pharmacy')
-  click_link("#{name}")
   fill_in('alert_field', :with => amt)
   click_button('Update')
 end
