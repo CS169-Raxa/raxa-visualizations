@@ -52,6 +52,7 @@ end
 When /^the quantity of "(.*?)" is set to (\d+)$/ do |name, amt|
   drug = Drug.find_by_name(name)
   drug.quantity = amt
+  drug.save
 end
 
 Then /^the low stock alert for "(.*?)" should be off$/ do |name|
@@ -67,6 +68,7 @@ end
 When /^the low stock point of "(.*?)" is set to (\d+)$/ do |name, amt|
   drug = Drug.find_by_name(name)
   drug.low_stock_point = amt
+  drug.save
 end
 
 # Sparklines
