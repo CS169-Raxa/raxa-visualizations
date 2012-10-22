@@ -92,3 +92,15 @@ Then /^I should see a flat sparkline in the row for drug "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
+# Override estimates
+
+Then /^"(.*?)" should have "(.*?") left/ do |drug_name, time_left|
+  drug = Drug.find_by_name(drug_name)
+  assert page.find("#drug#{drug.id} .info").should have_content time_left
+end
+
+When /^I (have)? change(d)? the usage rate for "(.*?)" to "(.*?)"/ do |_, _, drug_name, override|
+  drug = Drug.find_by_name(drug_name)
+  fill_in "drug#{drug.id}", :with => override
+  click_button 'Update'
+end
