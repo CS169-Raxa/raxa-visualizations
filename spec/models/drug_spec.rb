@@ -24,12 +24,12 @@ describe Drug do
 
     it 'should summarize drug history by computing quantities' do
       @drug.history(5.days).should ==
-        [[Time.now, 200.0],
-         [Time.now - 1.day,  201.0],
-         [Time.now - 2.days, 200.0],
-         [Time.now - 3.days, 201.0],
-         [Time.now - 4.days, 200.0],
-         [Time.now - 5.days, 201.0]]
+        [[Time.now.to_i, 200.0],
+         [(Time.now - 1.day ).to_i, 201.0],
+         [(Time.now - 2.days).to_i, 200.0],
+         [(Time.now - 3.days).to_i, 201.0],
+         [(Time.now - 4.days).to_i, 200.0],
+         [(Time.now - 5.days).to_i, 201.0]]
     end
   end
 end
