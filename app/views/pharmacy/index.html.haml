@@ -22,23 +22,29 @@
         %td.details{:colspan => 3}
           %div
             %div.details_left
-              %p
-                Current quantity:
-                = drug.quantity
-                = drug.units
-                Estimated rate:
-                = drug.estimated_rate * 1.week
-                per week
+              Current quantity:
+              = drug.quantity
+              = drug.units
+              = form_tag pharmacy_drug_path(drug.id),
+                :class => :drug_form,
+                :data => {:id => drug.id},
+                :method => :put do
+                %label{:for => 'alert_level'} Alert if stock falls below:
+                = text_field_tag 'alert_level', drug.alert_level,
+                :class => 'alert_field', :placeholder => drug.units
+                = submit_tag 'Update', :class => 'submit'
+            %div.details_right
+              Estimated rate:
+              = drug.estimated_rate * 1.week
+              = drug.units
+              per week
               = form_tag pharmacy_drug_path(drug.id),
                 :class => :drug_form,
                 :data => {:id => drug.id},
                 :method => :put do
                 %label{:for => 'user_rate'} Override:
-                = text_field_tag 'user_rate', drug.user_rate, :class => 'override_field'
-                %label{:for => 'alert_level'} Alert if stock falls below:
-                = text_field_tag 'alert_level', drug.alert_level,
-                  :class => 'alert_field'
+                = text_field_tag 'user_rate', drug.user_rate,
+                :class => 'override_field', :placeholder => "#{drug.units} per week"
                 = submit_tag 'Update', :class => 'submit'
-            %div.details_right
-              %div.bigSparkline{:id => "bigSparkline-#{drug.id}"}
-                Sparkline unavailable
+            %div.bigSparkline{:id => "bigSparkline-#{drug.id}"}
+              TODO: Insert time graph
