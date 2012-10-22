@@ -10,8 +10,18 @@ Given /^the following drugs exist:$/ do |table|
 end
 
 Given /^the following drug deltas exist:$/ do |table|
-  # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+  table.hashes.each do |drug_delta|
+    params = {}
+    drug_delta.each do |key, value|
+      if key != 'drug_id'
+        params[key] = value
+      end
+    end
+    drug_delta = DrugDelta.create(params)
+    if drug_delta['drug_id']
+      drug_delta.drug = Drug.find(drug_delta['drug_id'])
+    end
+  end
 end
 
 # Paths
@@ -81,3 +91,4 @@ end
 Then /^I should see a flat sparkline in the row for drug "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
+

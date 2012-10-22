@@ -10,13 +10,16 @@
     %tbody
       %tr.info
         %td.name= drug.name
-        %td.time= distance_of_time_in_words(drug.time_left.to_i)
+        %td.time= drug.time_left ? distance_of_time_in_words(drug.time_left.to_i) : 'Estimate unavailable'
         %td.sparkline sparkline FIXME
-      %tr
+      %tr{:id => "drug#{drug.id}"}
         %td.details{:colspan => 3}
           %div
             %div.details_left
               %p
+                Current quantity:
+                = drug.quantity
+                = drug.units
                 Estimated rate:
                 = drug.estimated_rate * 1.week
                 per week
