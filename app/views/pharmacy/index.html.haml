@@ -18,6 +18,8 @@
             %div.details_left
               %p
                 Estimated rate:
+                = drug.estimated_rate * 1.week
+                per week
               = form_tag pharmacy_drug_path(drug.id),
                 :class => :drug_form,
                 :data => {:id => drug.id},

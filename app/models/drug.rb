@@ -18,7 +18,7 @@ class Drug < ActiveRecord::Base
     quantities
   end
 
-  # Total consumption of the previous week
+  # Based on total consumption of the previous week
   def estimated_rate
     recent_deltas(1.week).consumed.sum(:amount).abs/1.week
   end
