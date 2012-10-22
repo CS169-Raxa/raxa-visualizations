@@ -7,29 +7,23 @@ Feature: Estimate how long drug stock will last
 Background: drugs have been added to database, pharmacist is logged in
 	
 	Given the following drugs exist:
-	| name   | quantity | units | calculated_usage_rate | low_stock_alert |
-	| drug A | 50       | pills | 10 per day            | 10              |
-	| drug B | 30       | pills | 20 per day            | 40              |
-	| drug C | 10       | pills | 20 per day            | 40              |
-	| drug D |          |       | 20 per day            | 40              |
-	| drug E | 10       | pills |                       | 40              |
-	| drug F | 5        | pills | 10 per day            |                 | 
-		
-	And I am logged in as a pharmacist
-	And I am on the pharmacy page
-
+  | id | name  | quantity | units     | user_rate | low_stock_point |
+  |  1 | drug1 |     1000 | milligram |           |             500 |
+  |  2 | drug2 |     3205 | pack      |           |             300 |
+  |  3 | drug3 |      10  | pill      |           |             100 |
+   
+  And the following drug deltas exist:
+  | drug_name | amount | description         | timestamp    |
+  |   drug1   |   -500 | initial supply      | 2 days ago   |
+  |   drug1   |   -500 | initial supply      | 1 day ago    |
+  |   drug3   |   +200 | reinforcements      | 15 days ago  |
+  |   drug3   |   -990 | patient consumption | 1 day ago    |
+  
+  And I am on the pharmacy dashboard
 Scenario: pharmacy page should show drug name and estimated time left based off of estimated rate of usage
-	Then I should see "drug A"
-	And "drug A" should have 5 days left
-	And "drug B" should have 1 day left
-	And "drug C" should have 0 days left
-	And "drug F" should have 0 days left
+	Then I should see "drug1"
+  And "drug1" should have 7 days left
+	And "drug3" should have 2 hours left
 
 Scenario: drugs with missing information can't caluculate estimated time left
-	Then "drug D" should not have enough information to estimate the time left
-	And "drug E" should not have enough information to estimate the time left
-
-Scenario: only see an alert when stock is running low
-	Then "drug A" should not have an alert
-	And "drug B" should have an alert
-	And "drug F" should not have an alert
+	Then "drug2" should not have enough information to estimate the time left
