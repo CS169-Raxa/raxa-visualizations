@@ -35,18 +35,12 @@ Then /^the low stock point for "(.*?)" should be (\d+)$/ do |name, amt|
   assert_equal(amt, drug.low_stock_point)
 end
 
-module AlertText
-  def alert(drugName)
-    return 'Low stock for #{drugName}'
-  end
-end
-
 Then /^I should see an alert for "(.*?)"$/ do |name|
-  assert_match(/#{alert(name)}/m, page.body)
+  assert_match(/#{name}(.*)---/m, page.body)
 end
 
 Then /^I should not see an alert for "(.*?)"$/ do |name|
-  assert page.has_no_content(alert(name))
+  assert_match(/---(.*)#{name}/m, page.body)
 end
 
 When /^the quantity of "(.*?)" is set to (\d+)$/ do |name, amt|
