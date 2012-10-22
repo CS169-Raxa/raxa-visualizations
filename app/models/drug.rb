@@ -50,9 +50,13 @@ class Drug < ActiveRecord::Base
     recent_deltas(1.week).consumed.sum(:amount).abs/1.week
   end
 
+  def user_rate_per_second
+    user_rate/1.week
+  end
+
   def time_left
-    if user_rate
-      quantity/user_rate
+    if user_rate and user_rate > 0
+      quantity/user_rate_per_second
     elsif estimated_rate
       quantity/estimated_rate
     end

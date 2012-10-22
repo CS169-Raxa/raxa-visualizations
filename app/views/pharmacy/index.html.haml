@@ -10,7 +10,7 @@
     %tbody
       %tr.info
         %td.name= drug.name
-        %td.time= distance_of_time_in_words(drug.time_left)
+        %td.time= distance_of_time_in_words(drug.time_left.to_i)
         %td.sparkline sparkline FIXME
       %tr
         %td.details{:colspan => 3}
