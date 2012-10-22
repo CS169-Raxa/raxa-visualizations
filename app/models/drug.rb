@@ -37,10 +37,10 @@ class Drug < ActiveRecord::Base
   # up corresponding drug deltas
   def history time_period
     current_quantity = quantity
-    quantities = [[Time.now, current_quantity]]
+    quantities = [[Time.now.to_i, current_quantity]]
     recent_deltas(time_period).order('timestamp DESC').each do |delta|
       current_quantity -= delta.amount
-      quantities << [delta.timestamp, current_quantity]
+      quantities << [delta.timestamp.to_i, current_quantity]
     end
     quantities
   end
