@@ -24,11 +24,11 @@
                 :class => :drug_form,
                 :data => {:id => drug.id},
                 :method => :put do
-                %label{:for => 'override'} Override:
-                = text_field_tag 'override', drug.user_rate,
+                %label{:for => 'user_rate'} Override:
+                = text_field_tag 'user_rate', drug.user_rate,
                   :class => 'override_field'
-                %label{:for => 'alert'} Alert if stock falls below:
-                = text_field :drug, :alert_level, :value => drug.alert_level,
+                %label{:for => 'alert_level'} Alert if stock falls below:
+                = text_field_tag 'alert_level', drug.alert_level,
                   :class => 'alert_field'
                 = submit_tag 'Update', :class => 'submit'
             %div.details_right

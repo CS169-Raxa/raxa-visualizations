@@ -7,7 +7,7 @@ class DrugsController < ApplicationController
     drug.alert_level = params[:alert_level]
     drug.save!
 
-    render :nothing => true
+    redirect_to pharmacy_path
   end
 end
 
