@@ -17,10 +17,11 @@ Given /^the following drug deltas exist:$/ do |table|
         params[key] = value
       end
     end
-    drug_delta = DrugDelta.create(params)
+    delta = DrugDelta.create(params)
     if drug_delta['drug_id']
-      drug_delta.drug = Drug.find(drug_delta['drug_id'])
+      delta.drug = Drug.find(drug_delta['drug_id'])
     end
+    delta.save!
   end
 end
 
