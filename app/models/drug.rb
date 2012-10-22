@@ -38,11 +38,12 @@ class Drug < ActiveRecord::Base
   def history time_period
     current_quantity = quantity
     quantities = [[Time.now.to_i, current_quantity]]
-    recent_deltas(time_period).order('timestamp DESC').each do |delta|
+    recent_deltas = recent_deltas(time_period).order('timestamp DESC')
+    recent_deltas.each do |delta|
       current_quantity -= delta.amount
       quantities << [delta.timestamp.to_i, current_quantity]
     end
-    quantities
+    recent_deltas.empty? ? false : quantities
   end
 
   # Based on total consumption of the previous week
