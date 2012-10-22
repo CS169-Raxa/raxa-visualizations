@@ -1,0 +1,34 @@
+%h1 Pharmacy stock
+%p Click a row to show additional details and options.
+%table#drugs
+  %thead
+    %tr
+      %th Name
+      %th Time left
+      %th History
+  - @drugs.each do |drug|
+    %tbody
+      %tr.info
+        %td.name= drug.name
+        %td.time 2 months
+        %td.sparkline sparkline FIXME
+      %tr
+        %td.details{:colspan => 3}
+          %div
+            %div.details_left
+              %p
+                Estimated rate: 200mg/week
+              = form_tag pharmacy_drug_path(drug.id),
+                :class => :drug_form,
+                :data => {:id => drug.id},
+                :method => :put do
+                %label{:for => 'override'} Override:
+                = text_field_tag 'override', drug.user_rate,
+                  :class => 'override_field'
+                %label{:for => 'alert'} Alert if stock falls below:
+                = text_field :drug, :alert_level, :value => drug.alert_level,
+                  :class => 'alert_field'
+                = submit_tag 'Update', :class => 'submit'
+            %div.details_right
+              %div.bigsparkline{:id => "bigsparkline-#{drug.id}"}
+                Sparkline unavailable
