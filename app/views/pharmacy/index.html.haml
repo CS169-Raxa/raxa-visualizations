@@ -1,3 +1,5 @@
+= content_for :head, javascript_include_tag("d3.v2.min.js")
+
 %h1 Pharmacy stock
 %p Click a row to show additional details and options.
 %table#drugs
@@ -8,10 +10,11 @@
       %th History
   - @drugs.each do |drug|
     %tbody
-      %tr.info
+      %tr.info{:id => "drug-#{drug.id}"}
         %td.name= drug.name
         %td.time= distance_of_time_in_words(drug.time_left)
-        %td.sparkline sparkline FIXME
+        %td.sparkline
+          %svg.smallSparkline{:id => "smallSparkline-#{drug.id}", 'data-points' => drug.history(1.week).to_json}
       %tr
         %td.details{:colspan => 3}
           %div
@@ -32,5 +35,5 @@
                   :class => 'alert_field'
                 = submit_tag 'Update', :class => 'submit'
             %div.details_right
-              %div.bigsparkline{:id => "bigsparkline-#{drug.id}"}
+              %div.bigSparkline{:id => "bigSparkline-#{drug.id}"}
                 Sparkline unavailable
