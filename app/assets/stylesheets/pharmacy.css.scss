@@ -1,0 +1,68 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+#drugs {
+  width: 500px;
+
+  td {
+    border: {
+      style: solid;
+      color: #000;
+      width: 0px;
+    }
+  }
+
+  tr.info {
+    background-color: #eee;
+  }
+
+  td.name {
+    border-width: 1px 0 0 1px;
+  }
+
+  td.time {
+    border-width: 1px 0 0;
+  }
+
+  td.sparkline {
+    border-width: 1px 1px 0 0;
+  }
+
+  td.details {
+    padding: 0;
+    background-color: #fff;
+    border-width: 0 1px 1px 1px;
+
+    > div {
+      padding: 5px;
+      height: 152px;
+
+      div.details_left {
+        float: left;
+      }
+
+      div.details_right {
+        float: right;
+        height: 150px;
+        width: 250px;
+        border: 1px solid #000;
+
+        div.bigsparkline {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+    }
+  }
+}
+
+label {
+  display: block;
+}
+
+.submit {
+  display: block;
+}
