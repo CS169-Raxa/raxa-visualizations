@@ -13,7 +13,7 @@ Given /^the following drug deltas exist:$/ do |table|
   table.hashes.each do |drug_delta|
     params = {}
     drug_delta.each do |key, value|
-      if key != 'drug_id'
+      if key != 'drug_id' and key != 'drug_name'
         params[key] = value
       end
     end
@@ -91,4 +91,3 @@ end
 Then /^I should see a flat sparkline in the row for drug "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
-
