@@ -14,6 +14,7 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'simplecov'
+  gem 'psych'
 end
 group :production do
   gem 'pg'
@@ -58,5 +59,3 @@ gem 'haml-rails'
 gem 'factory_girl_rails'
 
 gem 'chronic'
-
-gem 'psych'
