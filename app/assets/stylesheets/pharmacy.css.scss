@@ -1,7 +1,5 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+$no_alert_bg: #eee;
+$alert_bg: #faa;
 
 #drugs {
   width: 500px;
@@ -11,8 +9,12 @@
     border: 1px solid black;
   }
 
-  tr.info {
-    background-color: #eee;
+  tr.info.no_alert {
+    background-color: $no_alert_bg;
+  }
+
+  tr.info.alert {
+    background-color: $alert_bg;
   }
 
   td.sparkline {
