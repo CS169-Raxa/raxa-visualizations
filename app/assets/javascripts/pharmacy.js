@@ -2,17 +2,20 @@
 // All this logic will automatically be available in application.js.
 
 $(document).ready(function() {
-  $('.details div').hide();
+  $('.details_container').hide();
   $('.info').bind('click', function() {
-      $(this).next().find('div').slideToggle();
+    $(this).next().find('.details_container').slideToggle();
   });
   $('.drug_form').submit(function() {
+    var id = $(this).find('input[name="drug[id]"]').val();
+    var alert_level = $(this).find('input[name="drug[alert_level]"]').val();
+    var user_rate = $(this).find('input[name="drug[user_rate]"]').val();
     $.ajax({
       type: 'PUT',
-      url: '/pharmacy/drugs/' + $(this).data('id'),
+      url: '/pharmacy/drugs/' + id,
       data: {
-        user_rate: $(this).find('.override_field').val(),
-        alert_level: $(this).find('.alert_field').val(),
+        'drug[alert_level]': alert_level,
+        'drug[user_rate]': user_rate
       }
     });
     return false;

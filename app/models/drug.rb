@@ -2,6 +2,14 @@ class Drug < ActiveRecord::Base
   has_many :drug_deltas
   attr_accessible :alert_level, :estimated_rate, :name, :user_rate, :units, :quantity, :low_stock_point
 
+  def alert?
+    if self.alert_level and self.quantity
+      self.quantity < self.alert_level
+    else
+      false
+    end
+  end
+
   def quantity=(q)
     self[:quantity] = q
     lsp = self[:low_stock_point]
