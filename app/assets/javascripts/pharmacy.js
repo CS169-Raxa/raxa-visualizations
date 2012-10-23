@@ -14,7 +14,6 @@ $(document).ready(function() {
       type: 'PUT',
       url: '/pharmacy/drugs/' + id,
       data: {
-        'drug[id]': id,
         'drug[alert_level]': alert_level,
         'drug[user_rate]': user_rate
       }
