@@ -38,6 +38,6 @@
               = f.label 'Override:', :for => "user_rate_field-#{drug.id}"
               = f.text_field :user_rate, :id => "user_rate_field-#{drug.id}",
               :placeholder => "#{drug.units} per week"
-              = submit_tag 'Update', :class => 'submit'
+              = submit_tag 'Update', :class => 'submit', :id => "user_rate_submit-#{drug.id}"
         %div.bigSparkline{:id => "bigSparkline-#{drug.id}"}
           TODO: Insert time graph
