@@ -15,31 +15,29 @@
             Current quantity:
             = drug.quantity
             = drug.units
-          = form_for drug,
-            :url => pharmacy_drug_path(drug.id),
-            :class => :drug_form,
-            :data => {:id => drug.id},
-            :method => :put do |f|
-            = f.label :alert_level
-            Alert if stock falls below:
-            = f.text_field :alert_level, :id => "alert_level_field-#{drug.id}"
-            = submit_tag 'Update', :class => 'submit'
-
+            = form_for drug,
+              :url => pharmacy_drug_path(drug.id),
+              :class => :drug_form,
+              :data => {:id => drug.id},
+              :method => :put do |f|
+              = f.label 'Alert if stock falls below:', :for => "alert_level_field-#{drug.id}"
+              = f.text_field :alert_level, :id => "alert_level_field-#{drug.id}",
+              :placeholder => "#{drug.units}"
+              = submit_tag 'Update', :class => 'submit'
+        %div.details_right
           %div.estimated_rate
             Estimated rate:
             = drug.estimated_rate * 1.week
             = drug.units
             per week
-          = form_for drug,
-            :url => pharmacy_drug_path(drug.id),
-            :class => :drug_form,
-            :data => {:id => drug.id},
-            :method => :put do |f|
-            = f.label :user_rate
-            Override:
-            = f.text_field :user_rate, :id => "user_rate_field-#{drug.id}"
-            = submit_tag 'Update', :class => 'submit'
-        %div.details_right
-          %div.bigSparkline{:id => "bigSparkline-#{drug.id}"}
-            Sparkline unavailable
-
+            = form_for drug,
+              :url => pharmacy_drug_path(drug.id),
+              :class => :drug_form,
+              :data => {:id => drug.id},
+              :method => :put do |f|
+              = f.label 'Override:', :for => "user_rate_field-#{drug.id}"
+              = f.text_field :user_rate, :id => "user_rate_field-#{drug.id}",
+              :placeholder => "#{drug.units} per week"
+              = submit_tag 'Update', :class => 'submit'
+        %div.bigSparkline{:id => "bigSparkline-#{drug.id}"}
+          TODO: Insert time graph
