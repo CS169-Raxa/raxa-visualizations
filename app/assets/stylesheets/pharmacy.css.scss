@@ -50,17 +50,18 @@
 
     > div {
       padding: 5px;
-      height: 300px;
 
       .submit {
         display: inline-block;
       }
 
       div.details_left {
+        width: 50%;
         float: left;
       }
 
       div.details_right {
+        width: 50%;
         float: right;
       }
 

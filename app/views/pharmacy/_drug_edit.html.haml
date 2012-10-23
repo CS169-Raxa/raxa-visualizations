@@ -1,0 +1,44 @@
+%tbody{:id => "drug#{drug.id}"}
+  %tr.info
+    %td.name= drug.name
+    %td.time= drug.time_left ? distance_of_time_in_words(drug.time_left.to_i) : 'Estimate unavailable'
+    %td.sparkline
+      - if (drug_history = drug.history(1.week))
+        %svg.smallSparkline{:id => "smallSparkline-#{drug.id}", 'data-points' => drug_history.to_json}
+      - else
+        %span.missingSparklineHistory Missing History
+  %tr
+    %td.details{:colspan => 3}
+      %div.details_container
+        %div.details_left
+          %div.drug_quantity
+            Current quantity:
+            = drug.quantity
+            = drug.units
+          = form_for drug,
+            :url => pharmacy_drug_path(drug.id),
+            :class => :drug_form,
+            :data => {:id => drug.id},
+            :method => :put do |f|
+            = f.label :alert_level
+            Alert if stock falls below:
+            = f.text_field :alert_level, :id => "alert_level_field-#{drug.id}"
+            = submit_tag 'Update', :class => 'submit'
+
+          %div.estimated_rate
+            Estimated rate:
+            = drug.estimated_rate * 1.week
+            = drug.units
+          = form_for drug,
+            :url => pharmacy_drug_path(drug.id),
+            :class => :drug_form,
+            :data => {:id => drug.id},
+            :method => :put do |f|
+            = f.label :user_rate
+            Override:
+            = f.text_field :user_rate, :id => "user_rate_field-#{drug.id}"
+            = submit_tag 'Update', :class => 'submit'
+        %div.details_right
+          %div.bigSparkline{:id => "bigSparkline-#{drug.id}"}
+            Sparkline unavailable
+

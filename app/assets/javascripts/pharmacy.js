@@ -2,9 +2,9 @@
 // All this logic will automatically be available in application.js.
 
 $(document).ready(function() {
-  $('.details div').hide();
+  $('.details_container').hide();
   $('.info').bind('click', function() {
-      $(this).next().find('div').slideToggle();
+    $(this).next().find('.details_container').slideToggle();
   });
   $('.drug_form').submit(function() {
     $.ajax({
