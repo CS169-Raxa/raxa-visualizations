@@ -78,15 +78,15 @@ end
 
 # Override estimates
 
-Then /^"(.*?)" should have (.*?) left/ do |drug_name, time_left|
+Then /^"(.*?)" should have "(.*?)" left/ do |drug_name, time_left|
   drug = Drug.find_by_name(drug_name)
   page.find("#drug#{drug.id} .info").should have_content time_left
 end
 
-When /^I (have )?change(d)? the usage rate for "(.*?)" to "(.*?)"/ do |_, _, drug_name, override|
+When /^I (?:have )?change(?:d)? the usage rate for "(.*?)" to "(.*?)"/ do |drug_name, override|
   drug = Drug.find_by_name(drug_name)
-  find("#drug#{drug.id} .override_field").set(override)
-  click_button 'Update'
+  find("#user_rate_field-#{drug.id}").set(override)
+  click_button "user_rate_submit-#{drug.id}"
 end
 
 When /^I reset the usage rate for "(.*)"/ do |drug_name|

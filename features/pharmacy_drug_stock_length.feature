@@ -23,8 +23,8 @@ Background: drugs have been added to database, pharmacist is logged in
 
   Scenario: pharmacy page should show drug name and estimated time left based off of estimated rate of usage
     Then I should see "drug1"
-    And "drug1" should have 7 days left
-    And "drug3" should have 2 hours left
+    And "drug1" should have "7 days" left
+    And "drug3" should have "2 hours" left
 
   Scenario: drugs with missing information can't caluculate estimated time left
     Then "drug2" should not have enough information to estimate the time left
