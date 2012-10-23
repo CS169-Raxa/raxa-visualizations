@@ -9,36 +9,4 @@
       %th Time left
       %th History
   - @drugs.each do |drug|
-    %tbody{:id => "drug#{drug.id}"}
-      %tr.info
-        %td.name= drug.name
-        %td.time= drug.time_left ? distance_of_time_in_words(drug.time_left.to_i) : 'Estimate unavailable'
-        %td.sparkline
-          - if (drug_history = drug.history(1.week))
-            %svg.smallSparkline{:id => "smallSparkline-#{drug.id}", 'data-points' => drug_history.to_json}
-          - else
-            %span.missingSparklineHistory Missing History
-      %tr
-        %td.details{:colspan => 3}
-          %div
-            %div.details_left
-              %p
-                Current quantity:
-                = drug.quantity
-                = drug.units
-                Estimated rate:
-                = drug.estimated_rate * 1.week
-                per week
-              = form_tag pharmacy_drug_path(drug.id),
-                :class => :drug_form,
-                :data => {:id => drug.id},
-                :method => :put do
-                %label{:for => 'user_rate'} Override:
-                = text_field_tag 'user_rate', drug.user_rate, :class => 'override_field'
-                %label{:for => 'alert_level'} Alert if stock falls below:
-                = text_field_tag 'alert_level', drug.alert_level,
-                  :class => 'alert_field'
-                = submit_tag 'Update', :class => 'submit'
-            %div.details_right
-              %div.bigSparkline{:id => "bigSparkline-#{drug.id}"}
-                Sparkline unavailable
+    = render :partial => 'pharmacy/drug_edit', :locals => {:drug => drug}
