@@ -5,27 +5,14 @@
 
 #drugs {
   width: 500px;
+  border-collapse: collapse;
 
-  td {
-    border: {
-      style: solid;
-      color: #000;
-      width: 0px;
-    }
+  tbody {
+    border: 1px solid black;
   }
 
   tr.info {
-    @if true {
-      background-color: #eee;
-    }
-  }
-
-  td.name {
-    border-width: 1px 0 0 1px;
-  }
-
-  td.time {
-    border-width: 1px 0 0;
+    background-color: #eee;
   }
 
   td.sparkline {
@@ -48,24 +35,24 @@
     background-color: #fff;
     border-width: 0 1px 1px 1px;
 
-    > div {
+    .details_container {
       padding: 5px;
 
       .submit {
         display: inline-block;
       }
 
-      div.details_left {
+      .details_left {
         width: 50%;
         float: left;
       }
 
-      div.details_right {
+      .details_right {
         width: 50%;
-        float: right;
+        float: left;
       }
 
-      div.bigsparkline {
+      .bigsparkline {
         border: 1px dashed black;
         clear: both;
         height: 100%;
