@@ -23,7 +23,7 @@
               = f.label 'Alert if stock falls below:', :for => "alert_level_field-#{drug.id}"
               = f.text_field :alert_level, :id => "alert_level_field-#{drug.id}",
               :placeholder => "#{drug.units}"
-              = submit_tag 'Update', :class => 'submit'
+              = submit_tag 'Update', :class => 'submit', :id => "alert_level_submit-#{drug.id}"
         %div.details_right
           %div.estimated_rate
             Estimated rate:
