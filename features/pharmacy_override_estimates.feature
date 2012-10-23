@@ -6,9 +6,9 @@ Feature: Override estimates of drug usage rates
 
   Background: drugs have been added to database, pharmacist is logged in
     Given the following drugs exist:
-      | id | name   | quantity | units | user_rate | low_stock_point |
-      | 1  | drug A | 20       | pills |           | 20              |
-      | 2  | drug B | 20       | pills |           | 10              |
+      | id | name   | quantity | units | user_rate | alert_level |
+      |  1 | drug A |       20 | pills |           |          20 |
+      |  2 | drug B |       20 | pills |           |          10 |
     Given the following drug deltas exist:
       | drug_name | amount | description         | timestamp  |
       |    drug A |    -70 | something           | 2 days ago |
