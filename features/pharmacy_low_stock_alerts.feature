@@ -1,22 +1,22 @@
 Feature: display alert when stock is low (in pharmacy)
 
   As a pharmacist
-  I want to set alerts that warn me when drug stock falls below a certain quantity
+  I want to set and see alerts that warn me when drug stock falls below a certain quantity
   So that I know to order more
 
 Background: drugs in database
 
   Given the following drugs exist:
-  | name    | quantity | units      | estimated_rate | user_rate | low_stock_point | alert_level  |
-  | drug1   |     1000 | milligram  |             50 |        50 |             500 | 0            |
-  | drug2   |     3205 | pack       |             30 |        50 |             300 | 0            |
-  | drug3   |      255 | pill       |            100 |        50 |            1000 | 1            |
+  | name  | quantity | units     | alert_level |
+  | drug1 |     1000 | milligram |         500 |
+  | drug2 |     3205 | pack      |         300 |
+  | drug3 |      255 | pill      |        1000 |
 
-Scenario: manually set the low stock point for an existing drug
-  When I manually set the low stock point for "drug2" to 200
-  Then the low stock point for "drug2" should be 200
+Scenario: set the alert level for an existing drug
+  When I set the alert level of "drug2" to 200
+  Then the alert level for "drug2" should be 200
 
-Scenario: display alert when quantity of a drug is below its low stock point
+Scenario: display alert when quantity of a drug is below its alert level
   When I am on the pharmacy dashboard
   Then I should see an alert for "drug3"
 
@@ -25,31 +25,30 @@ Scenario: don't display alerts for drugs that are not low
   Then I should not see an alert for "drug1"
   And I should not see an alert for "drug2"
 
-Scenario: update low stock alert status when drug stock changes from above to above low stock point
+Scenario: update low stock alert status when drug stock changes from above to above alert level
   When the quantity of "drug1" is set to 800
-  Then the low stock alert for "drug1" should be off
+  Then I should not see an alert for "drug1"
 
-Scenario: update low stock alert status when drug stock changes from above to under low stock point
+Scenario: update low stock alert status when drug stock changes from above to under alert level
   When the quantity of "drug2" is set to 200
-  Then the low stock alert for "drug2" should be on
+  Then I should see an alert for "drug2"
 
-Scenario: update low stock alert status when drug stock changes from under to above low stock point
+Scenario: update low stock alert status when drug stock changes from under to above alert level
   When the quantity of "drug3" is set to 1001
-  Then the low stock alert for "drug3" should be off
+  Then I should not see an alert for "drug3"
 
-Scenario: update low stock alert status when drug low stock point changes from under to under stock quantity
-  When the low stock point of "drug1" is set to 800
-  Then the low stock alert for "drug1" should be off
+Scenario: update low stock alert status when drug alert level changes from under to under stock quantity
+  When I set the alert level of "drug1" to 800
+  Then I should not see an alert for "drug1"
 
-Scenario: update low stock alert status when drug low stock point changes from above to under stock quantity
-  When the low stock point of "drug2" is set to 4000
-  Then the low stock alert for "drug2" should be on
+Scenario: update low stock alert status when drug alert level changes from above to under stock quantity
+  When I set the alert level of "drug2" to 4000
+  Then I should not see an alert for "drug1"
 
-Scenario: update low stock alert status when drug low stock point changes from under to above stock quantity
-  When the low stock point of "drug3" is set to 50
-  Then the low stock alert for "drug3" should be off
+Scenario: update low stock alert status when drug alert level changes from under to above stock quantity
+  When I set the alert level of "drug3" to 50
+  Then I should not see an alert for "drug3"
 
-Scenario: set low stock alert to True if quantity is less than or equal to low stock point
+Scenario: see low stock alert if quantity is less than or equal to alert level
   When the quantity of "drug2" is set to 300
-  Then the low stock alert for "drug2" should be on
-  And the low stock alert for "drug3" should be on
+  Then I should see an alert for "drug2"

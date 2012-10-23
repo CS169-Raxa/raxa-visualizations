@@ -31,45 +31,33 @@ end
 
 # Low stock checks
 
-When /^I manually set the low stock point for "(.*?)" to (\d+)$/ do |name, amt|
+When /^I set the alert level of "(.*?)" to (\d+)$/ do |name, amt|
   drug = Drug.find_by_name(name)
   visit('/pharmacy')
-  fill_in(:drug, :with => amt)
-  click_button('Update')
+  fill_in("alert_level_field-#{drug.id}", :with => amt)
+  click_button("alert_level_submit-#{drug.id}")
 end
 
-Then /^the low stock point for "(.*?)" should be (\d+)$/ do |name, amt|
+Then /^the alert level for "(.*?)" should be (\d+)$/ do |name, amt|
   drug = Drug.find_by_name(name)
-  assert_equal(amt, drug.low_stock_point)
+  drug.alert_level.should == amt.to_i
 end
 
 Then /^I should see an alert for "(.*?)"$/ do |name|
-  assert_match(/#{name}(.*)---/m, page.body)
+  visit('/pharmacy')
+  drug = Drug.find_by_name(name)
+  page.should have_selector "#drug#{drug.id} .alert"
 end
 
 Then /^I should not see an alert for "(.*?)"$/ do |name|
-  assert_match(/---(.*)#{name}/m, page.body)
+  visit('/pharmacy')
+  drug = Drug.find_by_name(name)
+  page.should have_no_selector "#drug#{drug.id} .alert"
 end
 
-When /^the quantity of "(.*?)" is set to (\d+)$/ do |name, amt|
+When /^the quantity of "(.*?)" is set to (\d+)$/ do |name, qty|
   drug = Drug.find_by_name(name)
-  drug.quantity = amt
-  drug.save
-end
-
-Then /^the low stock alert for "(.*?)" should be off$/ do |name|
-  drug = Drug.find_by_name(name)
-  assert_equal(0, drug.alert_level)
-end
-
-Then /^the low stock alert for "(.*?)" should be on$/ do |name|
-  drug = Drug.find_by_name(name)
-  assert_equal(1, drug.alert_level)
-end
-
-When /^the low stock point of "(.*?)" is set to (\d+)$/ do |name, amt|
-  drug = Drug.find_by_name(name)
-  drug.low_stock_point = amt
+  drug.quantity = qty
   drug.save
 end
 
