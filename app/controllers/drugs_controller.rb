@@ -1,5 +1,6 @@
 class DrugsController < ApplicationController
   def update
+    ajax = params[:ajax]
     id = params[:id]
     drug = Drug.find(id)
 
@@ -8,7 +9,13 @@ class DrugsController < ApplicationController
     drug.alert_level = drug_params[:alert_level]
     drug.save!
 
-    redirect_to pharmacy_path
+    success_message = %Q[#{drug.name} successfully saved]
+    if ajax
+      render :partial => 'pharmacy/notice', :locals => { :notice => success_message }
+    else
+      flash[:notice] = success_message
+      redirect_to pharmacy_path
+    end
   end
 end
 

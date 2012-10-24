@@ -1,28 +1,38 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+var Pharmacy = function() { };
 
-$(document).ready(function() {
+Pharmacy.prototype = new Raxa();
+
+Pharmacy.prototype.init = function() {
+  this.initDOMListeners();
+  this.initGraphs();
+};
+
+Pharmacy.prototype.initDOMListeners = function() {
   $('.details_container').hide();
   $('.info').bind('click', function() {
     $(this).next().find('.details_container').slideToggle();
   });
-  $('.drug_form').submit(function() {
-    var id = $(this).find('input[name="drug[id]"]').val();
-    var alert_level = $(this).find('input[name="drug[alert_level]"]').val();
-    var user_rate = $(this).find('input[name="drug[user_rate]"]').val();
+  $('.drug_form').submit(function(event) {
+    var form = $(event.currentTarget);
+    var id = form.find('input[name="drug[id]"]').val();
+    var alert_level = form.find('input[name="drug[alert_level]"]').val();
+    var user_rate = form.find('input[name="drug[user_rate]"]').val();
     $.ajax({
       type: 'PUT',
       url: '/pharmacy/drugs/' + id,
       data: {
+        ajax: true,
         'drug[alert_level]': alert_level,
         'drug[user_rate]': user_rate
       }
-    });
+    }).done(function(data) {
+      this.displayNotice(data);
+    }.bind(this));
     return false;
-  });
-});
+  }.bind(this));
+};
 
-$(function() {
+Pharmacy.prototype.initGraphs = function() {
   var graphs = d3.selectAll('svg.smallSparkline')[0];
   for (var i = 0; i < graphs.length; i += 1) {
     var graph = graphs[i];
@@ -51,4 +61,4 @@ $(function() {
       .datum(data)
       .attr('d', line);
   }
-});
+};

@@ -1,4 +1,15 @@
-= content_for :head, javascript_include_tag("d3.v2.min.js")
+= content_for :head do
+  = javascript_include_tag("d3.v2.min.js")
+  = javascript_include_tag :raxa
+  = javascript_include_tag :pharmacy
+
+:javascript
+  $(document).ready(function() {
+    pharmacy = new Pharmacy();
+    pharmacy.init();
+  });
+
+%div#notices
 
 %h1 Pharmacy stock
 %p Click a row to show additional details and options.
