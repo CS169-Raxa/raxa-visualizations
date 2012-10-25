@@ -12,19 +12,10 @@ Pharmacy.prototype.initDOMListeners = function() {
   $('.info').bind('click', function() {
     $(this).next().find('.details_container').slideToggle();
   });
+  $('.drug_form').ajaxForm();
   $('.drug_form').submit(function(event) {
     var form = $(event.currentTarget);
-    var id = form.find('input[name="drug[id]"]').val();
-    var alert_level = form.find('input[name="drug[alert_level]"]').val();
-    var user_rate = form.find('input[name="drug[user_rate]"]').val();
-    $.ajax({
-      type: 'PUT',
-      url: '/pharmacy/drugs/' + id,
-      data: {
-        'drug[alert_level]': alert_level,
-        'drug[user_rate]': user_rate
-      }
-    }).done(function(data) {
+    form.ajaxSubmit().done(function(data) {
       this.displayNotice(data);
     }.bind(this));
     return false;
