@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Patient do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'must have a name' do
+    p = Patient.new
+    p.valid?.should be_false
+    p.name = 'Dan'
+    p.valid?.should be_true
+  end
 end
