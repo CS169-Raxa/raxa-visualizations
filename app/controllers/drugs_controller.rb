@@ -10,7 +10,16 @@ class DrugsController < ApplicationController
 
     success_message = %Q[#{drug.name} successfully saved]
     if request.xhr?
-      render :partial => 'pharmacy/notice', :locals => { :notice => success_message }
+      render(
+        :partial => 'pharmacy/notice',
+        :locals => {
+          :notice => success_message,
+          :data => {
+            :alert => drug.alert?.to_json,
+            :id => drug.id
+          }
+        }
+      )
     else
       flash[:notice] = success_message
       redirect_to pharmacy_path

@@ -1,3 +1,5 @@
+@import "compass/css3/transition";
+
 $no_alert_bg: #eee;
 $alert_bg: #faa;
 
@@ -7,6 +9,10 @@ $alert_bg: #faa;
 
   tbody {
     border: 1px solid black;
+  }
+
+  tr.info {
+    @include transition(background-color 0.3s linear, opacity 0.1s linear);
   }
 
   tr.info.no_alert {

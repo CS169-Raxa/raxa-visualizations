@@ -15,9 +15,17 @@ Pharmacy.prototype.initDOMListeners = function() {
   $('.drug_form').ajaxForm();
   $('.drug_form').submit(function(event) {
     var form = $(event.currentTarget);
-    form.ajaxSubmit().done(function(data) {
-      this.displayNotice(data);
-    }.bind(this));
+    form.ajaxSubmit({
+      success: function(data) {
+        var id = $(data).data('id');
+        if ($(data).data('alert')) {
+          this.alertDrug(id);
+        } else {
+          this.unAlertDrug(id);
+        }
+        this.displayNotice(data);
+      }.bind(this)
+    });
     return false;
   }.bind(this));
 };
@@ -51,4 +59,16 @@ Pharmacy.prototype.initGraphs = function() {
       .datum(data)
       .attr('d', line);
   }
+};
+
+Pharmacy.prototype.alertDrug = function(drugID) {
+  var drug = $('#drug' + drugID + ' .info');
+  drug.addClass('alert');
+  drug.removeClass('no_alert');
+};
+
+Pharmacy.prototype.unAlertDrug = function(drugID) {
+  var drug = $('#drug' + drugID + ' .info');
+  drug.addClass('no_alert');
+  drug.removeClass('alert');
 };
