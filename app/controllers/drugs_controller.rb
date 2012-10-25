@@ -8,7 +8,25 @@ class DrugsController < ApplicationController
     drug.alert_level = drug_params[:alert_level]
     drug.save!
 
-    redirect_to pharmacy_path
+    success_message = %Q[#{drug.name} successfully saved]
+    if request.xhr?
+      render(
+        :json => {
+          :notice => render_to_string(
+            :partial => 'pharmacy/notice',
+            :locals => { :notice => success_message }
+          ),
+          :id => drug.id,
+          :data => render_to_string(
+            :partial => 'pharmacy/drug_edit',
+            :locals => { :drug => drug }
+          )
+        }
+      )
+    else
+      flash[:notice] = success_message
+      redirect_to pharmacy_path
+    end
   end
 end
 

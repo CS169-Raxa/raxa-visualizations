@@ -1,28 +1,33 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+var Pharmacy = function() { };
 
-$(document).ready(function() {
+Pharmacy.prototype = new Raxa();
+
+Pharmacy.prototype.init = function() {
+  Raxa.prototype.init.call(this);
+  this.initDOMListeners();
+  this.initGraphs();
+};
+
+Pharmacy.prototype.initDOMListeners = function() {
+  var pharmacy = this;
   $('.details_container').hide();
   $('.info').bind('click', function() {
     $(this).next().find('.details_container').slideToggle();
   });
-  $('.drug_form').submit(function() {
-    var id = $(this).find('input[name="drug[id]"]').val();
-    var alert_level = $(this).find('input[name="drug[alert_level]"]').val();
-    var user_rate = $(this).find('input[name="drug[user_rate]"]').val();
-    $.ajax({
-      type: 'PUT',
-      url: '/pharmacy/drugs/' + id,
-      data: {
-        'drug[alert_level]': alert_level,
-        'drug[user_rate]': user_rate
+
+  $(document).on('submit', '.drug_form', function(event) {
+    event.preventDefault();
+    $(this).ajaxSubmit({
+      success: function(data) {
+        pharmacy.displayNotice(data.notice);
+        var drugID = '#drug' + data.id;
+        $(drugID).replaceWith(data.data);
       }
     });
-    return false;
   });
-});
+};
 
-$(function() {
+Pharmacy.prototype.initGraphs = function() {
   var graphs = d3.selectAll('svg.smallSparkline')[0];
   for (var i = 0; i < graphs.length; i += 1) {
     var graph = graphs[i];
@@ -51,4 +56,21 @@ $(function() {
       .datum(data)
       .attr('d', line);
   }
+};
+
+Pharmacy.prototype.alertDrug = function(drugID) {
+  var drug = $('#drug' + drugID + ' .info');
+  drug.addClass('alert');
+  drug.removeClass('no_alert');
+};
+
+Pharmacy.prototype.unAlertDrug = function(drugID) {
+  var drug = $('#drug' + drugID + ' .info');
+  drug.addClass('no_alert');
+  drug.removeClass('alert');
+};
+
+$(document).ready(function() {
+  pharmacy = new Pharmacy();
+  pharmacy.init();
 });

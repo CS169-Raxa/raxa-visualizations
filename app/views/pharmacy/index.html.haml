@@ -1,4 +1,7 @@
-= content_for :head, javascript_include_tag("d3.v2.min.js")
+= content_for :head do
+  = stylesheet_link_tag :pharmacy
+  = javascript_include_tag :raxa
+  = javascript_include_tag :pharmacy
 
 %h1 Pharmacy stock
 %p Click a row to show additional details and options.
