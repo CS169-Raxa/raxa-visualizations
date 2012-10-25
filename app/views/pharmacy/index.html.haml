@@ -1,16 +1,7 @@
 = content_for :head do
   = stylesheet_link_tag :pharmacy
-  = javascript_include_tag 'd3.v2.min'
   = javascript_include_tag :raxa
   = javascript_include_tag :pharmacy
-
-:javascript
-  $(document).ready(function() {
-    pharmacy = new Pharmacy();
-    pharmacy.init();
-  });
-
-%div#notices
 
 %h1 Pharmacy stock
 %p Click a row to show additional details and options.

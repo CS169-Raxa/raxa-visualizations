@@ -11,13 +11,16 @@ class DrugsController < ApplicationController
     success_message = %Q[#{drug.name} successfully saved]
     if request.xhr?
       render(
-        :partial => 'pharmacy/notice',
-        :locals => {
-          :notice => success_message,
-          :data => {
-            :alert => drug.alert?.to_json,
-            :id => drug.id
-          }
+        :json => {
+          :notice => render_to_string(
+            :partial => 'pharmacy/notice',
+            :locals => { :notice => success_message }
+          ),
+          :id => drug.id,
+          :data => render_to_string(
+            :partial => 'pharmacy/drug_edit',
+            :locals => { :drug => drug }
+          )
         }
       )
     else

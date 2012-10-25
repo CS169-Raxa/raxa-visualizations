@@ -13,3 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.form
+//= require d3.v2.min

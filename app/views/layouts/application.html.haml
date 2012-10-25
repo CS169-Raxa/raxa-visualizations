@@ -13,9 +13,9 @@
       = link_to 'Raxa Visualizations', root_path
 
   %div#notices
-  - if flash[:notice]
-    %div.notice
-      = flash[:notice]
+    - if flash[:notice]
+      %div.notice
+        = flash[:notice]
 
   %div.wrapper
     = yield

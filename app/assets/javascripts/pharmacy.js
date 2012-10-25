@@ -3,6 +3,7 @@ var Pharmacy = function() { };
 Pharmacy.prototype = new Raxa();
 
 Pharmacy.prototype.init = function() {
+  Raxa.prototype.init.call(this);
   this.initDOMListeners();
   this.initGraphs();
 };
@@ -12,22 +13,24 @@ Pharmacy.prototype.initDOMListeners = function() {
   $('.info').bind('click', function() {
     $(this).next().find('.details_container').slideToggle();
   });
-  $('.drug_form').ajaxForm();
-  $('.drug_form').submit(function(event) {
-    var form = $(event.currentTarget);
-    form.ajaxSubmit({
-      success: function(data) {
-        var id = $(data).data('id');
-        if ($(data).data('alert')) {
-          this.alertDrug(id);
-        } else {
-          this.unAlertDrug(id);
-        }
-        this.displayNotice(data);
-      }.bind(this)
-    });
+
+  this.initForms($('.drug_form'));
+
+  $('.drug_form').on('submit', function() {
     return false;
-  }.bind(this));
+  });
+};
+
+Pharmacy.prototype.initForms = function(forms) {
+  forms.ajaxForm({
+    success: function(data) {
+      this.displayNotice(data.notice);
+      var drugID = '#drug' + data.id;
+      $(drugID).replaceWith(data.data);
+      this.initForms($(drugID + ' .drug_form'));
+      return false;
+    }.bind(this)
+  });
 };
 
 Pharmacy.prototype.initGraphs = function() {
@@ -72,3 +75,8 @@ Pharmacy.prototype.unAlertDrug = function(drugID) {
   drug.addClass('no_alert');
   drug.removeClass('alert');
 };
+
+$(document).ready(function() {
+  pharmacy = new Pharmacy();
+  pharmacy.init();
+});
