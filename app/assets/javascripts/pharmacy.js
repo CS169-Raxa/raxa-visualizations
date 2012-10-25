@@ -21,7 +21,6 @@ Pharmacy.prototype.initDOMListeners = function() {
       type: 'PUT',
       url: '/pharmacy/drugs/' + id,
       data: {
-        ajax: true,
         'drug[alert_level]': alert_level,
         'drug[user_rate]': user_rate
       }

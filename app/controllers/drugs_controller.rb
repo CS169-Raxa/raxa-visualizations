@@ -1,6 +1,5 @@
 class DrugsController < ApplicationController
   def update
-    ajax = params[:ajax]
     id = params[:id]
     drug = Drug.find(id)
 
@@ -10,7 +9,7 @@ class DrugsController < ApplicationController
     drug.save!
 
     success_message = %Q[#{drug.name} successfully saved]
-    if ajax
+    if request.xhr?
       render :partial => 'pharmacy/notice', :locals => { :notice => success_message }
     else
       flash[:notice] = success_message
