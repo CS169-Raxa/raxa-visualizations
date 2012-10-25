@@ -9,27 +9,21 @@ Pharmacy.prototype.init = function() {
 };
 
 Pharmacy.prototype.initDOMListeners = function() {
+  var pharmacy = this;
   $('.details_container').hide();
   $('.info').bind('click', function() {
     $(this).next().find('.details_container').slideToggle();
   });
 
-  this.initForms($('.drug_form'));
-
-  $('.drug_form').on('submit', function() {
-    return false;
-  });
-};
-
-Pharmacy.prototype.initForms = function(forms) {
-  forms.ajaxForm({
-    success: function(data) {
-      this.displayNotice(data.notice);
-      var drugID = '#drug' + data.id;
-      $(drugID).replaceWith(data.data);
-      this.initForms($(drugID + ' .drug_form'));
-      return false;
-    }.bind(this)
+  $(document).on('submit', '.drug_form', function(event) {
+    event.preventDefault();
+    $(this).ajaxSubmit({
+      success: function(data) {
+        pharmacy.displayNotice(data.notice);
+        var drugID = '#drug' + data.id;
+        $(drugID).replaceWith(data.data);
+      }
+    });
   });
 };
 
