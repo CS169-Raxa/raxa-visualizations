@@ -40,6 +40,9 @@ header .title a:visited {
 }
 
 .notice {
+  position: fixed;
+  top: 0;
+  right: 0;
   background: #f9ef8d;
   color: #000;
   margin: auto;
