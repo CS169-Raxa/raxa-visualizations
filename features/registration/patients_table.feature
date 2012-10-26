@@ -30,6 +30,7 @@ Scenario: I want to see all of the patients that have been registered in the pas
     Then I should see "patient A" with starting time "3 days ago"
     And I should not see "patient A" with starting time "7 days ago"
     And I should see "patient B" with starting time "5 days ago"
+    And I should see "patient B" with patient status "new"
   
 Scenario: I want to see all the patients I have registered in the past 6 days
     Given I am on the Reg A registration dashboard
@@ -38,6 +39,12 @@ Scenario: I want to see all the patients I have registered in the past 6 days
     And I should see "patient B" with starting time "1 day ago"
 
 Scenario: no patients in table result in notification
-    Given that I am on the Reg B registration dashboard
+    Given I am on the Reg B registration dashboard
     When I set the time restriction to 3 days
     Then I should see a missing patients notification 
+
+Scenario: table should be sorted by how recently they checked in. 
+    Given I am on the overall registration dashboard
+    When I set the time restriction to 4 days
+    Then I should see "patient B" before "patient A"
+    And I should see "patient A" before "patient C"
