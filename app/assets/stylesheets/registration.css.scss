@@ -9,12 +9,13 @@
   width: 400px;
 }
 
-.bigstats {
+.rightbar {
   float: right;
+  padding: 0 10px;
   .stat {
     border: 1px solid #000;
     text-align: center;
-    width: 150px;
+    width: 200px;
     background-color: #eee;
     margin-bottom: 10px;
     padding: 5px;

@@ -1,10 +1,10 @@
 = content_for :head do
   = stylesheet_link_tag :registration
 
-%h1 Dashboard for Jacob Doe
-%div.bigstats
-  = render :partial => 'registration/big_stats'
-%h2 Registered patients
+%h2 Dashboard for Jacob Doe
+%div.rightbar
+  = render :partial => 'registration/rightbar'
+%h3 Registered patients
 %table#registered
   %tr
     %th Date
@@ -40,3 +40,17 @@
       %div
         -# please change the title attribute of the next line
         %span{:title => "October 23, 2012"} October 23, 2012
+  %tr
+    %td 2:40 pm
+    %td Professor Plum
+    %td new
+  %tr
+    %td 2:40 pm
+    %td Professor Plum
+    %td new
+  %tr
+    %td.divider{:colspan => 3}
+      %div
+        -# please change the title attribute of the next line
+        %span
+          %a{:href => '#'} See more
