@@ -37,6 +37,6 @@ Feature: show average time to register a patient on registration dashboard
     Then I should see that the average time to register a patient is 14 minutes
 
   Scenario: average time to register a patient should not change after someone else adds a new registration
-    When Reg B registers a patient from 2010-10-13 14:00 to 2010-10-14 14:09
+    When Reg B registers a patient today 2:00 pm to today 2:09 pm
     Then I should see that the average time to register a patient is 15 minutes
 

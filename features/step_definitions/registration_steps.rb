@@ -24,6 +24,6 @@ Then /^I should see that the average time to register a patient is (\d+) minutes
   pending # express the regexp above with the code you wish you had
 end
 
-When /^(.*?) registers a patient from (\d+)\-(\d+)\-(\d+) (\d+):(\d+) to (\d+)\-(\d+)\-(\d+) (\d+):(\d+)$/ do |arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10|
+When /^(.*?) registers a patient from (.*) to (.*)$/ do |arg1, arg2, arg3|
   pending # express the regexp above with the code you wish you had
 end
