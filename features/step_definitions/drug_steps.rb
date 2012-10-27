@@ -36,8 +36,6 @@ When /^I set the alert level of "(.*?)" to (\d+)$/ do |name, amt|
   visit('/pharmacy')
   find("#drug#{drug.id} .low_stock_point").set(amt)
   click_button('Update')
-  puts drug.low_stock_point
-  puts drug.alert_level
 end
 
 Then /^the alert level for "(.*?)" should be (\d+)$/ do |name, amt|
