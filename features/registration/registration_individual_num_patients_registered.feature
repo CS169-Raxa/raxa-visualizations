@@ -6,30 +6,29 @@ Feature: show total number of patients registered today on personal registration
 
   Background: registrations have occurred
     Given the following patients exist:
-      | id | name      |
-      | 1  | patient A |
-      | 2  | patient B |
-      | 3  | patient C |
-      | 4  | patient D |
-      | 5  | patient E |
-      | 6  | patient F |
+      | name      |
+      | patient A |
+      | patient B |
+      | patient C |
+      | patient D |
+      | patient E |
+      | patient F |
 
     And the following registrars exist:
-      | id | name  |
-      | 1  | Reg A |
-      | 2  | Reg B |
+      | name  |
+      | Reg A |
+      | Reg B |
 
     And the following registrations exist:
-      | time_start       | time_end         | patient_status | patient_id | registrar_id |
-      | 2010-10-10 08:00 | 2010-10-10 08:20 | returning      | 1          | 1            |
-      | 2010-10-10 09:00 | 2010-10-10 09:20 | new            | 2          | 2            |
-      | 2010-10-10 10:00 | 2010-10-10 10:20 | new            | 3          | 1            |
-      | 2010-10-10 11:00 | 2010-10-10 11:20 | returning      | 4          | 1            |
-      | 2010-10-10 12:00 | 2010-10-10 12:20 | returning      | 5          | 1            |
-      | 2010-10-10 13:00 | 2010-10-10 13:20 | returning      | 6          | 1            |
+      | time_start          | time_end            | patient_status | patient_name | registrar_name |
+      | 0 days ago 8:00 am  | 0 days ago 8:20 am  | returning      | patient A    | Reg A          |
+      | 0 days ago 9:00 am  | 0 days ago 9:20 am  | new            | patient B    | Reg B          |
+      | 0 days ago 10:00 am | 0 days ago 10:20 am | new            | patient C    | Reg A          |
+      | 0 days ago 11:00 am | 0 days ago 11:20 am | returning      | patient D    | Reg A          |
+      | 0 days ago 12:00 pm | 0 days ago 12:20 pm | returning      | patient E    | Reg A          |
+      | 0 days ago 1:00 pm  | 0 days ago 1:20 pm  | returning      | patient F    | Reg A          |
 
     Given I am on the Reg A registration dashboard
-    And the date is 2010-10-10
 
   Scenario: show num patients registered for today
     Then I should see that 5 patients were registered today
