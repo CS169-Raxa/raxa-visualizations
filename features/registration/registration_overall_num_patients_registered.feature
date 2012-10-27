@@ -1,8 +1,8 @@
-Feature: show total number of patients registered today on personal registration dashboard
+Feature: show total number of patients registered today on overall registration dashboard
 
   As a registration worker,
-  I want to see the number of patients I have registered today,
-  So that I can keep track of my progress for today
+  I want to see the overall number of patients registered today,
+  So that I can keep track of the overall progress for today
 
   Background: registrations have occurred
     Given the following patients exist:
