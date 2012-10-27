@@ -6,26 +6,26 @@ Feature: show average time to register a patient on registration dashboard
 
   Background: registrations have occurred
     Given the following patients exist:
-      | id | name      |
-      | 1  | patient A |
-      | 2  | patient B |
-      | 3  | patient C |
-      | 4  | patient D |
-      | 5  | patient E |
+      | name      |
+      | patient A |
+      | patient B |
+      | patient C |
+      | patient D |
+      | patient E |
 
     And the following registrars exist:
-      | id | name  |
-      | 1  | Reg A |
-      | 2  | Reg B |
+      | name  |
+      | Reg A |
+      | Reg B |
 
     And the following registrations exist:
-      | time_start       | time_end         | patient_status | patient_id | registrar_id |
-      | 2010-10-10 08:00 | 2010-10-10 08:10 | returning      | 1          | 1            |
-      | 2010-10-11 09:00 | 2010-11-10 09:15 | new            | 2          | 2            |
-      | 2010-10-10 10:00 | 2010-10-10 10:20 | new            | 3          | 1            |
-      | 2010-10-12 11:00 | 2010-12-10 11:15 | returning      | 4          | 1            |
-      | 2010-10-10 12:00 | 2010-10-10 12:10 | returning      | 5          | 1            |
-      | 2010-10-13 13:00 | 2010-13-10 13:20 | returning      | 2          | 1            |
+      | time_start          | time_end            | patient_status | patient_id | registrar_id |
+      | today 8:00 am       | today 8:10 am       | returning      | patient A  | Reg A        |
+      | 1 day ago 9:00 am   | 1 day ago 9:15 am   | new            | patient B  | Reg B        |
+      | today 10:00 am      | today 10:20 am      | new            | patient C  | Reg A        |
+      | 2 days ago 11:00 am | 2 days ago 11:15 am | returning      | patient D  | Reg A        |
+      | today 12:00 pm      | today 12:10 pm      | returning      | patient E  | Reg A        |
+      | 3 days ago 1:00 pm  | 3 days ago 1:20 pm  | returning      | patient F  | Reg A        |
 
     Given I am on the Reg A registration dashboard
 
