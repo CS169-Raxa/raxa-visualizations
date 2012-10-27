@@ -12,30 +12,4 @@
       %th Time left
       %th History
   - @drugs.each do |drug|
-    %tbody
-      %tr.info
-        %td.name= drug.name
-        %td.time= distance_of_time_in_words(drug.time_left)
-        %td.sparkline sparkline FIXME
-      %tr
-        %td.details{:colspan => 3}
-          %div
-            %div.details_left
-              %p
-                Estimated rate:
-                = drug.estimated_rate * 1.week
-                per week
-              = form_tag pharmacy_drug_path(drug.id),
-                :class => :drug_form,
-                :data => {:id => drug.id},
-                :method => :put do
-                %label{:for => 'user_rate'} Override:
-                = text_field_tag 'user_rate', drug.user_rate,
-                  :class => 'override_field'
-                %label{:for => 'alert_level'} Alert if stock falls below:
-                = text_field_tag 'low_stock_point', drug.low_stock_point,
-                  :class => 'low_stock_point_field'
-                = submit_tag 'Update', :class => 'submit'
-            %div.details_right
-              %div.bigsparkline{:id => "bigsparkline-#{drug.id}"}
-                Sparkline unavailable
+    = render :partial => 'pharmacy/drug_edit', :locals => {:drug => drug}
