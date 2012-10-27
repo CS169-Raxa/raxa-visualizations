@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021220935) do
+ActiveRecord::Schema.define(:version => 20121025171622) do
 
   create_table "drug_delta", :force => true do |t|
     t.datetime "timestamp"
@@ -30,10 +30,31 @@ ActiveRecord::Schema.define(:version => 20121021220935) do
     t.float    "estimated_rate"
     t.float    "user_rate"
     t.float    "alert_level"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "units"
-    t.integer  "low_stock_point"
+  end
+
+  create_table "patients", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "registrars", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "registrations", :force => true do |t|
+    t.datetime "time_start"
+    t.datetime "time_end"
+    t.string   "patient_status", :default => "new"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "patient_id"
+    t.integer  "registrar_id"
   end
 
 end

@@ -1,0 +1,43 @@
+%tbody{:id => "drug#{drug.id}"}
+  %tr.info{:class => drug.alert? ? :alert : :no_alert}
+    %td.name= drug.name
+    %td.time= drug.time_left ? distance_of_time_in_words(drug.time_left.to_i) : 'Estimate unavailable'
+    %td.sparkline
+      - if (drug_history = drug.history(1.week))
+        %svg.smallSparkline{:id => "smallSparkline-#{drug.id}", 'data-points' => drug_history.to_json}
+      - else
+        %span.missingSparklineHistory Missing History
+  %tr
+    %td.details{:colspan => 3}
+      %div.details_container
+        %div.details_left
+          %div.drug_quantity
+            Current quantity:
+            = drug.quantity
+            = drug.units
+            = form_for drug,
+              :url => pharmacy_drug_path(drug.id),
+              :html => {:class => :drug_form},
+              :method => :put do |f|
+              = f.hidden_field :id
+              = f.label 'Alert if stock falls below:', :for => "alert_level_field-#{drug.id}"
+              = f.text_field :alert_level, :id => "alert_level_field-#{drug.id}",
+              :placeholder => "#{drug.units}"
+              = submit_tag 'Update', :class => 'submit', :id => "alert_level_submit-#{drug.id}"
+        %div.details_right
+          %div.estimated_rate
+            Estimated rate:
+            = drug.estimated_rate * 1.week
+            = drug.units
+            per week
+            = form_for drug,
+              :url => pharmacy_drug_path(drug.id),
+              :html => {:class => :drug_form},
+              :method => :put do |f|
+              = f.hidden_field :id
+              = f.label 'Override:', :for => "user_rate_field-#{drug.id}"
+              = f.text_field :user_rate, :id => "user_rate_field-#{drug.id}",
+              :placeholder => "#{drug.units} per week"
+              = submit_tag 'Update', :class => 'submit', :id => "user_rate_submit-#{drug.id}"
+        %div.bigSparkline{:id => "bigSparkline-#{drug.id}"}
+          TODO: Insert time graph

@@ -1,35 +1,41 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+@import "compass/css3/transition";
+
+$no_alert_bg: #eee;
+$alert_bg: #faa;
 
 #drugs {
   width: 500px;
+  border-collapse: collapse;
 
-  td {
-    border: {
-      style: solid;
-      color: #000;
-      width: 0px;
-    }
+  tbody {
+    border: 1px solid black;
   }
 
   tr.info {
-    @if true {
-      background-color: #eee;
-    }
+    @include transition(background-color 0.3s linear, opacity 0.1s linear);
   }
 
-  td.name {
-    border-width: 1px 0 0 1px;
+  tr.info.no_alert {
+    background-color: $no_alert_bg;
   }
 
-  td.time {
-    border-width: 1px 0 0;
+  tr.info.alert {
+    background-color: $alert_bg;
   }
 
   td.sparkline {
     border-width: 1px 1px 0 0;
+
+    svg.smallSparkline {
+      height: 16px;
+      width: 150px;
+
+      .line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+      }
+    }
   }
 
   td.details {
@@ -37,26 +43,41 @@
     background-color: #fff;
     border-width: 0 1px 1px 1px;
 
-    > div {
+    .details_container {
       padding: 5px;
-      height: 152px;
 
-      div.details_left {
+      .submit {
+        display: inline-block;
+      }
+
+      .details_left {
+        width: 50%;
         float: left;
       }
 
-      div.details_right {
-        float: right;
-        height: 150px;
-        width: 250px;
-        border: 1px solid #000;
-
-        div.bigsparkline {
-          width: 100%;
-          height: 100%;
-        }
+      .details_right {
+        width: 50%;
+        float: left;
       }
 
+      .bigsparkline {
+        border: 1px dashed black;
+        clear: both;
+        height: 100%;
+        min-height: 230px;
+        margin: 2px;
+        text-align: center;
+      }
+
+      input::-webkit-input-placeholder {
+        text-align: right;
+      }
+      input:-moz-placeholder {
+        text-align: right;
+      }
+      input:-ms-input-placeholder {
+        text-align: right;
+      }
     }
   }
 }

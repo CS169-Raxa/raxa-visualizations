@@ -1,0 +1,19 @@
+---
+name: Drug2
+quantity: 40000
+units: mg
+---
+- amount: -1000
+  timestamp: 1 day ago
+- amount: 20000
+  timestamp: 2 days ago
+- amount: -100
+  timestamp: 3 days ago
+- amount: -2000
+  timestamp: 4 days ago
+- amount: -500
+  timestamp: 5 days ago
+- amount: -100
+  timestamp: 6 days ago
+- amount: -300
+  timestamp: 7 days ago

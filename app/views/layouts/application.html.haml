@@ -3,15 +3,20 @@
   %head
     %title Raxa Visualizations
     = stylesheet_link_tag "application", :media => "all"
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Source+Sans+Pro'
     = javascript_include_tag "application"
     = csrf_meta_tags
+    = yield :head
 
 %body
   %header
-    .title= link_to 'Raxa Visualizations', root_path
+    %div.title
+      = link_to 'Raxa Visualizations', root_path
+
+  %div#notices
     - if flash[:notice]
-      .noticeContainer
-        %span.notice= flash[:notice]
+      %div.notice
+        = flash[:notice]
 
   %div.wrapper
     = yield
