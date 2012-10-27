@@ -27,6 +27,7 @@ Feature: show total number of patients registered today on overall registration 
       | 0 days ago 11:00 am | 0 days ago 11:20 am | returning      | patient D    | Reg A          |
       | 0 days ago 12:00 pm | 0 days ago 12:20 pm | returning      | patient E    | Reg A          |
       | 0 days ago 1:00 pm  | 0 days ago 1:20 pm  | returning      | patient F    | Reg A          |
+      | 1 days ago 1:00 pm  | 1 days ago 1:20 pm  | returning      | patient F    | Reg A          |
 
     Given I am on the overall registration dashboard
 
