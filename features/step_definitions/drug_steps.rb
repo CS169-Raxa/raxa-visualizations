@@ -25,8 +25,10 @@ end
 When /^I manually set the low stock point for "(.*?)" to (\d+)$/ do |name, amt|
   drug = Drug.find_by_name(name)
   visit('/pharmacy')
-  fill_in(:drug, :with => amt)
+  find("#drug#{drug.id} .low_stock_point").set(amt)
   click_button('Update')
+  puts drug.low_stock_point
+  puts drug.alert_level
 end
 
 Then /^the low stock point for "(.*?)" should be (\d+)$/ do |name, amt|

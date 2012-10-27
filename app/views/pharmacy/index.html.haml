@@ -28,8 +28,8 @@
                 = text_field_tag 'user_rate', drug.user_rate,
                   :class => 'override_field'
                 %label{:for => 'alert_level'} Alert if stock falls below:
-                = text_field_tag 'alert_level', drug.alert_level,
-                  :class => 'alert_field'
+                = text_field_tag 'low_stock_point', drug.low_stock_point,
+                  :class => 'low_stock_point_field'
                 = submit_tag 'Update', :class => 'submit'
             %div.details_right
               %div.bigsparkline{:id => "bigsparkline-#{drug.id}"}
