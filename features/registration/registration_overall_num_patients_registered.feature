@@ -21,12 +21,12 @@ Feature: show total number of patients registered today on overall registration 
 
     And the following registrations exist:
       | time_start          | time_end            | patient_status | patient_name | registrar_name |
-      | 0 days ago 8:00 am  | 0 days ago 8:20 am  | returning      | patient A    | Reg A          |
-      | 0 days ago 9:00 am  | 0 days ago 9:20 am  | new            | patient B    | Reg B          |
-      | 0 days ago 10:00 am | 0 days ago 10:20 am | new            | patient C    | Reg A          |
-      | 0 days ago 11:00 am | 0 days ago 11:20 am | returning      | patient D    | Reg A          |
-      | 0 days ago 12:00 pm | 0 days ago 12:20 pm | returning      | patient E    | Reg A          |
-      | 0 days ago 1:00 pm  | 0 days ago 1:20 pm  | returning      | patient F    | Reg A          |
+      | today 8:00 am       | today 8:20 am       | returning      | patient A    | Reg A          |
+      | today 9:00 am       | today 9:20 am       | new            | patient B    | Reg B          |
+      | today 10:00 am      | today 10:20 am      | new            | patient C    | Reg A          |
+      | today 11:00 am      | today 11:20 am      | returning      | patient D    | Reg A          |
+      | today 12:00 pm      | today 12:20 pm      | returning      | patient E    | Reg A          |
+      | today 1:00 pm       | today 1:20 pm       | returning      | patient F    | Reg A          |
       | 1 days ago 1:00 pm  | 1 days ago 1:20 pm  | returning      | patient F    | Reg A          |
 
     Given I am on the overall registration dashboard
