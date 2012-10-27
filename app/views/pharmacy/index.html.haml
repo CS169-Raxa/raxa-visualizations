@@ -1,8 +1,3 @@
-= content_for :head do
-  = stylesheet_link_tag :pharmacy
-  = javascript_include_tag :raxa
-  = javascript_include_tag :pharmacy
-
 %h1 Pharmacy stock
 %p Click a row to show additional details and options.
 %table#drugs
@@ -12,4 +7,30 @@
       %th Time left
       %th History
   - @drugs.each do |drug|
-    = render :partial => 'pharmacy/drug_edit', :locals => {:drug => drug}
+    %tbody
+      %tr.info
+        %td.name= drug.name
+        %td.time= distance_of_time_in_words(drug.time_left)
+        %td.sparkline sparkline FIXME
+      %tr
+        %td.details{:colspan => 3}
+          %div
+            %div.details_left
+              %p
+                Estimated rate:
+                = drug.estimated_rate * 1.week
+                per week
+              = form_tag pharmacy_drug_path(drug.id),
+                :class => :drug_form,
+                :data => {:id => drug.id},
+                :method => :put do
+                %label{:for => 'user_rate'} Override:
+                = text_field_tag 'user_rate', drug.user_rate,
+                  :class => 'override_field'
+                %label{:for => 'alert_level'} Alert if stock falls below:
+                = text_field_tag 'alert_level', drug.alert_level,
+                  :class => 'alert_field'
+                = submit_tag 'Update', :class => 'submit'
+            %div.details_right
+              %div.bigsparkline{:id => "bigsparkline-#{drug.id}"}
+                Sparkline unavailable
