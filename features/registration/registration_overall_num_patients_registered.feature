@@ -1,4 +1,4 @@
-Feature: show total number of patients registered today on registration dashboard
+Feature: show total number of patients registered today on personal registration dashboard
 
   As a registration worker,
   I want to see the number of patients I have registered today,
@@ -28,15 +28,15 @@ Feature: show total number of patients registered today on registration dashboar
       | 2010-10-10 12:00 | 2010-10-10 12:20 | returning      | 5          | 1            |
       | 2010-10-10 13:00 | 2010-10-10 13:20 | returning      | 6          | 1            |
 
-    Given I am on the registration dashboard
+    Given I am on the overall registration dashboard
     And the date is 2010-10-10
 
-  Scenario: show number on registration dashboard
-    Then I should see that 5 patients were registered today
+  Scenario: show num patients registered for today
+    Then I should see that 6 patients were registered today
 
   Scenario: update number shown after information about a completed registration is received
-    When I register a patient
-    Then I should see that 6 patients were registered today
+    When Reg A registers a patient
+    Then I should see that 7 patients were registered today
 
   Scenario: reset number to zero at the end of the day
     When it is the next day
