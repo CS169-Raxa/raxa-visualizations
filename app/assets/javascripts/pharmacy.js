@@ -95,8 +95,6 @@ Pharmacy.prototype.drawDrugTimeGraph = function(drugID, how_long_ago, group_by_p
   var time_graph = d3.select('#bigTimeGraph-' + drugID);
   if (time_graph.classed('hidden')) {
     this.fetchDrugTimeGraph(drugID, how_long_ago, group_by_period, function(response) {
-      console.log(response);
-
       if (!response['data']) {
         pharmacy.displayNoTimeGraphHistoryNotice(drugID);
         return;
@@ -130,12 +128,6 @@ Pharmacy.prototype.drawDrugTimeGraph = function(drugID, how_long_ago, group_by_p
         .scale(y)
         .orient('left')
         .ticks(5);
-
-      window.x = x;
-      window.y = y;
-      window.dates = dates;
-      window.quantities = quantities;
-      window.response = response;
 
       var line = d3.svg.line()
         .x(function (d) { return x(d[0]); })
