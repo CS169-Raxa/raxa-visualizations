@@ -6,15 +6,15 @@ So that I can see trends in my efficiency
 
 Background: Some patients have been registered 
     Given the following patients exist:
-      | id | name      | 
-      | 1  | Patient A | 
-      | 2  | Patient B |
-      | 3  | Patient C | 
+      | name      | 
+      | Patient A | 
+      | Patient B |
+      | Patient C | 
 
     Given the following registrars exist:
-      | id | name  |
-      | 1  | Reg A |
-      | 2  | Reg B | 
+      | name  |
+      | Reg A |
+      | Reg B | 
 
     Given the following registrations exist:
       | time_start          | time_end            | patient_status | patient_name | registrar_name |
@@ -30,10 +30,10 @@ Scenario: show line graph of metrics for all of my past patients
     Then I should see a graph of 5 patients
 
 Scenario: show line graph of metrics for all of my past patients in the last 4 days
-    When I set the time restriction to 4 days
+    When I set the time restriction to "4 days"
     Then I should see a graph of 3 patients 
     And I should not see "Patient A" 
 
 Scenario: don't show line graph when there are no patients
-    When I set the time restriction to 2 hours
+    When I set the time restriction to "2 hours"
     Then I should see a missing patients notification
