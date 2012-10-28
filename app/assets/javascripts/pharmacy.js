@@ -171,10 +171,10 @@ Pharmacy.prototype.drawDrugTimeGraph = function(drugID, how_long_ago, group_by_p
 };
 
 Pharmacy.prototype.displayNoTimeGraphHistoryNotice = function(drugID) {
-  $('#drug' + drugID + ' .bigTimeGraph svg')
-    .addClass('hidden')
-  $('#drug' + drugID + ' .bigTimeGraph .noHistory')
-    .removeClass('hidden');
+  var time_graph_div = $('#drug' + drugID + ' .bigTimeGraph');
+  time_graph_div.find('svg').addClass('hidden');
+  time_graph_div.find('.noHistory').removeClass('hidden');
+  time_graph_div.removeClass('loading');
 };
 
 $(document).ready(function() {
