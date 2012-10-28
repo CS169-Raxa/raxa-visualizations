@@ -1,0 +1,11 @@
+%h2 Registration
+%h3
+  %a{:href => registration_registrars_path} Registration dashboard
+%h3 Dashboards by registrar
+- if @registrars.empty?
+  %p No registrars found!
+- else
+  %ul
+    - @registrars.each do |registrar|
+      %li
+        %a{:href => registration_registrar_path(registrar.id)}= registrar.name
