@@ -32,6 +32,8 @@ class Drug < ActiveRecord::Base
 
   def time_aggregated_data time_period, group_by_period
     quantities = history time_period
+    return false if not quantities
+
     output = []
     quantities.group_by do |time, qty|
       time / group_by_period * group_by_period

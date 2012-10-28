@@ -41,4 +41,11 @@ describe Drug do
     drug.time_aggregated_data(1.week, 3.days).should ==
       [[1351209600, 15], [1350950400, 25]]
   end
+
+  it 'should gracefully not aggregate quantity data if none available' do
+    drug = create :drug
+    drug.should_receive(:history).and_return(false)
+
+    drug.time_aggregated_data(1.week, 3.days).should be false
+  end
 end
