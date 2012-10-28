@@ -16,6 +16,9 @@ class Drug < ActiveRecord::Base
 
   # Compute historical stock levels for the period of time specified by looking
   # up corresponding drug deltas
+  #
+  # eg. For the last 24 hours of drug stock levels,
+  #     `Drug.first.history 60*60*24`
   def history time_period
     current_quantity = quantity
     quantities = [[Time.now.to_i, current_quantity]]
@@ -25,6 +28,18 @@ class Drug < ActiveRecord::Base
       quantities << [delta.timestamp.to_i, current_quantity]
     end
     recent_deltas.empty? ? false : quantities
+  end
+
+  def time_aggregated_data time_period, group_by_period
+    quantities = history time_period
+    output = []
+    quantities.group_by do |time, qty|
+      time / group_by_period * group_by_period
+    end.each_entry do |date, date_qty_groups|
+      qtys = date_qty_groups.map {|dqg| dqg[1]}
+      output << [date, (qtys.inject(:+) / qtys.size)]
+    end
+    output
   end
 
   # Based on total consumption of the previous week

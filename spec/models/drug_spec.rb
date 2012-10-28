@@ -32,4 +32,13 @@ describe Drug do
          [(Time.now - 5.days).to_i, 201.0]]
     end
   end
+
+  it 'should aggregate quantity data' do
+    drug = create :drug
+    drug.should_receive(:history).
+      and_return([[1351412553, 10], [1351326153, 20], [1351153353, 30], [1351066954, 20]])
+
+    drug.time_aggregated_data(1.week, 3.days).should ==
+      [[1351209600, 15], [1350950400, 25]]
+  end
 end
