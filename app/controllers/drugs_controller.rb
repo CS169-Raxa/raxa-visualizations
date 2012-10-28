@@ -28,5 +28,13 @@ class DrugsController < ApplicationController
       redirect_to pharmacy_path
     end
   end
-end
 
+  def time_graph
+    @drug = Drug.find(params[:id])
+    @data = @drug.time_aggregated_data(params[:time_period].to_i,
+                                  params[:group_by_period].to_i)
+    respond_to do |format|
+      format.json { render :json => { :data => @data, :drug => @drug } }
+    end
+  end
+end

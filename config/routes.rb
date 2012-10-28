@@ -1,6 +1,8 @@
 RaxaVisualizations::Application.routes.draw do
   scope 'pharmacy' do
-    resources :drugs, :as => :pharmacy_drugs
+    resources :drugs, :as => :pharmacy_drugs do
+      get 'time_graph', :on => :member
+    end
   end
 
   get "pharmacy/index"
