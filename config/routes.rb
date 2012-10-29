@@ -3,7 +3,9 @@ RaxaVisualizations::Application.routes.draw do
     resources :drugs, :as => :pharmacy_drugs
   end
 
-  get "pharmacy/index"
+  scope 'registration' do
+    resources :registrars, :as => :registration_registrars
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
