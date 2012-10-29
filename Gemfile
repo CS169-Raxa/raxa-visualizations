@@ -10,10 +10,12 @@ group :development, :test do
   gem 'rspec-rails'
 end
 group :test do
-  gem 'cucumber-rails'
-  gem 'database_cleaner'
   gem 'capybara'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
   gem 'simplecov'
+  gem 'spork-rails'
+  gem 'watchr'
 end
 group :production do
   gem 'pg'

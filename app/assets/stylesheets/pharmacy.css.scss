@@ -60,13 +60,29 @@ $alert_bg: #faa;
         float: left;
       }
 
-      .bigsparkline {
+      .bigTimeGraph {
         border: 1px dashed black;
         clear: both;
-        height: 100%;
-        min-height: 230px;
         margin: 2px;
+        height: 230px;
         text-align: center;
+
+        .line {
+          fill: none;
+          stroke: steelblue;
+          stroke-width: 1.5px;
+        }
+
+        .axis path,
+        .axis line {
+          fill: none;
+          stroke: #000;
+          shape-rendering: crispEdges;
+        }
+      }
+
+      .bigTimeGraph.loading {
+        background: url('/assets/ajax-loader.gif') no-repeat center center;
       }
 
       input::-webkit-input-placeholder {

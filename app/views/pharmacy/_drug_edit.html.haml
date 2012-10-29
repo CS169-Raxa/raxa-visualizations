@@ -1,4 +1,4 @@
-%tbody{:id => "drug#{drug.id}"}
+%tbody{:id => "drug#{drug.id}", 'data-drug_id' => drug.id, :class => 'drug'}
   %tr.info{:class => drug.alert? ? :alert : :no_alert}
     %td.name= drug.name
     %td.time= drug.time_left ? distance_of_time_in_words(drug.time_left.to_i) : 'Estimate unavailable'
@@ -39,5 +39,6 @@
               = f.text_field :user_rate, :id => "user_rate_field-#{drug.id}",
               :placeholder => "#{drug.units} per week"
               = submit_tag 'Update', :class => 'submit', :id => "user_rate_submit-#{drug.id}"
-        %div.bigSparkline{:id => "bigSparkline-#{drug.id}"}
-          TODO: Insert time graph
+        %div.bigTimeGraph.loading
+          %svg.hidden{:id => "bigTimeGraph-#{drug.id}"}
+          .hidden.noHistory No information available
