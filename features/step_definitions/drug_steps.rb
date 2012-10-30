@@ -117,3 +117,19 @@ Then /^I should see a time graph missing history notification in the row for dru
   drug = Drug.find_by_name(drug_name)
   page.should have_selector "#drug#{drug.id} .bigTimeGraph .noHistory"
 end
+
+# Drug time graph
+
+# The following tests need to be implemented in jasmine, or another JS testing
+# framework since there are client-side AJAX calls that trigger these
+# behaviours. These behaviours can not trule be verified using capybara alone.
+
+Then /^I should see a time graph in the row for drug "(.*?)"$/ do |drug_name|
+  drug = Drug.find_by_name(drug_name)
+  page.should have_selector "svg#bigTimeGraph-#{drug.id}"
+end
+
+Then /^I should see a time graph missing history notification in the row for drug "(.*?)"$/ do |drug_name|
+  drug = Drug.find_by_name(drug_name)
+  page.should have_selector "#drug#{drug.id} .bigTimeGraph .noHistory"
+end
