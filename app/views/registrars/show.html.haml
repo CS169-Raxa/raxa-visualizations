@@ -3,7 +3,8 @@
 
 %h2 Dashboard for Jacob Doe
 %div.rightbar
-  = render :partial => 'registrars/rightbar'
+  = render :partial => 'registrars/rightbar',
+           :locals => {:num_today => @num_today}
 %h3 Registered patients
 %table#registered
   %tr
