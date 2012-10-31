@@ -1,17 +1,23 @@
 # general
 Given /^the following patients exist:$/ do |table|
   # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+  table.hashes.each do |patient|
+    Patient.create(patient)
+  end
 end
 
 Given /^the following registrars exist:$/ do |table|
   # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+  table.hashes.each do |registrar|
+    Registrar.create(registrar)
+  end
 end
 
 Given /^the following registrations exist:$/ do |table|
   # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+  table.hashes.each do |registration|
+    Registration.create(registration)
+  end
 end
 
 # paths
