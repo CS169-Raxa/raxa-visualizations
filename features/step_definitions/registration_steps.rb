@@ -21,12 +21,12 @@ Given /^the following registrations exist:$/ do |table|
 end
 
 # paths
-Given /^I am on the (.*?) registration dashboard$/ do
+Given /^I am on the (.*?) registration dashboard$/ do |arg|
   pending # express the regexp above with the code you wish you had
 end
 
 # num patients registered
-When /^(.*?) registers a patient$/ do
+When /^(.*?) registers a patient$/ do |arg|
   pending # express the regexp above with the code you wish you had
 end
 
