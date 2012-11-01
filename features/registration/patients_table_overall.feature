@@ -94,7 +94,7 @@ Scenario: at end of registrations in history, show all
     And I should see the following patients: Patient K, Patient L, Patient M
     And I should see the following patients: Patient N, Patient O, Patient P
     And I should see the following patients: Patient Q, Patient R, Patient S, Patient T
-    And I should  see the following patients: Patient U, Patient V
+    And I should see the following patients: Patient U, Patient V
 
 Scenario: show notification if no registrations in table
     Given there are no registrations
