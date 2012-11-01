@@ -1,0 +1,19 @@
+# Registrar 1
+---
+name: Keyser Soze
+---
+- patient_status: new
+  time_start: 3 September 1991 8:30 am
+  time_end: 3 September 1991 9:00 am
+- patient_status: returning
+  time_start: 20 October 1991 5:15 pm
+  time_end: 20 October 1991 7:12 pm
+- patient_status: returning
+  time_start: 8 April 1992 2:72 am
+  time_end: 8 April 1992 3:14 am
+- patient_status: new
+  time_start: 4 September 1992 5:30 am
+  time_end: 4 September 1992 1:00 pm
+- patient_status: new
+  time_start: 12 September 1992 9:30 pm
+  time_end: 12 September 1992 11:00 pm
