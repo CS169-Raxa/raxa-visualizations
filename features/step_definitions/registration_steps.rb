@@ -58,10 +58,14 @@ end
 
 # table of registered patients
 
+Then /^I should see patient "(.*?)" with time "(.*?)" and status "(.*?)"$/ do |patient_name, time, status|
+  pending # express the regexp above with the code you wish you had
+end
+
 Then /^I should see the following patients: (.*)$/ do |patients_list|
   patients_list = patients_list.split(/,/)
   patients_list.each do |patient_name|
-    assert page.has_content?(patient_name)
+    puts assert_match(/#{patient_name}/m, page.body)
   end
 end
 
@@ -85,9 +89,24 @@ Then /^I should see a no registrations notification$/ do
 end
 
 Then /^I should see "(.*?)" before the "(.*?)" header$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+  if arg2 != "yesterday"
+    header = Chronic::parse(arg2)
+  else
+    header = "YESTERDAY"
+  end
+  assert_match(/#{arg1}(.*)#{header}/m, page.body)
 end
 
 Then /^I should see the "(.*?)" header before "(.*?)"$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+  if arg1 != "yesterday"
+    header = Chronic::parse(arg1)
+  else
+    header = "YESTERDAY"
+  end
+  assert_match(/#{header}(.*)#{arg2}/m, page.body)
 end
+
+Then /^I should list "(.*?)" before "(.*?)"$/ do |arg1, arg2|
+  assert_match(/#{arg1}(.*)#{arg2}/m, page.body)
+end
+
