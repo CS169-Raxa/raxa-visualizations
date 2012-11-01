@@ -56,7 +56,7 @@ When /^I set the time restriction to "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^I should not see "(.*?)" with starting time "(.*?)"$/ do |arg1, arg2|
+Then /^I should not see "(.*?)" with starting time "(.*?)"$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
