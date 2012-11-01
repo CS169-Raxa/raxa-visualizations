@@ -50,3 +50,24 @@ end
 When /^(.*?) registers a patient from (.*) to (.*)$/ do |arg1, arg2, arg3|
   pending # express the regexp above with the code you wish you had
 end
+
+# table of registered patients
+When /^I set the time restriction to "(.*?)"$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should not see "(.*?)" with starting time "(.*?)"$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^"(.*?)" should have status "(.*?)"$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^should not see "(.*?)" with starting time "(.*?)"$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should see a missing patients notification$/ do
+  pending # express the regexp above with the code you wish you had
+end
