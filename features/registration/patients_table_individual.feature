@@ -24,15 +24,11 @@ Background: Some patients have been registered
       | 3 days ago 11:00 am | 1 day ago  11:00 am | returning      | Patient A    | Reg A          |
       | 1 day ago  11:00 am |                     | returning      | Patient B    | Reg A          |
 
-Scenario: on overall dashboard, by default, show last 10 patients registered
+Scenario: by default, show last 10 patients registered
 
-Scenario: on overall dashboard, see more
+Scenario: see more, shows 10 more patients
 
-Scenario: on individual dashboard, by default, show last 10 patients registered
-
-Scenario: on individual dashboard, see more
-
-Scenario: on individual dashboard, show notificatin if no Patients in table
+Scenario: show notification if no Patients in table
 
 Scenario: table sorted by registration end times
 
