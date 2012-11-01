@@ -96,7 +96,8 @@ Scenario: at end of registrations in history, show all
     And I should see the following patients: "Patient Q", "Patient R", "Patient S", "Patient T"
     And I should  see the following patients: "Patient U", "Patient V"
 
-Scenario: show notification if no Patients in table
+Scenario: show notification if no registrations in table
+
 
 Scenario: table sorted by registration end times, then patient name
 
