@@ -96,10 +96,6 @@ Scenario: at end of registrations in history, show all
     And I should see the following patients: Patient Q,Patient R,Patient S,Patient T
     And I should see the following patients: Patient U,Patient V
 
-Scenario: show notification if no registrations in table
-    Given there are no registrations
-    Then I should see a no registrations notification
-
 Scenario: table sorted by registration end times, then patient name
     Then I should list "Patient A" before "Patient B"
     And I should list "Patient B" before "Patient C"
@@ -114,30 +110,3 @@ Scenario: show date header for yesterday
 Scenario: show date header by date
     Then I should see "Patient H" before the "2 days ago" header
     And I should see the "2 days ago" header before "Patient I"
-
-"""
-Scenario: I want to see all of the Patients that have been registered in the past 6 days
-    Given I am on the overall registration dashboard
-    When I set the time restriction to "6 days"
-    Then I should see "Patient A" with starting time "3 days ago"
-    And I should not see "Patient A" with starting time "7 days ago"
-    And I should see "Patient B" with starting time "5 days ago"
-    And "Patient B" should have status "new"
-
-Scenario: I want to see all the Patients I have registered in the past 6 days
-    Given I am on the Reg A registration dashboard
-    When I set the time restriction to "4 days"
-    Then should not see "Patient B" with starting time "5 days ago"
-    And I should see "Patient B" with starting time "1 day ago"
-
-Scenario: no Patients in table result in notification
-    Given I am on the Reg B registration dashboard
-    When I set the time restriction to "3 days"
-    Then I should see a missing patients notification
-
-Scenario: table should be sorted by how recently they checked in.
-    Given I am on the overall registration dashboard
-    When I set the time restriction to "4 days"
-    Then I should see "Patient B" before "Patient A"
-    And I should see "Patient A" before "Patient C"
-"""
