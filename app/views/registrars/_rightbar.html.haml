@@ -1,7 +1,7 @@
 %h3 At a glance
 %div.stat
   %div.bignum= @num_today
-  = "patient#{'s' if @num_today != 1} registered today"
+  = "#{'patient'.pluralize(@num_today)} registered today"
 
 %div.stat
   %div.bignum 8:34
