@@ -9,7 +9,6 @@ class Registration < ActiveRecord::Base
   }
 
   def elapsed_time
-    ChronicDuration.output((self.time_end - self.time_start).to_i, :format => :chrono)
     self.time_end - self.time_start
   end
 end
