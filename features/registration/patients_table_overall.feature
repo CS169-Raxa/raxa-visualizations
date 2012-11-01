@@ -45,20 +45,20 @@ Background: Some patients have been registered
       | yesterday 10:00 am  | yesterday 11:00 am  | new            | Patient F    | Reg B          |
       | yesterday 3:00 pm   | yesterday 5:00 pm   | new            | Patient G    | Reg B          |
       | yesterday 7:00 pm   | yesterday 8:00 pm   | new            | Patient H    | Reg B          |
-      | 1 day ago  11:00 am | 1 day ago 1:00 pm   | returning      | Patient I    | Reg A          |
-      | 1 day ago  1:00 pm  | 1 day ago 2:00 pm   | returning      | Patient J    | Reg A          |
-      | 1 day ago  2:00pm   | 1 day ago 5:00 pm   | returning      | Patient K    | Reg A          |
-      | 1 day ago  10:00 pm | 1 day ago 11:00 pm  | returning      | Patient L    | Reg A          |
-      | 2 days ago 1:00 am  | 2 days ago 11:00 am | returning      | Patient M    | Reg A          |
-      | 3 days ago 10:00 am | 3 day ago  11:00 am | returning      | Patient N    | Reg B          |
-      | 5 days ago 11:00 am | 5 day ago  1:00 pm  | new            | Patient O    | Reg B          |
-      | 5 days ago 1:00 pm  | 5 day ago  11:00 pm | returning      | Patient P    | Reg B          |
-      | 5 days ago 1:00 pm  | 5 day ago  11:00 pm | returning      | Patient Q    | Reg A          |
-      | 5 days ago 10:00 pm | 5 day ago  11:00 pm | returning      | Patient R    | Reg A          |
-      | 7 days ago 10:00 am | 7 day ago  11:00 am | returning      | Patient S    | Reg A          |
-      | 7 days ago 11:00 am | 7 day ago  1:00 pm  | new            | Patient T    | Reg A          |
-      | 7 days ago 1:00 pm  | 7 day ago  2:00 pm  | returning      | Patient U    | Reg A          |
-      | 7 days ago 3:00 pm  | 7 day ago  5:00 pm  | returning      | Patient V    | Reg A          |
+      | 2 days ago 11:00 am | 2 days ago 1:00 pm  | returning      | Patient I    | Reg A          |
+      | 2 days ago 1:00 pm  | 2 days ago 2:00 pm  | returning      | Patient J    | Reg A          |
+      | 2 days ago 2:00pm   | 2 days ago 5:00 pm  | returning      | Patient K    | Reg A          |
+      | 2 days ago 10:00 pm | 2 days ago 11:00 pm | returning      | Patient L    | Reg A          |
+      | 3 days ago 1:00 am  | 3 days ago 11:00 am | returning      | Patient M    | Reg A          |
+      | 4 days ago 10:00 am | 4 days ago 11:00 am | returning      | Patient N    | Reg B          |
+      | 5 days ago 11:00 am | 5 days ago 1:00 pm  | new            | Patient O    | Reg B          |
+      | 5 days ago 1:00 pm  | 5 days ago 11:00 pm | returning      | Patient P    | Reg B          |
+      | 5 days ago 1:00 pm  | 5 days ago 11:00 pm | returning      | Patient Q    | Reg A          |
+      | 5 days ago 10:00 pm | 5 days ago 11:00 pm | returning      | Patient R    | Reg A          |
+      | 7 days ago 10:00 am | 7 days ago 11:00 am | returning      | Patient S    | Reg A          |
+      | 7 days ago 11:00 am | 7 days ago 1:00 pm  | new            | Patient T    | Reg A          |
+      | 7 days ago 1:00 pm  | 7 days ago 2:00 pm  | returning      | Patient U    | Reg A          |
+      | 7 days ago 3:00 pm  | 7 days ago 5:00 pm  | returning      | Patient V    | Reg A          |
 
     And I am on the overall registration dashboard
 
@@ -97,13 +97,23 @@ Scenario: at end of registrations in history, show all
     And I should  see the following patients: "Patient U", "Patient V"
 
 Scenario: show notification if no registrations in table
-
+    Given there are no registrations
+    Then I should see a no registrations notification
 
 Scenario: table sorted by registration end times, then patient name
+    Then I should see "Patient A" before "Patient B"
+    And I should see "Patient B" before "Patient C"
+    And I should see "Patient C" before "Patient D"
+    And I should see "Patient D" before "Patient E"
+    And I should see "Patient E" before "Patient F"
 
 Scenario: show date header for yesterday
+    Then I should see "Patient E" before the "yesterday" header
+    And I should see the "yesterday" header before "Patient F"
 
 Scenario: show date header by date
+    Then I should see "Patient H" before the "2 days ago" header
+    And I should see the "2 days ago" header before "Patient I"
 
 """
 Scenario: I want to see all of the Patients that have been registered in the past 6 days
