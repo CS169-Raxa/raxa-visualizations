@@ -52,22 +52,31 @@ When /^(.*?) registers a patient from (.*) to (.*)$/ do |arg1, arg2, arg3|
 end
 
 # table of registered patients
-When /^I set the time restriction to "(.*?)"$/ do |arg1|
+
+Then /^I should see the following patients: (.*)$/ do |patients_list|
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^I should not see "(.*?)" with starting time "(.*?)"$/ do |arg1|
+Then /^I should not see the following patients: (.*)$/ do |patients_list|
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^"(.*?)" should have status "(.*?)"$/ do |arg1, arg2|
+When /^I click SEE MORE$/ do
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^should not see "(.*?)" with starting time "(.*?)"$/ do |arg1, arg2|
+Given /^there are no registrations$/ do
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^I should see a missing patients notification$/ do
+Then /^I should see a no registrations notification$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should see "(.*?)" before the "(.*?)" header$/ do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should see the "(.*?)" header before "(.*?)"$/ do |arg1, arg2|
   pending # express the regexp above with the code you wish you had
 end
