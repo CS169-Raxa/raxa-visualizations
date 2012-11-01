@@ -10,6 +10,13 @@ Background: Some patients have been registered
       | Patient A |
       | Patient B |
       | Patient C |
+      | Patient D |
+      | Patient E |
+      | Patient F |
+      | Patient G |
+      | Patient H |
+      | Patient I |
+      | Patient J |
 
     Given the following registrars exist:
       | name  |
@@ -18,19 +25,40 @@ Background: Some patients have been registered
 
     Given the following registrations exist:
       | time_start          | time_end            | patient_status | patient_name | registrar_name |
-      | 7 days ago 11:00 am | 7 days ago 1:00 pm  | returning      | Patient A    | Reg A          |
-      | 5 days ago 11:00 am | 4 days ago 11:00 am |                | Patient B    | Reg B          |
-      | 4 days ago 1:00 am  | 4 days ago 11:00 am | new            | Patient C    | Reg A          |
-      | 3 days ago 11:00 am | 1 day ago  11:00 am | returning      | Patient A    | Reg A          |
-      | 1 day ago  11:00 am |                     | returning      | Patient B    | Reg A          |
+      | today 11:00 am      | today 1:00 pm       | returning      | Patient A    | Reg A          |
+      | today 1:00 pm       | today 2:00 pm       | new            | Patient B    | Reg A          |
+      | today 2:00 pm       | today 4:00 pm       | returning      | Patient C    | Reg A          |
+      | today 5:00 pm       | today 6:00 pm       | returning      | Patient D    | Reg A          |
+      | today 10:00 pm      | today 11:00 pm      | returning      | Patient E    | Reg A          |
+      | yesterday 10:00 am  | yesterday 11:00 am  | new            | Patient F    | Reg B          |
+      | yesterday 3:00 pm   | yesterday 5:00 pm   | new            | Patient G    | Reg B          |
+      | yesterday 7:00 pm   | yesterday 8:00 pm   | new            | Patient H    | Reg B          |
+      | 1 day ago  11:00 am | 1 day ago 1:00 pm   | returning      | Patient I    | Reg A          |
+      | 1 day ago  1:00 pm  | 1 day ago 2:00 pm   | returning      | Patient J    | Reg A          |
+      | 1 day ago  2:00pm   | 1 day ago 5:00 pm   | returning      | Patient A    | Reg A          |
+      | 1 day ago  10:00 pm | 1 day ago 11:00 pm  | returning      | Patient B    | Reg A          |
+      | 2 days ago 1:00 am  | 2 days ago 11:00 am | returning      | Patient C    | Reg A          |
+      | 3 days ago 10:00 am | 3 day ago  11:00 am | returning      | Patient D    | Reg B          |
+      | 5 days ago 11:00 am | 5 day ago  1:00 pm  | returning      | Patient E    | Reg B          |
+      | 5 days ago 1:00 pm  | 5 day ago  11:00 pm | returning      | Patient F    | Reg B          |
+      | 5 days ago 1:00 pm  | 5 day ago  11:00 pm | returning      | Patient G    | Reg A          |
+      | 5 days ago 10:00 pm | 5 day ago  11:00 pm | returning      | Patient H    | Reg A          |
+      | 7 days ago 10:00 am | 7 day ago  11:00 am | returning      | Patient I    | Reg A          |
+      | 7 days ago 11:00 am | 7 day ago  1:00 pm  | returning      | Patient J    | Reg A          |
+      | 7 days ago 1:00 pm  | 7 day ago  2:00 pm  | returning      | Patient A    | Reg A          |
+      | 7 days ago 3:00 pm  | 7 day ago  5:00 pm  | returning      | Patient B    | Reg A          |
+
+    And I am on the overall registration dashboard
 
 Scenario: by default, show last 10 patients registered
 
-Scenario: see more, shows 10 more patients
+Scenario: see more, shows 10 more registrations
+
+Scenario: at end of registrations in history, show all
 
 Scenario: show notification if no Patients in table
 
-Scenario: table sorted by registration end times
+Scenario: table sorted by registration end times, then patient name
 
 Scenario: show date header for yesterday
 
