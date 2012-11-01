@@ -50,6 +50,8 @@ Background: Some patients have been registered
 
     And I am on the overall registration dashboard
 
+Scenario: show time reigstered (end time), patient name, and status for a registration
+
 Scenario: by default, show last 10 patients registered
 
 Scenario: see more, shows 10 more registrations
