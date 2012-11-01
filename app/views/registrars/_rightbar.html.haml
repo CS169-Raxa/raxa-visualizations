@@ -4,7 +4,8 @@
   = "#{'patient'.pluralize(@num_today)} registered today"
 
 %div.stat
-  %div.bignum 8:34
+  %div.bignum
+    = registrar.average_time
   average time per patient
 
 %h3 Additional metrics
