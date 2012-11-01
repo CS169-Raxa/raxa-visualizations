@@ -5,6 +5,6 @@ class RegistrarsController < ApplicationController
   end
   def show
     @registrar = Registrar.find(params[:id])
-    @num_today = @registrar.registrations.for_day(Date.today).count
+    @num_today = @registrar.registrations_for_day(Date.today).count
   end
 end
