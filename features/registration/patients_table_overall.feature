@@ -67,34 +67,34 @@ Scenario: show time reigstered (end time), patient name, and status for a regist
     And I should see "Patient B" with time "2:00 pm" and status "new"
 
 Scenario: by default, show last 10 patients registered
-    Then I should see the following patients: "Patient A", "Patient B", "Patient C"
-    And I should see the following patients: "Patient D", "Patient E", "Patient F"
-    And I should see the following patients: "Patient G", "Patient H", "Patient I", "Patient J"
-    But I should not see the following patients: "Patient K", "Patient L", "Patient M"
-    But I should not see the following patients: "Patient N", "Patient O", "Patient P"
-    But I should not see the following patients: "Patient Q", "Patient R", "Patient S"
-    But I should not see the following patients: "Patient T", "Patient U", "Patient V"
+    Then I should see the following patients: Patient A, Patient B, Patient C
+    And I should see the following patients: Patient D, Patient E, Patient F
+    And I should see the following patients: Patient G, Patient H, Patient I, Patient J
+    But I should not see the following patients: Patient K, Patient L, Patient M
+    But I should not see the following patients: Patient N, Patient O, Patient P
+    But I should not see the following patients: Patient Q, Patient R, Patient S
+    But I should not see the following patients: Patient T, Patient U, Patient V
 
 Scenario: see more, shows 10 more registrations
     When I click SEE MORE
-    Then I should see the following patients: "Patient A", "Patient B", "Patient C"
-    And I should see the following patients: "Patient D", "Patient E", "Patient F"
-    And I should see the following patients: "Patient G", "Patient H", "Patient I", "Patient J"
-    And I should see the following patients: "Patient K", "Patient L", "Patient M"
-    And I should see the following patients: "Patient N", "Patient O", "Patient P"
-    And I should see the following patients: "Patient Q", "Patient R", "Patient S", "Patient T"
-    But I should not see the following patients: "Patient U", "Patient V"
+    Then I should see the following patients: Patient A, Patient B, Patient C
+    And I should see the following patients: Patient D, Patient E, Patient F
+    And I should see the following patients: Patient G, Patient H, Patient I, Patient J
+    And I should see the following patients: Patient K, Patient L, Patient M
+    And I should see the following patients: Patient N, Patient O, Patient P
+    And I should see the following patients: Patient Q, Patient R, Patient S, Patient T
+    But I should not see the following patients: Patient U, Patient V
 
 Scenario: at end of registrations in history, show all
     When I click SEE MORE
     And I click SEE MORE
-    Then I should see the following patients: "Patient A", "Patient B", "Patient C"
-    And I should see the following patients: "Patient D", "Patient E", "Patient F"
-    And I should see the following patients: "Patient G", "Patient H", "Patient I", "Patient J"
-    And I should see the following patients: "Patient K", "Patient L", "Patient M"
-    And I should see the following patients: "Patient N", "Patient O", "Patient P"
-    And I should see the following patients: "Patient Q", "Patient R", "Patient S", "Patient T"
-    And I should  see the following patients: "Patient U", "Patient V"
+    Then I should see the following patients: Patient A, Patient B, Patient C
+    And I should see the following patients: Patient D, Patient E, Patient F
+    And I should see the following patients: Patient G, Patient H, Patient I, Patient J
+    And I should see the following patients: Patient K, Patient L, Patient M
+    And I should see the following patients: Patient N, Patient O, Patient P
+    And I should see the following patients: Patient Q, Patient R, Patient S, Patient T
+    And I should  see the following patients: Patient U, Patient V
 
 Scenario: show notification if no registrations in table
     Given there are no registrations
