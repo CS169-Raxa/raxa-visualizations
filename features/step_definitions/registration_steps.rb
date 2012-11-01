@@ -22,7 +22,12 @@ end
 
 # paths
 Given /^I am on the (.*?) registration dashboard$/ do |arg|
-  pending # express the regexp above with the code you wish you had
+  if arg == "overall"
+    visit('/registration')
+  else
+    registrar_id = Registrar.find_by_name(arg).id
+    visit(registrar_path(registrar_id))
+  end
 end
 
 # num patients registered
@@ -54,15 +59,21 @@ end
 # table of registered patients
 
 Then /^I should see the following patients: (.*)$/ do |patients_list|
-  pending # express the regexp above with the code you wish you had
+  patients_list = patients_list.split(/,/)
+  patients_list.each do |patient_name|
+    assert page.has_content?(patient_name)
+  end
 end
 
 Then /^I should not see the following patients: (.*)$/ do |patients_list|
-  pending # express the regexp above with the code you wish you had
+  patients_list = patients_list.split(/,/)
+  patients_list.each do |patient_name|
+    assert page.has_no_content?(patient_name)
+  end
 end
 
 When /^I click SEE MORE$/ do
-  pending # express the regexp above with the code you wish you had
+  click_link("see_more")
 end
 
 Given /^there are no registrations$/ do
