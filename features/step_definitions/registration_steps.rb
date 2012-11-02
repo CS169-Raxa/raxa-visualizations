@@ -1,22 +1,37 @@
 # general
 Given /^the following patients exist:$/ do |table|
-  # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+  table.hashes.each do |patient|
+    Patient.create!(patient)
+  end
 end
 
 Given /^the following registrars exist:$/ do |table|
-  # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+  table.hashes.each do |registrar|
+    Registrar.create!(registrar)
+  end
 end
 
 Given /^the following registrations exist:$/ do |table|
-  # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+  table.hashes.each do |info|
+    registrar = Registrar.find_by_name(info[:registrar_name])
+    registration = registrar.registrations.create!(
+      :time_start => Chronic::parse(info[:time_start]),
+      :time_end => Chronic::parse(info[:time_end]),
+      :patient_status => info[:patient_status]
+    )
+    patient = Patient.find_by_name(info[:patient_name])
+    patient.registrations << registration
+  end
 end
 
 # paths
-Given /^I am on the (.*?) registration dashboard$/ do
-  pending # express the regexp above with the code you wish you had
+Given /^I am on the (.*?) registration dashboard$/ do |registrar_name|
+  if registrar_name == 'overall'
+    visit '/registration/registrars'
+  else
+    registrar = Registrar.find_by_name(registrar_name)
+    visit "/registration/registrars/#{registrar.id}"
+  end
 end
 
 # num patients registered
@@ -32,8 +47,8 @@ When /^it is the next day$/ do
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^I should see that (\d+) patients were registered today$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^I should see that (\d+) patients were registered today$/ do |num|
+  find('#num-today').text.should == num
 end
 
 # avg time to register a patient
