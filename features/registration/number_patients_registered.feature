@@ -2,7 +2,7 @@ Feature: show total number of patients registered today on personal registration
 
   As a registration worker,
   I want to see the number of patients I have registered today,
-  So that I can keep track of my progress for today 
+  So that I can keep track of my progress for today
   Background: registrations have occurred
     Given the following patients exist:
       | name      |

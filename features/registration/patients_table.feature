@@ -4,17 +4,17 @@ Feature: See a table of the patients I have registered
   I want to see a table of all patients registered (with their status of new/returning and time registered) listed by how recently they were registered,
   So that I can keep track of what patients I have registered today and in previous days.
 
-Background: Some patients have been registered 
+Background: Some patients have been registered
     Given the following patients exist:
-      | name      | 
-      | Patient A | 
+      | name      |
+      | Patient A |
       | Patient B |
-      | Patient C | 
+      | Patient C |
 
     Given the following registrars exist:
       | name  |
       | Reg A |
-      | Reg B | 
+      | Reg B |
 
     Given the following registrations exist:
       | time_start          | time_end            | patient_status | patient_name | registrar_name |
@@ -31,7 +31,7 @@ Scenario: I want to see all of the Patients that have been registered in the pas
     And I should not see "Patient A" with starting time "7 days ago"
     And I should see "Patient B" with starting time "5 days ago"
     And "Patient B" should have status "new"
-  
+
 Scenario: I want to see all the Patients I have registered in the past 6 days
     Given I am on the Reg A registration dashboard
     When I set the time restriction to "4 days"
@@ -41,9 +41,9 @@ Scenario: I want to see all the Patients I have registered in the past 6 days
 Scenario: no Patients in table result in notification
     Given I am on the Reg B registration dashboard
     When I set the time restriction to "3 days"
-    Then I should see a missing patients notification 
+    Then I should see a missing patients notification
 
-Scenario: table should be sorted by how recently they checked in. 
+Scenario: table should be sorted by how recently they checked in.
     Given I am on the overall registration dashboard
     When I set the time restriction to "4 days"
     Then I should see "Patient B" before "Patient A"
