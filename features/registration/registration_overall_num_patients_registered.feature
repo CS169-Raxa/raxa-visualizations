@@ -36,8 +36,10 @@ Feature: show total number of patients registered today on overall registration 
 
   Scenario: update number shown after information about a completed registration is received
     When Reg A registers a patient
+    And I am on the overall registration dashboard
     Then I should see that 7 patients were registered today
 
   Scenario: reset number to zero at the end of the day
     When it is the next day
+    And I am on the overall registration dashboard
     Then I should see that 0 patients were registered today
