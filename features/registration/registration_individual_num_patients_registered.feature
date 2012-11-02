@@ -2,8 +2,7 @@ Feature: show total number of patients registered today on personal registration
 
   As a registration worker,
   I want to see the number of patients I have registered today,
-  So that I can keep track of my progress for today
-
+  So that I can keep track of my progress for today 
   Background: registrations have occurred
     Given the following patients exist:
       | name      |
@@ -37,12 +36,15 @@ Feature: show total number of patients registered today on personal registration
 
   Scenario: update number shown after information about a completed registration is received
     When Reg A registers a patient
+    And I am on the Reg A registration dashboard
     Then I should see that 6 patients were registered today
 
   Scenario: do not update number shown for completed registrations from other registrars
     When Reg B registers a patient
+    And I am on the Reg A registration dashboard
     Then I should see that 5 patients were registered today
 
   Scenario: reset number to zero at the end of the day
     When it is the next day
+    And I am on the Reg A registration dashboard
     Then I should see that 0 patients were registered today
