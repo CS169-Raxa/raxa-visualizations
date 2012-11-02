@@ -7,4 +7,8 @@ class Registration < ActiveRecord::Base
     day = time.beginning_of_day
     where("time_end >= ? AND time_end < ?", day, day + 1.day)
   }
+
+  def elapsed_time
+    self.time_end - self.time_start
+  end
 end

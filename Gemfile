@@ -61,5 +61,6 @@ gem 'haml-rails'
 gem 'factory_girl_rails'
 
 gem 'chronic'
+gem 'chronic_duration'
 
 gem 'psych'
