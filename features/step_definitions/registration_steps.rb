@@ -1,3 +1,5 @@
+require 'cucumber/rspec/doubles'
+
 # general
 Given /^the following patients exist:$/ do |table|
   table.hashes.each do |patient|
@@ -35,8 +37,10 @@ Given /^I am on the (.*?) registration dashboard$/ do |registrar_name|
 end
 
 # num patients registered
-When /^(.*?) registers a patient$/ do
-  pending # express the regexp above with the code you wish you had
+When /^(.*?) registers a patient$/ do |registrar_name|
+  registrar = Registrar.find_by_name(registrar_name)
+  registrar.registrations.create!(:time_start => Time.now - 5.minutes,
+                                  :time_end => Time.now)
 end
 
 When /^I register a patient$/ do
@@ -44,7 +48,8 @@ When /^I register a patient$/ do
 end
 
 When /^it is the next day$/ do
-  pending # express the regexp above with the code you wish you had
+  correct_time = Time.method(:now)
+  Time.stub(:now) { correct_time.call + 1.day }
 end
 
 Then /^I should see that (\d+) patients were registered today$/ do |num|
