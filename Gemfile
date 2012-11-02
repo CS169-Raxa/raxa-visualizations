@@ -13,7 +13,7 @@ group :test do
   gem 'capybara'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
-  gem 'simplecov'
+  gem 'simplecov', :require => false
   gem 'spork-rails'
   gem 'watchr'
 end
