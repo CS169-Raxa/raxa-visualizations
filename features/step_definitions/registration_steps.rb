@@ -80,12 +80,8 @@ When /^I click SEE MORE$/ do
   click_link("see_more")
 end
 
-Given /^there are no registrations$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
 Then /^I should see a no registrations notification$/ do
-  pending # express the regexp above with the code you wish you had
+  assert_match("there are no registrations to show", page.body)
 end
 
 Then /^I should see "(.*?)" before the "(.*?)" header$/ do |arg1, arg2|
