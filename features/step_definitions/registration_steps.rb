@@ -57,10 +57,16 @@ Then /^I should see that (\d+) patients were registered today$/ do |num|
 end
 
 # avg time to register a patient
-Then /^I should see that the average time to register a patient is (\d+) minutes$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^I should see that the average time to register a patient is (\d+) minutes$/ do |minutes|
+  find('#average-time').text.should include "#{minutes}:00"
 end
 
-When /^(.*?) registers a patient from (.*) to (.*)$/ do |arg1, arg2, arg3|
-  pending # express the regexp above with the code you wish you had
+When /^(.*?) registers a (new|returning) patient from (.*) to (.*)$/ do |name, status, start_time, end_time|
+  registrar = Registrar.find_by_name(name)
+  registration = Registration.create!(
+    :patient_status => status,
+    :time_start => Chronic::parse(start_time),
+    :time_end => Chronic::parse(end_time)
+  )
+  registrar.registrations << registration
 end
