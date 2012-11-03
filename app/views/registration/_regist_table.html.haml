@@ -15,8 +15,8 @@
               %span{:title => div}= div
       %tr
         %td= registration.time_end.strftime('%l:%M %P')
-        %td= registration.patient_name
-        %td= regisrtation.patient_status
+        %td= registration.patient.name
+        %td= registration.patient_status
     %tr
       %td.divider{:colspan => 3}
         %div

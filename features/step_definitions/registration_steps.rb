@@ -32,7 +32,7 @@ Given /^I am on the (.*?) registration dashboard$/ do |registrar_name|
     visit '/registration/registrars'
   else
     registrar = Registrar.find_by_name(registrar_name)
-    visit(registration_registrar_path(registrar_id))
+    visit(registration_registrar_path(registrar.id))
   end
 end
 
