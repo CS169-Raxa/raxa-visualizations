@@ -18,17 +18,18 @@ class RegistrarsController < ApplicationController
     #        using false for no divider, and the divider text otherwise
     @registrations = Registration.all(:order => "time_end", :conditions => {:registrar_id => params[:id]})
     @registrations_and_divs = []
-    last_reg = Chronic::parse('today')
+    last_reg = Chronic::parse('today').strftime('%^B %e, %Y')
     @registrations.each do |reg|
       div = false
       reg_date = reg.time_end.strftime('%^B %e, %Y')
-      if last_reg.strftime('%^B %e, %Y') != reg_date
+      if last_reg != reg_date
         if Chronic::parse('yesterday').strftime('%^B %e, %Y') == reg_date
           div = 'YESTERDAY'
         else
           div = reg_date
         end
       end
+      last_reg = reg_date
       @registrations_and_divs << [reg, div]
     end
 
