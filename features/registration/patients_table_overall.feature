@@ -106,9 +106,9 @@ Scenario: table sorted by registration end times, then patient name
     And I should list "Patient G" before "Patient F"
 
 Scenario: show date header for yesterday
-    Then I should see "Patient E" before the "yesterday" header
-    And I should see the "yesterday" header before "Patient F"
+    Then I should see "Patient A" before the "yesterday" header
+    And I should see the "yesterday" header before "Patient H"
 
 Scenario: show date header by date
-    Then I should see "Patient H" before the "2 days ago" header
-    And I should see the "2 days ago" header before "Patient I"
+    Then I should see "Patient F" before the "2 days ago" header
+    And I should see the "2 days ago" header before "Patient J"
