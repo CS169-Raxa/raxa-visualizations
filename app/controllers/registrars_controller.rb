@@ -4,6 +4,7 @@ class RegistrarsController < ApplicationController
     @average_time = average_time(Registration.all)
     render :show
   end
+
   def show
     registrar = Registrar.find(params[:id])
     @num_today = registrar.registrations_for_day(Time.now).count
