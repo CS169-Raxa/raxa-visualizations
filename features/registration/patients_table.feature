@@ -28,13 +28,16 @@ Scenario: I want to see all of the Patients that have been registered in the pas
     Given I am on the overall registration dashboard
     When I set the time restriction to "6 days"
     Then I should see "Patient A" with starting time "3 days ago"
-    And I should not see "Patient A" with starting time "7 days ago"
     And I should see "Patient B" with starting time "5 days ago"
     And "Patient B" should have status "new"
 
-Scenario: I want to see all the Patients I have registered in the past 6 days
+Scenario: I should not see patients that are outside my selected time frame
+    Given I am on the overall registration dashboard
+    When I set the time restriction to "6 days"
+    Then I should not see "Patient A" with starting time "7 days ago"
+
+Scenario: I want to see all the Patients I have registered    
     Given I am on the Reg A registration dashboard
-    When I set the time restriction to "4 days"
     Then should not see "Patient B" with starting time "5 days ago"
     And I should see "Patient B" with starting time "1 day ago"
 
