@@ -6,7 +6,7 @@ class RegistrarsController < ApplicationController
     #    and the second element indicates whether or not to place a divider
     #        before the next registration in the table
     #        using false for no divider, and the divider text otherwise
-    @registrations = registrations.all(:order => "time_end", :conditions => {:registrar => params[:id]})
+    @registrations = Registration.all(:order => "time_end", :conditions => {:registrar_id => params[:id]})
     @registrations_and_divs = []
     last_reg = Chronic::parse('today')
     @registrations.each do |reg|
