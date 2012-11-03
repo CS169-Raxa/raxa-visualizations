@@ -86,7 +86,7 @@ Then /^I should not see the following patients: (.*)$/ do |patients_list|
 end
 
 When /^I click SEE MORE$/ do
-  click_link("see_more")
+  click_link("See more")
 end
 
 Then /^I should see a no registrations notification$/ do
@@ -95,7 +95,7 @@ end
 
 Then /^I should see "(.*?)" before the "(.*?)" header$/ do |arg1, arg2|
   if arg2 != "yesterday"
-    header = Chronic::parse(arg2)
+    header = Chronic::parse(arg2).strftime('%^B %e, %Y')
   else
     header = "YESTERDAY"
   end
@@ -104,7 +104,7 @@ end
 
 Then /^I should see the "(.*?)" header before "(.*?)"$/ do |arg1, arg2|
   if arg1 != "yesterday"
-    header = Chronic::parse(arg1)
+    header = Chronic::parse(arg1).strftime('%l:%M %P')
   else
     header = "YESTERDAY"
   end
