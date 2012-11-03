@@ -26,7 +26,7 @@ Given /^I am on the (.*?) registration dashboard$/ do |arg|
     visit('/registration')
   else
     registrar_id = Registrar.find_by_name(arg).id
-    visit(registrar_path(registrar_id))
+    visit(registration_registrar_path(registrar_id))
   end
 end
 
