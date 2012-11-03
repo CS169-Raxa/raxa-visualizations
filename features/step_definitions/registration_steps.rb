@@ -81,7 +81,7 @@ end
 Then /^I should not see the following patients: (.*)$/ do |patients_list|
   patients_list = patients_list.split(/,/)
   patients_list.each do |patient_name|
-    assert page.has_no_content?(patient_name)
+    assert_no_match(/#{patient_name}/m, page.body)
   end
 end
 
