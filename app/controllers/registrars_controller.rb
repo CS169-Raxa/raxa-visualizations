@@ -1,9 +1,15 @@
 class RegistrarsController < ApplicationController
   def index
+    @num_today = Registration.for_day(Time.now).count
+    @average_time = average_time(Registration.all)
     render :show
   end
 
   def show
+    registrar = Registrar.find(params[:id])
+    @num_today = registrar.registrations_for_day(Time.now).count
+    @average_time = average_time(registrar.registrations)
+
     # set up @registrations_and_divs for registrations table in view
     # @registrations_and_divs is a list of
     #    two-element-lists where the first element is a registration
@@ -25,6 +31,13 @@ class RegistrarsController < ApplicationController
       end
       @registrations_and_divs << [reg, div]
     end
+
+  end
+
+  protected
+  def average_time(registrations)
+    total_time = registrations.map {|r| r.elapsed_time}.reduce(:+)
+    return ChronicDuration.output((total_time/registrations.length).to_i, :format => :chrono)
   end
 
 end

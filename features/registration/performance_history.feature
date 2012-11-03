@@ -4,17 +4,17 @@ As a registration worker
 I want to see a line graph of the number of patients I've registered per day
 So that I can see trends in my efficiency
 
-Background: Some patients have been registered 
+Background: Some patients have been registered
     Given the following patients exist:
-      | name      | 
-      | Patient A | 
+      | name      |
+      | Patient A |
       | Patient B |
-      | Patient C | 
+      | Patient C |
 
     Given the following registrars exist:
       | name  |
       | Reg A |
-      | Reg B | 
+      | Reg B |
 
     Given the following registrations exist:
       | time_start          | time_end            | patient_status | patient_name | registrar_name |
@@ -26,13 +26,13 @@ Background: Some patients have been registered
 
     And I am on the Reg A performance metrics page
 
-Scenario: show line graph of metrics for all of my past patients 
+Scenario: show line graph of metrics for all of my past patients
     Then I should see a graph of 5 patients
 
 Scenario: show line graph of metrics for all of my past patients in the last 4 days
     When I set the time restriction to "4 days"
-    Then I should see a graph of 3 patients 
-    And I should not see "Patient A" 
+    Then I should see a graph of 3 patients
+    And I should not see "Patient A"
 
 Scenario: don't show line graph when there are no patients
     When I set the time restriction to "2 hours"

@@ -14,7 +14,7 @@ group :test do
   gem 'capybara'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
-  gem 'simplecov'
+  gem 'simplecov', :require => false
   gem 'spork-rails'
   gem 'watchr'
 end
@@ -62,5 +62,6 @@ gem 'haml-rails'
 gem 'factory_girl_rails'
 
 gem 'chronic'
+gem 'chronic_duration'
 
 gem 'psych'
