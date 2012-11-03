@@ -86,11 +86,13 @@ Scenario: see more, shows more registrations
     But I should not see the following patients: Patient K,Patient L, Patient M, Patient N, Patient O
 
 Scenario: table sorted by registration end times, then patient name
-    Then I should list "Patient A" before "Patient B"
-    And I should list "Patient B" before "Patient C"
-    And I should list "Patient C" before "Patient D"
-    And I should list "Patient D" before "Patient E"
-    And I should list "Patient E" before "Patient F"
+    Then I should list "Patient E" before "Patient D"
+    And I should list "Patient D" before "Patient C"
+    And I should list "Patient C" before "Patient B"
+    And I should list "Patient B" before "Patient A"
+    And I should list "Patient E" before "Patient H"
+    And I should list "Patient H" before "Patient G"
+    And I should list "Patient G" before "Patient F"
 
 Scenario: show date header for yesterday
     Then I should see "Patient E" before the "yesterday" header
