@@ -19,7 +19,7 @@ class RegistrarsController < ApplicationController
     @registrations = Registration.all(:order => "time_end", :conditions => {:registrar_id => params[:id]})
     @registrations_and_divs = []
     last_reg = Chronic::parse('today').strftime('%^B %e, %Y')
-    @registrations.each do |reg|
+    @registrations.reverse.each do |reg|
       div = false
       reg_date = reg.time_end.strftime('%^B %e, %Y')
       if last_reg != reg_date

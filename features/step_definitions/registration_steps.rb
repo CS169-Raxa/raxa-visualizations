@@ -104,7 +104,7 @@ end
 
 Then /^I should see the "(.*?)" header before "(.*?)"$/ do |arg1, arg2|
   if arg1 != "yesterday"
-    header = Chronic::parse(arg1).strftime('%l:%M %P')
+    header = Chronic::parse(arg1).strftime('%^B %e, %Y')
   else
     header = "YESTERDAY"
   end
