@@ -74,7 +74,7 @@ end
 Then /^I should see the following patients: (.*)$/ do |patients_list|
   patients_list = patients_list.split(/,/)
   patients_list.each do |patient_name|
-    puts assert_match(/#{patient_name}/m, page.body)
+    assert_match(/#{patient_name}/m, page.body)
   end
 end
 
