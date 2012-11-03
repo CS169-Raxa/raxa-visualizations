@@ -1,5 +1,9 @@
 class RegistrarsController < ApplicationController
   def index
+    render :show
+  end
+
+  def show
     # set up @registrations_and_divs for registrations table in view
     # @registrations_and_divs is a list of
     #    two-element-lists where the first element is a registration
@@ -21,9 +25,6 @@ class RegistrarsController < ApplicationController
       end
       @registrations_and_divs << [reg, div]
     end
+  end
 
-    render :show
-  end
-  def show
-  end
 end
