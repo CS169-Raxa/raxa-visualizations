@@ -68,8 +68,11 @@ class RegistrarsController < ApplicationController
   protected
   def average_time(registrations)
     total_time = registrations.map {|r| r.elapsed_time}.reduce(:+)
-    total_time ||= 0
-    return ChronicDuration.output((total_time/registrations.length).to_i, :format => :chrono)
+    if total_time
+      return ChronicDuration.output((total_time/registrations.length).to_i, :format => :chrono)
+    else
+      return 0
+    end
   end
 
 end
