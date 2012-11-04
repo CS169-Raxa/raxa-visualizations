@@ -17,7 +17,7 @@ name: Keyser Soze
     patient_status: returning
     time_start: 8 April 1992 2:72 am
     time_end: 8 April 1992 3:14 am
-- patient_name: Sesh Mahalingam
+- patient_name: Seshadri Mahalingam
   registration_data:
     patient_status: new
     time_start: 4 September 1992 5:30 am
