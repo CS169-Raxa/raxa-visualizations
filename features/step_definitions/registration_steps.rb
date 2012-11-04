@@ -74,7 +74,7 @@ end
 # table of registered patients
 
 Then /^I should see patient "(.*?)" with time "(.*?)" and status "(.*?)"$/ do |patient_name, time, status|
-  html_string = '<tr>\n<td> #{time}}</td>\n<td>#{patient}</td>\n<td>#{status}</td>\n'
+  html_string = "<tr>\n<td> #{time}</td>\n<td>#{patient_name}</td>\n<td>#{status}</td>\n"
   assert_match(html_string, page.body)
 end
 
