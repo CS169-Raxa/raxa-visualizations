@@ -9,10 +9,10 @@ class RegistrarsController < ApplicationController
     #    and the second element indicates whether or not to place a divider
     #        before the next registration in the table
     #        using false for no divider, and the divider text otherwise
-    @registrations = Registration.all(:order => "time_end")
+    @registrations = Registration.all(:order => "time_end DESC")
     @registrations_and_divs = []
     last_reg = Chronic.parse('today').localtime.strftime('%^B %e, %Y')
-    @registrations.reverse.each do |reg|
+    @registrations.each do |reg|
       div = false
       reg_date = reg.time_end.localtime.strftime('%^B %e, %Y')
       if last_reg != reg_date
@@ -43,10 +43,10 @@ class RegistrarsController < ApplicationController
     #    and the second element indicates whether or not to place a divider
     #        before the next registration in the table
     #        using false for no divider, and the divider text otherwise
-    @registrations = Registration.all(:order => "time_end", :conditions => {:registrar_id => params[:id]})
+    @registrations = Registration.all(:order => "time_end DESC", :conditions => {:registrar_id => params[:id]})
     @registrations_and_divs = []
     last_reg = Chronic.parse('today').localtime.strftime('%^B %e, %Y')
-    @registrations.reverse.each do |reg|
+    @registrations.each do |reg|
       div = false
       reg_date = reg.time_end.localtime.strftime('%^B %e, %Y')
       if last_reg != reg_date
