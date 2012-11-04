@@ -74,7 +74,8 @@ end
 # table of registered patients
 
 Then /^I should see patient "(.*?)" with time "(.*?)" and status "(.*?)"$/ do |patient_name, time, status|
-  pending # express the regexp above with the code you wish you had
+  html_string = '<tr>\n<td> #{time}}</td>\n<td>#{patient}</td>\n<td>#{status}</td>\n'
+  assert_match(html_string, page.body)
 end
 
 Then /^I should see the following patients: (.*)$/ do |patients_list|
