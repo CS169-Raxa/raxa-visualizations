@@ -39,7 +39,7 @@ class RegistrarsController < ApplicationController
     registrations.each do |reg|
       reg_date = reg.time_end.localtime.strftime('%^B %e, %Y')
       if last_reg != reg_date
-        curr_regs = {}
+        curr_regs = {:regs => []}
         regs_and_divs << curr_regs
         if Chronic.parse('yesterday').localtime.strftime('%^B %e, %Y') == reg_date
           curr_regs[:date] = 'YESTERDAY'
@@ -51,7 +51,7 @@ class RegistrarsController < ApplicationController
       curr_regs[:regs] << reg
     end
     if registrations.empty?
-      regs_and_divs = [{:date => "there are no registrations to show"}]
+      regs_and_divs = [{:date => "there are no registrations to show", :regs => []}]
     end
     return regs_and_divs
   end
