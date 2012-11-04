@@ -14,7 +14,7 @@
             %div
               %span{:title => div}= div
       %tr
-        %td= registration.time_end.strftime('%l:%M %P')
+        %td= registration.time_end.localtime.strftime('%l:%M %P')
         %td= registration.patient.name
         %td= registration.patient_status
     %tr

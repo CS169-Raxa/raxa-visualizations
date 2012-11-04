@@ -21,6 +21,7 @@ Given /^the following registrations exist:$/ do |table|
       :time_end => Chronic::parse(info[:time_end]),
       :patient_status => info[:patient_status]
     )
+    puts registration.time_end
     patient = Patient.find_by_name(info[:patient_name])
     patient.registrations << registration
   end
