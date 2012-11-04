@@ -51,7 +51,7 @@ class RegistrarsController < ApplicationController
       curr_regs[:regs] << reg
     end
     if registrations.empty?
-      regs_and_divs = [{:date = "there are no registrations to show"}]
+      regs_and_divs = [{:date => "there are no registrations to show"}]
     end
     return regs_and_divs
   end
