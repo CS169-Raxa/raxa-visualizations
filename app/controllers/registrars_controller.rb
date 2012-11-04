@@ -26,7 +26,7 @@ class RegistrarsController < ApplicationController
       @registrations_and_divs << [reg, div]
     end
     if @registrations_and_divs == []
-      @registrations_and_divs = [nil, "there are no registrations to show"]
+      @registrations_and_divs << [nil, "there are no registrations to show"]
     end
 
     render :show
@@ -60,7 +60,7 @@ class RegistrarsController < ApplicationController
       @registrations_and_divs << [reg, div]
     end
     if @registrations_and_divs == []
-      @registrations_and_divs = [nil, "there are no registrations to show"]
+      @registrations_and_divs << [nil, "there are no registrations to show"]
     end
 
   end
