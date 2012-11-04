@@ -32,7 +32,7 @@ Given /^I am on the (.*?) registration dashboard$/ do |registrar_name|
     visit '/registration/registrars'
   else
     registrar = Registrar.find_by_name(registrar_name)
-    visit "/registration/registrars/#{registrar.id}"
+    visit(registration_registrar_path(registrar.id))
   end
 end
 
@@ -70,3 +70,55 @@ When /^(.*?) registers a (new|returning) patient from (.*) to (.*)$/ do |name, s
   )
   registrar.registrations << registration
 end
+
+# table of registered patients
+
+Then /^I should see patient "(.*?)" with time "(.*?)" and status "(.*?)"$/ do |patient_name, time, status|
+  html_string = "<tr>\n<td> #{time}</td>\n<td>#{patient_name}</td>\n<td>#{status}</td>\n"
+  assert_match(html_string, page.body)
+end
+
+Then /^I should see the following patients: (.*)$/ do |patients_list|
+  patients_list = patients_list.split(/,/)
+  patients_list.each do |patient_name|
+    assert_match(/#{patient_name}/m, page.body)
+  end
+end
+
+Then /^I should not see the following patients: (.*)$/ do |patients_list|
+  patients_list = patients_list.split(/,/)
+  patients_list.each do |patient_name|
+    assert_no_match(/#{patient_name}/m, page.body)
+  end
+end
+
+When /^I click SEE MORE$/ do
+  click_link("See more")
+end
+
+Then /^I should see a no registrations notification$/ do
+  assert_match("there are no registrations to show", page.body)
+end
+
+Then /^I should see "(.*?)" before the "(.*?)" header$/ do |arg1, arg2|
+  if arg2 != "yesterday"
+    header = Chronic::parse(arg2).strftime('%^B %e, %Y')
+  else
+    header = "YESTERDAY"
+  end
+  assert_match(/#{arg1}(.*)#{header}/m, page.body)
+end
+
+Then /^I should see the "(.*?)" header before "(.*?)"$/ do |arg1, arg2|
+  if arg1 != "yesterday"
+    header = Chronic::parse(arg1).strftime('%^B %e, %Y')
+  else
+    header = "YESTERDAY"
+  end
+  assert_match(/#{header}(.*)#{arg2}/m, page.body)
+end
+
+Then /^I should list "(.*?)" before "(.*?)"$/ do |arg1, arg2|
+  assert_match(/#{arg1}(.*)#{arg2}/m, page.body)
+end
+
