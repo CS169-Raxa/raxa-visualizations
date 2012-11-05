@@ -37,26 +37,26 @@ Background: Some patients have been registered
 
     Given the following registrations exist:
       | time_start          | time_end            | patient_status | patient_name | registrar_name |
-      | today 11:00 am      | today 1:00 pm       | returning      | Patient A    | Reg A          |
+      | today 10:30 am      | today 1:00 pm       | returning      | Patient A    | Reg A          |
       | today 1:00 pm       | today 2:00 pm       | new            | Patient B    | Reg A          |
       | today 2:00 pm       | today 4:00 pm       | returning      | Patient C    | Reg A          |
       | today 5:00 pm       | today 6:00 pm       | returning      | Patient D    | Reg A          |
-      | today 10:00 pm      | today 11:00 pm      | returning      | Patient E    | Reg A          |
-      | yesterday 10:00 am  | yesterday 11:00 am  | new            | Patient F    | Reg B          |
+      | today 10:00 pm      | today 10:30 pm      | returning      | Patient E    | Reg A          |
+      | yesterday 10:00 am  | yesterday 10:30 am  | new            | Patient F    | Reg B          |
       | yesterday 3:00 pm   | yesterday 5:00 pm   | new            | Patient G    | Reg B          |
       | yesterday 7:00 pm   | yesterday 8:00 pm   | new            | Patient H    | Reg B          |
-      | 2 days ago 11:00 am | 2 days ago 1:00 pm  | returning      | Patient I    | Reg A          |
+      | 2 days ago 10:30 am | 2 days ago 1:00 pm  | returning      | Patient I    | Reg A          |
       | 2 days ago 1:00 pm  | 2 days ago 2:00 pm  | returning      | Patient J    | Reg A          |
       | 2 days ago 2:00pm   | 2 days ago 5:00 pm  | returning      | Patient K    | Reg A          |
-      | 2 days ago 10:00 pm | 2 days ago 11:00 pm | returning      | Patient L    | Reg A          |
-      | 3 days ago 1:00 am  | 3 days ago 11:00 am | returning      | Patient M    | Reg A          |
-      | 4 days ago 10:00 am | 4 days ago 11:00 am | returning      | Patient N    | Reg B          |
-      | 5 days ago 11:00 am | 5 days ago 1:00 pm  | new            | Patient O    | Reg B          |
-      | 5 days ago 1:00 pm  | 5 days ago 11:00 pm | returning      | Patient P    | Reg B          |
-      | 5 days ago 1:00 pm  | 5 days ago 11:00 pm | returning      | Patient Q    | Reg A          |
-      | 5 days ago 10:00 pm | 5 days ago 11:00 pm | returning      | Patient R    | Reg A          |
-      | 7 days ago 10:00 am | 7 days ago 11:00 am | returning      | Patient S    | Reg A          |
-      | 7 days ago 11:00 am | 7 days ago 1:00 pm  | new            | Patient T    | Reg A          |
+      | 2 days ago 10:00 pm | 2 days ago 10:30 pm | returning      | Patient L    | Reg A          |
+      | 3 days ago 1:00 am  | 3 days ago 10:30 am | returning      | Patient M    | Reg A          |
+      | 4 days ago 10:00 am | 4 days ago 10:30 am | returning      | Patient N    | Reg B          |
+      | 5 days ago 10:30 am | 5 days ago 1:00 pm  | new            | Patient O    | Reg B          |
+      | 5 days ago 1:00 pm  | 5 days ago 10:30 pm | returning      | Patient P    | Reg B          |
+      | 5 days ago 1:00 pm  | 5 days ago 10:30 pm | returning      | Patient Q    | Reg A          |
+      | 5 days ago 10:00 pm | 5 days ago 10:30 pm | returning      | Patient R    | Reg A          |
+      | 7 days ago 10:00 am | 7 days ago 10:30 am | returning      | Patient S    | Reg A          |
+      | 7 days ago 10:30 am | 7 days ago 1:00 pm  | new            | Patient T    | Reg A          |
       | 7 days ago 1:00 pm  | 7 days ago 2:00 pm  | returning      | Patient U    | Reg A          |
       | 7 days ago 3:00 pm  | 7 days ago 5:00 pm  | returning      | Patient V    | Reg A          |
 
