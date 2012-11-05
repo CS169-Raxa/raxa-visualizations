@@ -23,6 +23,8 @@ Pharmacy.prototype.initDOMListeners = function() {
         pharmacy.displayNotice(data.notice);
         var drugID = '#drug' + data.id;
         $(drugID).replaceWith(data.data);
+        // Above expression returns replaced node, not new node
+        $(drugID).trigger('reload-drug', data.id);
       }
     });
   });
@@ -72,11 +74,11 @@ Pharmacy.prototype.unAlertDrug = function(drugID) {
 
 Pharmacy.prototype.initTimeGraphs = function() {
   var pharmacy = this;
-  $('.drug').each(function() {
-    pharmacy.drawDrugTimeGraph(this.dataset['drug_id'],
-                               604800 /* 1 week */,
-                               86400 /* 1 day */);
-  })
+  var drawGraph = function() {
+    pharmacy.drawDrugTimeGraph(this.dataset['drug_id']);
+  };
+  $('.drug').each(drawGraph);
+  $('#drugs').on('reload-drug', '.drug', drawGraph);
 };
 
 Pharmacy.prototype.fetchDrugTimeGraph = function(drugID,
@@ -92,82 +94,83 @@ Pharmacy.prototype.fetchDrugTimeGraph = function(drugID,
 };
 
 Pharmacy.prototype.drawDrugTimeGraph = function(drugID, how_long_ago, group_by_period) {
+  how_long_ago = how_long_ago || 604800 /* 1 week */;
+  group_by_period = group_by_period || 86400 /* 1 day */;
+
   var time_graph = d3.select('#bigTimeGraph-' + drugID);
-  if (time_graph.classed('hidden')) {
-    this.fetchDrugTimeGraph(drugID, how_long_ago, group_by_period, function(response) {
-      if (!response['data']) {
-        pharmacy.displayNoTimeGraphHistoryNotice(drugID);
-        return;
-      }
+  this.fetchDrugTimeGraph(drugID, how_long_ago, group_by_period, function(response) {
+    if (!response['data']) {
+      pharmacy.displayNoTimeGraphHistoryNotice(drugID);
+      return;
+    }
 
-      d3.select('#drug' + drugID + ' .bigTimeGraph')
-        .classed('loading', false);
-      time_graph.classed('hidden', false);
+    d3.select('#drug' + drugID + ' .bigTimeGraph')
+      .classed('loading', false);
+    time_graph.classed('hidden', false);
 
-      var margin = {top: 10, bottom: 20, left: 50, right: 10};
-      var height = 230 - margin.top - margin.bottom;
-      var width = 480 - margin.left - margin.right;
+    var margin = {top: 10, bottom: 20, left: 50, right: 10};
+    var height = 230 - margin.top - margin.bottom;
+    var width = 480 - margin.left - margin.right;
 
-      var dates = response['data'].map(function(el) { return new Date(el[0] * 1000); });
-      var quantities = response['data'].map(function(el) { return el[1]; });
+    var dates = response['data'].map(function(el) { return new Date(el[0] * 1000); });
+    var quantities = response['data'].map(function(el) { return el[1]; });
 
-      var x = d3.time.scale()
-        .domain([d3.min(dates), d3.max(dates)])
-        .range([0, width]);
+    var x = d3.time.scale()
+      .domain([d3.min(dates), d3.max(dates)])
+      .range([0, width]);
 
-      var x_axis = d3.svg.axis()
-        .scale(x)
-        .orient("bottom")
-        .ticks(8)
-        .tickFormat(d3.time.format('%b %d'));
+    var x_axis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom")
+      .ticks(8)
+      .tickFormat(d3.time.format('%b %d'));
 
-      var y = d3.scale.linear()
-        .domain([d3.min(quantities), d3.max(quantities)])
-        .range([height, 0]);
-      var y_axis = d3.svg.axis()
-        .scale(y)
-        .orient('left')
-        .ticks(5);
+    var y = d3.scale.linear()
+      .domain([d3.min(quantities), d3.max(quantities)])
+      .range([height, 0]);
+    var y_axis = d3.svg.axis()
+      .scale(y)
+      .orient('left')
+      .ticks(5);
 
-      var line = d3.svg.line()
-        .x(function (d) { return x(d[0]); })
-        .y(function (d) { return y(d[1]); });
+    var line = d3.svg.line()
+      .x(function (d) { return x(d[0]); })
+      .y(function (d) { return y(d[1]); });
 
-      var data = d3.zip(dates, quantities);
+    var data = d3.zip(dates, quantities);
 
-      var drawing_area = time_graph.selectAll('g.drawing')
-        .data([0])
-        .enter()
-        .append('g')
-        .classed('drawing', true)
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+    var drawing_area = time_graph.selectAll('g.drawing')
+      .data([0])
+      .enter()
+      .append('g')
+      .classed('drawing', true)
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-      drawing_area.selectAll('path')
-        .data([data])
-        .enter()
-        .append('path')
-        .classed('line', true)
-        .attr('d', line);
+    drawing_area.selectAll('path')
+      .data([data])
+      .enter()
+      .append('path')
+      .classed('line', true)
+      .attr('d', line);
 
-      drawing_area.selectAll('circle')
-        .data(data)
-        .enter()
-        .append('circle')
-        .attr('cx', function (d) { return x(d[0]); })
-        .attr('cy', function (d) { return y(d[1]); })
-        .attr('r', '2px');
+    drawing_area.selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr('cx', function (d) { return x(d[0]); })
+      .attr('cy', function (d) { return y(d[1]); })
+      .attr('r', '2px');
 
-      time_graph.append('g')
-        .attr('transform', 'translate(' + margin.left + ', ' + (height + margin.top) + ')')
-        .attr('class', 'axis')
-        .call(x_axis)
+    time_graph.append('g')
+      .attr('transform', 'translate(' + margin.left + ', ' + (height + margin.top) + ')')
+      .attr('class', 'axis')
+      .call(x_axis)
 
-      time_graph.append('g')
-        .attr('class', 'axis')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-        .call(y_axis)
-    });
-  }
+    time_graph.append('g')
+      .attr('class', 'axis')
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+      .call(y_axis)
+  });
 };
 
 Pharmacy.prototype.displayNoTimeGraphHistoryNotice = function(drugID) {
