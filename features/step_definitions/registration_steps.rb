@@ -42,9 +42,13 @@ end
 
 # num patients registered
 When /^(.*?) registers a patient$/ do |registrar_name|
+  unless @dummy
+    @dummy = Patient.create!(:name => "Dummy")
+  end
   registrar = Registrar.find_by_name(registrar_name)
-  registrar.registrations.create!(:time_start => Time.now - 5.minutes,
-                                  :time_end => Time.now)
+  reg = registrar.registrations.create!(:time_start => Time.now - 5.minutes,
+                                        :time_end => Time.now)
+  @dummy.registrations << reg
 end
 
 When /^I register a patient$/ do
@@ -73,6 +77,10 @@ When /^(.*?) registers a (new|returning) patient from (.*) to (.*)$/ do |name, s
     :time_end => Chronic::parse(end_time)
   )
   registrar.registrations << registration
+  unless @dummy
+    @dummy = Patient.create!(:name => "Dummy")
+  end
+  @dummy.registrations << registration
 end
 
 # table of registered patients
