@@ -58,6 +58,5 @@
         %span
           %a{:href => '#'} See more
 
-= @registration_history
 %div#registration_history
-  %svg#registration_history_graph{'data-points' => @registration_history.to_json}
+  %svg#registration_history_graph.time-graph{'data-points' => @registration_history.to_json}
