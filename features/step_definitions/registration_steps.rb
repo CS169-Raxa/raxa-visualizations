@@ -43,10 +43,6 @@ When /^(.*?) registers a patient$/ do |registrar_name|
                                   :time_end => Time.now)
 end
 
-When /^I register a patient$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
 When /^it is the next day$/ do
   correct_time = Time.method(:now)
   Time.stub(:now) { correct_time.call + 1.day }
@@ -69,4 +65,12 @@ When /^(.*?) registers a (new|returning) patient from (.*) to (.*)$/ do |name, s
     :time_end => Chronic::parse(end_time)
   )
   registrar.registrations << registration
+end
+
+Then /^I should see a graph of (\d+) patients$/ do |num|
+  pending
+end
+
+Then /^I should see a missing patients notification$/ do 
+  page.should have_content("No Registrations")
 end
