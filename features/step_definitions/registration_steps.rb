@@ -22,8 +22,7 @@ Given /^the following registrations exist:$/ do |table|
       :patient_status => info[:patient_status]
     )
     patient = Patient.find_by_name(info[:patient_name])
-    patient.registrations << registration
-  end
+    patient.registrations << registration  end
 end
 
 # paths
