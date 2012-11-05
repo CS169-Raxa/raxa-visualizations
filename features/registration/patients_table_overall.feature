@@ -69,29 +69,18 @@ Scenario: show time reigstered (end time), patient name, and status for a regist
 Scenario: by default, show last 10 patients registered
     Then I should see the following patients: Patient A,Patient B,Patient C
     And I should see the following patients: Patient D,Patient E,Patient F
-    And I should see the following patients: Patient G,Patient H,Patient I,Patient J
-    But I should not see the following patients: Patient K,Patient L,Patient M
+    And I should see the following patients: Patient G,Patient H,Patient K,Patient L
+    But I should not see the following patients: Patient J,Patient I,Patient M
     But I should not see the following patients: Patient N,Patient O,Patient P
     But I should not see the following patients: Patient Q,Patient R,Patient S
     But I should not see the following patients: Patient T,Patient U,Patient V
 
-Scenario: see more, shows 10 more registrations
-    When I click the link "See more"
-    Then I should see the following patients: Patient A,Patient B,Patient C
-    And I should see the following patients: Patient D,Patient E,Patient F
-    And I should see the following patients: Patient G,Patient H,Patient I,Patient J
-    And I should see the following patients: Patient K,Patient L,Patient M
-    And I should see the following patients: Patient N,Patient O,Patient P
-    And I should see the following patients: Patient Q,Patient R,Patient S,Patient T
-    But I should not see the following patients: Patient U,Patient V
-
 Scenario: at end of registrations in history, show all
     When I click the link "See more"
-    And I click the link "See more"
     Then I should see the following patients: Patient A,Patient B,Patient C
     And I should see the following patients: Patient D,Patient E,Patient F
-    And I should see the following patients: Patient G,Patient H,Patient I,Patient J
-    And I should see the following patients: Patient K,Patient L,Patient M
+    And I should see the following patients: Patient G,Patient H,Patient K,Patient L
+    And I should see the following patients: Patient I,Patient J,Patient M
     And I should see the following patients: Patient N,Patient O,Patient P
     And I should see the following patients: Patient Q,Patient R,Patient S,Patient T
     And I should see the following patients: Patient U,Patient V
@@ -111,4 +100,4 @@ Scenario: show date header for yesterday
 
 Scenario: show date header by date
     Then I should see "Patient F" before the "2 days ago" header
-    And I should see the "2 days ago" header before "Patient J"
+    And I should see the "2 days ago" header before "Patient K"

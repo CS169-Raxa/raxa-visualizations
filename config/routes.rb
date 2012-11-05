@@ -5,8 +5,12 @@ RaxaVisualizations::Application.routes.draw do
     end
   end
 
-  scope 'registration' do
-    resources :registrars, :as => :registration_registrars
+  scope 'registration', :as => :registration do
+    constraints :full => /full/ do
+      get 'registrars(/:full)' => 'registrars#index'
+      get 'registrars/:id(/:full)' => 'registrars#show'
+    end
+    resources :registrars
   end
 
   # The priority is based upon order of creation:
