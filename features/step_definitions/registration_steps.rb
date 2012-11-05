@@ -106,25 +106,21 @@ end
 
 Then /^I should see "(.*?)" before the "(.*?)" header$/ do |arg1, arg2|
   if arg2 != "yesterday"
-    header = Chronic::parse(arg2).strftime('%^B %e, %Y')
+    header = Chronic::parse(arg2).localtime.strftime('%^B %e, %Y')
   else
     header = "YESTERDAY"
   end
   (page.body =~ Regexp.new(arg1)).should < (page.body =~ Regexp.new(header, 'i'))
-  assert_match(/#{arg1}(.*)#{header}/im, page.body)
+  #assert_match(/#{arg1}(.*)#{header}/im, page.body)
 end
 
 Then /^I should see a line graph$/ do 
   page.should have_selector("svg#registration_history_graph")
 end
 
-Then /^I should see a missing patients notification$/ do 
-  page.should have_content("No recent registrations")
-end
-
 Then /^I should see the "(.*?)" header before "(.*?)"$/ do |arg1, arg2|
   if arg1 != "yesterday"
-    header = Chronic::parse(arg1).strftime('%^B %e, %Y')
+    header = Chronic::parse(arg1).localtime.strftime('%^B %e, %Y')
   else
     header = "YESTERDAY"
   end
