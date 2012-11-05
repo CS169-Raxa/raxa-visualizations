@@ -23,35 +23,6 @@
       font-size: 4em;
     }
   }
-
-  svg.bigTimeGraph {
-    border: 1px dashed black;
-    clear: both;
-    margin: 2px;
-    height: 230px;
-    width: 400px;
-    text-align: center;
-    
-    .bar {
-      display: inline-block;
-      width: 20px;
-      height: 75px;
-      background-color: teal;
-    }
-
-    .line {
-      fill: none;
-      stroke: steelblue;
-      stroke-width: 150px;
-    }
-
-    .axis path,
-    .axis line {
-      fill: none;
-      stroke: #000;
-      shape-rendering: crispEdges;
-    }
-  }
 }
 
 .divider {
