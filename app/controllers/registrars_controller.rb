@@ -1,11 +1,18 @@
 class RegistrarsController < ApplicationController
   def index
     @name = 'all registrars'
-    @registration_history = Hash.new {|hash, key| 0}
+    dates_to_counts = Hash.new {|hash, key| 0}
     Registrar.all.each do |registrar|
-      registrar.registration_history(Date.today - 1.week, Date.today).each do |date, count|
-        @registration_history[date] += count
+      registrar.registration_history(Date.today - 1.week, Date.today).each do |h|
+        dates_to_counts[h[:date]] += h[:count]
       end
+    end
+    @registration_history = []
+    dates_to_counts.each do |date, count|
+      @registration_history << {
+        :date => date,
+        :count => count
+      }
     end
     index_or_show Registration.scoped
     render :show
