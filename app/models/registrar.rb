@@ -15,29 +15,24 @@ class Registrar < ActiveRecord::Base
   def registration_history(start_date, end_date)
     history = []
     start_date.upto(end_date) do |day|
-      history << {
-        :date => day,
-        :count => self.registrations.where(
+      history << [
+        day.to_time.to_i,
+        self.registrations.where(
           "time_start >= :start_date and time_start <= :end_date",
           :start_date => day,
           :end_date => day + 1.day
         ).count
-      }
+      ]
+#
+#      history << {
+#        :date => day.to_i
+#        :count => self.registrations.where(
+#          "time_start >= :start_date and time_start <= :end_date",
+#          :start_date => day,
+#          :end_date => day + 1.day
+#        ).count
+#      }
     end
     return history
-  end
-
-  def time_aggregated_registrations time_period, group_by_period
-    registrations = registration_history time_period
-    return false if not registrations
-
-    output = []
-    registrations.group_by do |time, qty|
-      time / group_by_period * group_by_period
-    end.each_entry do |date, date_qty_groups|
-      qtys = date_qty_groups.map {|dqg| dqg[1]}
-      output << [date, qtys.size]
-    end
-    output
   end
 end
