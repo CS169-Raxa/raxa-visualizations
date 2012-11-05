@@ -26,6 +26,33 @@ Pharmacy.prototype.initDOMListeners = function() {
       }
     });
   });
+
+  $(document).on('mouseover', '.bigTimeGraph circle', function() {
+    d3.select(this).transition()
+      .duration(500)
+      .attr('r', '5px')
+      .attr('opacity', .5);
+  });
+
+  $(document).on('mouseout', '.bigTimeGraph circle', function() {
+    d3.select(this).transition()
+      .duration(500)
+      .attr('r', '2px')
+      .attr('opacity', 1);
+  });
+
+  $('.bigTimeGraph circle').tipsy({ 
+    live: true,
+    offset: 10,
+    gravity: 'w', 
+    html: false, 
+    trigger: 'hover',
+    title: function() {
+      console.log(this);
+      var data = $(this).data('cy');
+      return data;
+    }
+  });
 };
 
 Pharmacy.prototype.initSparklines = function() {
@@ -77,6 +104,7 @@ Pharmacy.prototype.initTimeGraphs = function() {
                                604800 /* 1 week */,
                                86400 /* 1 day */);
   })
+
 };
 
 Pharmacy.prototype.fetchDrugTimeGraph = function(drugID,
@@ -160,12 +188,13 @@ Pharmacy.prototype.drawDrugTimeGraph = function(drugID, how_long_ago, group_by_p
       time_graph.append('g')
         .attr('transform', 'translate(' + margin.left + ', ' + (height + margin.top) + ')')
         .attr('class', 'axis')
-        .call(x_axis)
+        .call(x_axis);
 
       time_graph.append('g')
         .attr('class', 'axis')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-        .call(y_axis)
+        .call(y_axis);
+
     });
   }
 };
@@ -180,4 +209,5 @@ Pharmacy.prototype.displayNoTimeGraphHistoryNotice = function(drugID) {
 $(document).ready(function() {
   pharmacy = new Pharmacy();
   pharmacy.init();
+  console.log($('circle'));
 });
