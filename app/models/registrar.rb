@@ -12,19 +12,25 @@ class Registrar < ActiveRecord::Base
     ChronicDuration.output((total_time/self.registrations.length).to_i, :format => :chrono)
   end
 
-  def registration_history time_period
-    registrations.where("time_start >= :time", {:time => Time.now - time_period})
-    quantities = []
-    registrations.each do |reg|
-      quantities << [reg.time_start.to_i, 1] 
+  def registration_history(start_date, end_date)
+    history = []
+    start_date.upto(end_date) do |day|
+      history << {
+        :date => day,
+        :count => self.registrations.where(
+          "time_start >= :start_date and time_start <= :end_date",
+          :start_date => day,
+          :end_date => day + 1.day
+        ).count
+      }
     end
-    quantities
+    return history
   end
 
   def time_aggregated_registrations time_period, group_by_period
     registrations = registration_history time_period
     return false if not registrations
-  
+
     output = []
     registrations.group_by do |time, qty|
       time / group_by_period * group_by_period
