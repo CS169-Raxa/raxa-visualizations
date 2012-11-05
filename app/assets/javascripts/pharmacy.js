@@ -41,16 +41,14 @@ Pharmacy.prototype.initDOMListeners = function() {
       .attr('opacity', 1);
   });
 
-  $('.bigTimeGraph circle').tipsy({ 
+  $('.bigTimeGraph circle').tipsy({
     live: true,
     offset: 10,
-    gravity: 'w', 
-    html: false, 
+    gravity: 'w',
+    html: false,
     trigger: 'hover',
     title: function() {
-      console.log(this);
-      var data = $(this).data('cy');
-      return data;
+      return d3.select(this).attr('y');
     }
   });
 };
@@ -149,5 +147,4 @@ Pharmacy.prototype.displayNoTimeGraphHistoryNotice = function(drugID) {
 $(document).ready(function() {
   pharmacy = new Pharmacy();
   pharmacy.init();
-  console.log($('circle'));
 });
