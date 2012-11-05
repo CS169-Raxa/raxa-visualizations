@@ -7,7 +7,7 @@
       %th Patient
       %th Status
   %tbody
-    - @registrations_and_divs.each do |regs_by_date|
+    - registrations_and_divs.each do |regs_by_date|
       - if regs_by_date[:date]
         %tr
           %td.divider{:colspan => 3}
