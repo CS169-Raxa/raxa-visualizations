@@ -18,13 +18,4 @@ class RegistrarsController < ApplicationController
     return ChronicDuration.output((total_time/registrations.length).to_i, :format => :chrono)
   end
 
-  def time_graph
-    registrar = Registrar.find(params[:id])
-    @data = registrar.time_aggregated_registrations(params[:time_period].to_i,
-                                      params[:group_by_period].to_i)
-
-    respond_to do |format|
-      format.json { render :json => { :data => @data, :registrar => @registrar } } 
-    end
-  end
 end
