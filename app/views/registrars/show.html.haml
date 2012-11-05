@@ -4,14 +4,16 @@
   = javascript_include_tag :registrars
 
 %h2= "Dashboard for #{@name}"
-%div.rightbar
+
+%div#content
+  %div#registered-container
+    = render :partial => 'registrars/regist_table',
+             :locals => {:registrations_and_divs => @registrations_and_divs,
+                         :full => @full,
+                         :num_regs_without_limit => @num_regs_without_limit}
+  %div#history-container
+    %svg#registration_history_graph.bigTimeGraph{'data-points' => @registration_history.to_json}
+
+%div#rightbar
   = render :partial => 'registrars/rightbar',
            :locals => {:num_today => @num_today, :average_time => @average_time}
-
-= render :partial => 'registrars/regist_table',
-         :locals => {:registrations_and_divs => @registrations_and_divs,
-                     :full => @full,
-                     :num_regs_without_limit => @num_regs_without_limit}
-
-%div#registration_history
-  %svg#registration_history_graph.bigTimeGraph{'data-points' => @registration_history.to_json}

@@ -77,6 +77,15 @@ $alert_bg: #faa;
   }
 }
 
+#registered-container {
+  display: none;
+  width: 50%;
+}
+
+#history-container {
+  width: 50%;
+}
+
 label {
   display: block;
 }
