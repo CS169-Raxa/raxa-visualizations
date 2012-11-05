@@ -58,9 +58,6 @@
         %span
           %a{:href => '#'} See more
 
-%div.bigTimeGraph
-  - if (registrar_history = @registrar.time_aggregated_registrations(22.years, 1.week))
-    %svg{:id => "bigTimeGraph-#{@registrar.id}", 'data-points' => registrar_history.to_json}
-  - else
-    %span.MissingRegistrations No Registrations
-
+= @registration_history
+%div#registration_history
+  %svg#registration_history_graph{'data-points' => @registration_history.to_json}
