@@ -6,7 +6,9 @@ RaxaVisualizations::Application.routes.draw do
   end
 
   scope 'registration' do
-    resources :registrars, :as => :registration_registrars
+    resources :registrars, :as => :registration_registrars do 
+      get 'time_graph', :on => :member
+    end
   end
 
   # The priority is based upon order of creation:

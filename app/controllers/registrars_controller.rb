@@ -2,8 +2,13 @@ class RegistrarsController < ApplicationController
   def index
     @num_today = Registration.for_day(Time.now).count
     @average_time = average_time(Registration.all)
-
     @registrations_and_divs = get_regs_by_date(Registration.all(:order => "time_end DESC"))
+    @registration_history = Hash.new {|hash, key| 0}
+    Registrar.all.each do |registrar|
+      registrar.registration_history(Date.today - 1.week, Date.today).each do |date, count|
+        @registration_history[date] += count
+      end
+    end
 
     render :show
   end
@@ -12,9 +17,8 @@ class RegistrarsController < ApplicationController
     registrar = Registrar.find(params[:id])
     @num_today = registrar.registrations_for_day(Time.now).count
     @average_time = average_time(registrar.registrations)
-
     @registrations_and_divs = get_regs_by_date(Registration.all(:order => "time_end DESC", :conditions => {:registrar_id => params[:id]}))
-
+    @registration_history = registrar.registration_history(Date.today - 1.week, Date.today)
   end
 
   protected

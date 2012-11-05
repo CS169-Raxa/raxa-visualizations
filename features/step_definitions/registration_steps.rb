@@ -51,10 +51,6 @@ When /^(.*?) registers a patient$/ do |registrar_name|
   @dummy.registrations << reg
 end
 
-When /^I register a patient$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
 When /^it is the next day$/ do
   correct_time = Time.method(:now)
   Time.stub(:now) { correct_time.call + 1.day }
@@ -115,6 +111,14 @@ Then /^I should see "(.*?)" before the "(.*?)" header$/ do |arg1, arg2|
     header = "YESTERDAY"
   end
   assert_match(/#{arg1}(.*)#{header}/m, page.body)
+end
+
+Then /^I should see a line graph$/ do 
+  page.should have_selector("svg#registration_history_graph")
+end
+
+Then /^I should see a missing patients notification$/ do 
+  page.should have_content("No recent registrations")
 end
 
 Then /^I should see the "(.*?)" header before "(.*?)"$/ do |arg1, arg2|
