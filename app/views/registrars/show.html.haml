@@ -1,10 +1,12 @@
 = content_for :head do
   = stylesheet_link_tag :registrars
+  = javascript_include_tag :raxa
+  = javascript_include_tag :registrars
 
 %h2 Dashboard for Jacob Doe
 %div.rightbar
   = render :partial => 'registrars/rightbar',
-           :locals => {:num_today => @num_today, :average_time => @average_time}
+           :locals => {:num_today => @num_today, :average_time => @average_time, :registrar => @registrar}
 %h3 Registered patients
 %table#registered
   %tr
@@ -55,3 +57,10 @@
         -# please change the title attribute of the next line
         %span
           %a{:href => '#'} See more
+
+%div.bigTimeGraph
+  - if (registrar_history = @registrar.time_aggregated_registrations(22.years, 1.week))
+    %svg{:id => "bigTimeGraph-#{@registrar.id}", 'data-points' => registrar_history.to_json}
+  - else
+    %span.MissingRegistrations No Registrations
+

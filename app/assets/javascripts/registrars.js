@@ -73,7 +73,7 @@ Registrar.prototype.initTimeGraphs = function() {
     .attr('class', 'axis')
     .call(x_axis)
 
-  time_graph.append('g')
+  drawing_area.append('g')
     .attr('class', 'axis')
     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
     .call(y_axis)
