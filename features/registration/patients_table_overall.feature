@@ -76,7 +76,7 @@ Scenario: by default, show last 10 patients registered
     But I should not see the following patients: Patient T,Patient U,Patient V
 
 Scenario: see more, shows 10 more registrations
-    When I click SEE MORE
+    When I click the link "See more"
     Then I should see the following patients: Patient A,Patient B,Patient C
     And I should see the following patients: Patient D,Patient E,Patient F
     And I should see the following patients: Patient G,Patient H,Patient I,Patient J
@@ -86,8 +86,8 @@ Scenario: see more, shows 10 more registrations
     But I should not see the following patients: Patient U,Patient V
 
 Scenario: at end of registrations in history, show all
-    When I click SEE MORE
-    And I click SEE MORE
+    When I click the link "See more"
+    And I click the link "See more"
     Then I should see the following patients: Patient A,Patient B,Patient C
     And I should see the following patients: Patient D,Patient E,Patient F
     And I should see the following patients: Patient G,Patient H,Patient I,Patient J

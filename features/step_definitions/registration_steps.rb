@@ -25,6 +25,11 @@ Given /^the following registrations exist:$/ do |table|
     patient.registrations << registration  end
 end
 
+When /^I click the link "(.*?)"$/ do |arg1|
+  click_link(arg1)
+end
+
+
 # paths
 Given /^I am on the (.*?) registration dashboard$/ do |registrar_name|
   if registrar_name == 'overall'
@@ -89,10 +94,6 @@ Then /^I should not see the following patients: (.*)$/ do |patients_list|
   patients_list.each do |patient_name|
     assert_no_match(/#{patient_name}/m, page.body)
   end
-end
-
-When /^I click SEE MORE$/ do
-  click_link("See more")
 end
 
 Then /^I should see a no registrations notification$/ do
