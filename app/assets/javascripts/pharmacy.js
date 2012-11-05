@@ -27,14 +27,14 @@ Pharmacy.prototype.initDOMListeners = function() {
     });
   });
 
-  $(document).on('mouseover', '.bigTimeGraph circle', function() {
+  $('.bigTimeGraph').on('mouseover', 'circle', function() {
     d3.select(this).transition()
       .duration(500)
       .attr('r', '5px')
       .attr('opacity', .5);
   });
 
-  $(document).on('mouseout', '.bigTimeGraph circle', function() {
+  $('.bigTimeGraph').on('mouseout', 'circle', function() {
     d3.select(this).transition()
       .duration(500)
       .attr('r', '2px')
@@ -42,6 +42,7 @@ Pharmacy.prototype.initDOMListeners = function() {
   });
 
   $('.bigTimeGraph circle').tipsy({
+    fade: true,
     live: true,
     offset: 10,
     gravity: 'w',
