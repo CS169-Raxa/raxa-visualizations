@@ -57,7 +57,7 @@ When /^it is the next day$/ do
 end
 
 Then /^I should see that (\d+) patients were registered today$/ do |num|
-  find('#num-today').text.should == num
+  find('#num-today').text.strip.should == num
 end
 
 # avg time to register a patient
