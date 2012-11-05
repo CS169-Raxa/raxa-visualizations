@@ -36,7 +36,7 @@ class Drug < ActiveRecord::Base
 
     output = []
     quantities.group_by do |time, qty|
-      time / group_by_period * group_by_period
+      (time / group_by_period).to_i * group_by_period
     end.each_entry do |date, date_qty_groups|
       qtys = date_qty_groups.map {|dqg| dqg[1]}
       output << [date, (qtys.inject(:+) / qtys.size)]
