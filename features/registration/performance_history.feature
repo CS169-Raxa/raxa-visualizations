@@ -12,9 +12,9 @@ Background: Some patients have been registered
       | Patient C |
 
     Given the following registrars exist:
-      | name  | id |
-      | Reg A | 1  |
-      | Reg B | 2  |
+      | name  |
+      | Reg A |
+      | Reg B |
 
 Scenario: show line graph of metrics for all of my past patients in the past week
     Given the following registrations exist:
@@ -25,7 +25,7 @@ Scenario: show line graph of metrics for all of my past patients in the past wee
       | 3 days ago 2:00 am | 1 day ago  2:00 am  | returning      | Patient A    | Reg A          |
       | 1 day ago  2:00 am | 1 day ago  3:00 am  | returning      | Patient B    | Reg A          |
     And I am on the Reg A registration dashboard
-    Then I should see a line graph  
+    Then I should see a line graph
 
 Scenario: don't show line graph when Reg A has no registrations
     Given I am on the Reg A registration dashboard
