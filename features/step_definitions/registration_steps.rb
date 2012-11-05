@@ -67,8 +67,6 @@ When /^(.*?) registers a (new|returning) patient from (.*) to (.*)$/ do |name, s
   registrar.registrations << registration
 end
 
-
-
 Then /^I should see a line graph$/ do |num|
   page.should have_selector("svg#bigTimeGraph")
 end

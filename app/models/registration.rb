@@ -9,6 +9,8 @@ class Registration < ActiveRecord::Base
   }
 
   def elapsed_time
-    self.time_end - self.time_start
+    if (self.time_end and self.time_start)
+      self.time_end - self.time_start
+    end
   end
 end
