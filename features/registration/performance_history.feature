@@ -26,7 +26,3 @@ Scenario: show line graph of metrics for all of my past patients in the past wee
       | 1 day ago  2:00 am | 1 day ago  3:00 am  | returning      | Patient B    | Reg A          |
     And I am on the Reg A registration dashboard
     Then I should see a line graph
-
-Scenario: don't show line graph when Reg A has no registrations
-    Given I am on the Reg A registration dashboard
-    Then I should see a missing patients notification
