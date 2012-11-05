@@ -1,0 +1,32 @@
+$padding: 5px;
+$border-width: 4px;
+$height: 20px;
+
+$tooltip-width: 10px;
+
+.tooltip {
+  position: absolute;
+  height: $height;
+  line-height: $height;
+  padding: $padding;
+  font-size: 14px;
+  text-align: center;
+  color: rgb(113, 157, 171);
+  background: rgb(255, 255, 255);
+  border: $border-width solid rgb(255, 255, 255);
+  border-radius: 5px;
+  text-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 1px;
+  box-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 2px 0px;
+}
+
+.tooltip:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: $tooltip-width;
+  border-style: solid;
+  border-color: transparent #FFFFFF transparent transparent;
+  top: ($height + 2*$padding + $border-width - 2*$tooltip-width)/2;
+  left: -($border-width + 2*$tooltip-width);
+}
