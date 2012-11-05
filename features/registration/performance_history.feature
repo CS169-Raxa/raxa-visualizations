@@ -12,9 +12,9 @@ Background: Some patients have been registered
       | Patient C |
 
     Given the following registrars exist:
-      | name  |
-      | Reg A |
-      | Reg B |
+      | name  | id |
+      | Reg A | 1  |
+      | Reg B | 2  |
 
 Scenario: show line graph of metrics for all of my past patients in the past week
     Given the following registrations exist:
@@ -23,7 +23,7 @@ Scenario: show line graph of metrics for all of my past patients in the past wee
       | 5 days ago 2:00 am | 4 days ago 2:00 am  | returning      | Patient B    | Reg B          |
       | 4 days ago 1:00 am | 4 days ago 2:00 am  | new            | Patient C    | Reg A          |
       | 3 days ago 2:00 am | 1 day ago  2:00 am  | returning      | Patient A    | Reg A          |
-      | 1 day ago  2:00 am |                     | returning      | Patient B    | Reg A          |
+      | 1 day ago  2:00 am | 1 day ago  3:00 am  | returning      | Patient B    | Reg A          |
     And I am on the Reg A registration dashboard
     Then I should see a line graph  
 

@@ -60,4 +60,7 @@
 
 = @registration_history
 %div#registration_history
-  %svg#registration_history_graph{'data-points' => @registration_history.to_json}
+  - if (@registration_history)
+    %svg#registration_history_graph{'data-points' => @registration_history.to_json}
+  - else
+    %h3 No recent registrations

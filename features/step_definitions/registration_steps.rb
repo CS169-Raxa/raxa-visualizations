@@ -113,12 +113,12 @@ Then /^I should see "(.*?)" before the "(.*?)" header$/ do |arg1, arg2|
   assert_match(/#{arg1}(.*)#{header}/m, page.body)
 end
 
-Then /^I should see a line graph$/ do |num|
-  page.should have_selector("svg#bigTimeGraph")
+Then /^I should see a line graph$/ do 
+  page.should have_selector("svg#registration_history_graph")
 end
 
 Then /^I should see a missing patients notification$/ do 
-  page.should have_content("No Registrations")
+  page.should have_content("No recent registrations")
 end
 
 Then /^I should see the "(.*?)" header before "(.*?)"$/ do |arg1, arg2|
