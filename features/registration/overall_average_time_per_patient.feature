@@ -23,7 +23,7 @@ Feature: show average time to register a patient on registration dashboard
       | today 8:00 am       | today 8:10 am       | returning      | patient A    | Reg A          |
       | 1 day ago 9:00 am   | 1 day ago 9:15 am   | new            | patient B    | Reg B          |
       | today 10:00 am      | today 10:20 am      | new            | patient C    | Reg A          |
-      | 2 days ago 11:00 am | 2 days ago 11:15 am | returning      | patient D    | Reg A          |
+      | 2 days ago 10:20 am | 2 days ago 10:35 am | returning      | patient D    | Reg A          |
       | today 12:00 pm      | today 12:10 pm      | returning      | patient E    | Reg A          |
       | 3 days ago 1:00 pm  | 3 days ago 1:20 pm  | returning      | patient B    | Reg A          |
 

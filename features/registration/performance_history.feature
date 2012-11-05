@@ -18,11 +18,11 @@ Background: Some patients have been registered
 
     Given the following registrations exist:
       | time_start          | time_end            | patient_status | patient_name | registrar_name |
-      | 7 days ago 11:00 am | 7 days ago 1:00 pm  | returning      | Patient A    | Reg A          |
-      | 5 days ago 11:00 am | 4 days ago 11:00 am |                | Patient B    | Reg B          |
-      | 4 days ago 1:00 am  | 4 days ago 11:00 am | new            | Patient C    | Reg A          |
-      | 3 days ago 11:00 am | 1 day ago  11:00 am | returning      | Patient A    | Reg A          |
-      | 1 day ago  11:00 am |                     | returning      | Patient B    | Reg A          |
+      | 7 days ago 12:40 pm | 7 days ago 1:00 pm  | returning      | Patient A    | Reg A          |
+      | 5 days ago 10:00 am | 4 days ago 10:00 am | returning      | Patient B    | Reg B          |
+      | 4 days ago 1:00 am  | 4 days ago 3:00 am  | new            | Patient C    | Reg A          |
+      | 3 days ago 10:00 am | 1 day ago  10:00 am | returning      | Patient A    | Reg A          |
+      | 1 day ago  10:00 am | 1 day ago  10:20 am | returning      | Patient B    | Reg A          |
 
     And I am on the Reg A performance metrics page
 

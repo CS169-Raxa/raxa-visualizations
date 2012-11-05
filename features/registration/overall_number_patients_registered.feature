@@ -24,7 +24,7 @@ Feature: show total number of patients registered today on overall registration 
       | today 8:00 am       | today 8:20 am       | returning      | patient A    | Reg A          |
       | today 9:00 am       | today 9:20 am       | new            | patient B    | Reg B          |
       | today 10:00 am      | today 10:20 am      | new            | patient C    | Reg A          |
-      | today 11:00 am      | today 11:20 am      | returning      | patient D    | Reg A          |
+      | today 10:20 am      | today 10:40 am      | returning      | patient D    | Reg A          |
       | today 12:00 pm      | today 12:20 pm      | returning      | patient E    | Reg A          |
       | today 1:00 pm       | today 1:20 pm       | returning      | patient F    | Reg A          |
       | 1 days ago 1:00 pm  | 1 days ago 1:20 pm  | returning      | patient F    | Reg A          |
