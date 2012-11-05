@@ -83,7 +83,7 @@ Scenario: see more, shows more registrations
     And I should see the following patients: Patient J,Patient P,Patient Q
     And I should see the following patients: Patient R,Patient S,Patient T
     And I should see the following patients: Patient U,Patient V
-    But I should not see the following patients: Patient K,Patient L, Patient M, Patient N, Patient O
+    But I should not see the following patients: Patient K,Patient L,Patient M,Patient N,Patient O
 
 Scenario: table sorted by registration end times, then patient name
     Then I should list "Patient E" before "Patient D"
