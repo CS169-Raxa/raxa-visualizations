@@ -15,7 +15,7 @@ class RegistrarsController < ApplicationController
   def index_or_show(regs)
     @num_today = regs.for_day(Time.now).count
     @average_time = average_time(regs)
-    @full = (params[:format] == 'full')
+    @full = (params[:full] == 'full')
     regs = regs.order("time_end DESC")
     regs = regs.limit(10) unless @full
     @registrations_and_divs = get_regs_by_date(regs)

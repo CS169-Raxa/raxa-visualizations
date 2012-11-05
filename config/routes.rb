@@ -6,6 +6,10 @@ RaxaVisualizations::Application.routes.draw do
   end
 
   scope 'registration', :as => :registration do
+    constraints :full => /full/ do
+      get 'registrars(/:full)' => 'registrars#index'
+      get 'registrars/:id(/:full)' => 'registrars#show'
+    end
     resources :registrars
   end
 
