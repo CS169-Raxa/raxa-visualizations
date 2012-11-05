@@ -5,8 +5,8 @@ RaxaVisualizations::Application.routes.draw do
     end
   end
 
-  scope 'registration' do
-    resources :registrars, :as => :registration_registrars
+  scope 'registration', :as => :registration do
+    resources :registrars
   end
 
   # The priority is based upon order of creation:

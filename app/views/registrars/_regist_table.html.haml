@@ -18,9 +18,9 @@
           %td= registration.time_end.localtime.strftime('%l:%M %P')
           %td= registration.patient.name
           %td= registration.patient_status
-    %tr
-      %td.divider{:colspan => 3}
-        %div
-          -# please change the title attribute of the next line
-          %span
-            = link_to 'See more', nil
+    - unless full
+      %tr
+        %td.divider{:colspan => 3}
+          %div
+            %span
+              = link_to 'See more', self.url_for(:format => 'full')

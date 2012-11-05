@@ -1,23 +1,23 @@
 class RegistrarsController < ApplicationController
   def index
-    @num_today = Registration.for_day(Time.now).count
-    @average_time = average_time(Registration.all)
-
-    @registrations_and_divs = get_regs_by_date(Registration.all(:order => "time_end DESC"))
-
+    index_or_show Registration.scoped
     render :show
   end
 
   def show
     registrar = Registrar.find(params[:id])
-    @num_today = registrar.registrations_for_day(Time.now).count
-    @average_time = average_time(registrar.registrations)
-
-    @registrations_and_divs = get_regs_by_date(Registration.all(:order => "time_end DESC", :conditions => {:registrar_id => params[:id]}))
-
+    index_or_show registrar.registrations
   end
 
   protected
+  def index_or_show(regs)
+    @num_today = regs.for_day(Time.now).count
+    @average_time = average_time(regs)
+    @full = (params[:format] == 'full')
+    regs = regs.limit(10) unless @full
+    @registrations_and_divs = get_regs_by_date(regs)
+  end
+
   def average_time(registrations)
     total_time = registrations.map {|r| r.elapsed_time}.reduce(:+)
     if total_time
