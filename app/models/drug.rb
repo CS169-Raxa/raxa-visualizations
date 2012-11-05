@@ -20,14 +20,21 @@ class Drug < ActiveRecord::Base
   # eg. For the last 24 hours of drug stock levels,
   #     `Drug.first.history 60*60*24`
   def history time_period
+    history = []
     current_quantity = quantity
-    quantities = [[Time.now.to_i, current_quantity]]
+    history << {
+      :date => Time.now.to_i,
+      :count => current_quantity
+    }
     recent_deltas = recent_deltas(time_period).order('timestamp DESC')
     recent_deltas.each do |delta|
       current_quantity -= delta.amount
-      quantities << [delta.timestamp.to_i, current_quantity]
+      history << {
+        :date => delta.timestamp.to_i,
+        :count => current_quantity
+      }
     end
-    recent_deltas.empty? ? false : quantities
+    return recent_deltas.empty? ? false : history
   end
 
   def time_aggregated_data time_period, group_by_period
@@ -35,11 +42,14 @@ class Drug < ActiveRecord::Base
     return false if not quantities
 
     output = []
-    quantities.group_by do |time, qty|
-      (time / group_by_period).to_i * group_by_period
+    quantities.group_by do |hash|
+      (hash[:date] / group_by_period).to_i * group_by_period
     end.each_entry do |date, date_qty_groups|
-      qtys = date_qty_groups.map {|dqg| dqg[1]}
-      output << [date, (qtys.inject(:+) / qtys.size)]
+      qtys = date_qty_groups.map {|dqg| dqg[:count]}
+      output << {
+        :date => date,
+        :count => (qtys.inject(:+) / qtys.size)
+      }
     end
     output
   end
