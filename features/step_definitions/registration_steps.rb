@@ -110,7 +110,8 @@ Then /^I should see "(.*?)" before the "(.*?)" header$/ do |arg1, arg2|
   else
     header = "YESTERDAY"
   end
-  assert_match(/#{arg1}(.*)#{header}/m, page.body)
+  (page.body =~ Regexp.new(arg1)).should < (page.body =~ Regexp.new(header, 'i'))
+  assert_match(/#{arg1}(.*)#{header}/im, page.body)
 end
 
 Then /^I should see a line graph$/ do 
@@ -127,10 +128,10 @@ Then /^I should see the "(.*?)" header before "(.*?)"$/ do |arg1, arg2|
   else
     header = "YESTERDAY"
   end
-  assert_match(/#{header}(.*)#{arg2}/m, page.body)
+  (page.body =~ Regexp.new(header, 'i')).should < (page.body =~ Regexp.new(arg2))
+  #assert_match(/#{header}([.\s]*)#{arg2}/im, page.body)
 end
 
 Then /^I should list "(.*?)" before "(.*?)"$/ do |arg1, arg2|
-  assert_match(/#{arg1}(.*)#{arg2}/m, page.body)
+  (page.body =~ Regexp.new(arg1)).should < (page.body =~ Regexp.new(arg2))
 end
-
