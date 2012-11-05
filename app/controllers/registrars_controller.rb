@@ -1,11 +1,13 @@
 class RegistrarsController < ApplicationController
   def index
+    @name = 'all registrars'
     index_or_show Registration.scoped
     render :show
   end
 
   def show
     registrar = Registrar.find(params[:id])
+    @name = registrar.name
     index_or_show registrar.registrations
   end
 

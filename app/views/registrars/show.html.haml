@@ -1,7 +1,7 @@
 = content_for :head do
   = stylesheet_link_tag :registrars
 
-%h2 Dashboard for Jacob Doe
+%h2= "Dashboard for #{@name}"
 %div.rightbar
   = render :partial => 'registrars/rightbar',
            :locals => {:num_today => @num_today, :average_time => @average_time}
