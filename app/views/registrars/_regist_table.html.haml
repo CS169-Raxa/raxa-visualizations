@@ -18,7 +18,7 @@
           %td= registration.time_end.localtime.strftime('%l:%M %P')
           %td= registration.patient.name
           %td= registration.patient_status
-    - unless full
+    - unless full or num_regs_without_limit <= 10
       %tr
         %td.divider{:colspan => 3}
           %div

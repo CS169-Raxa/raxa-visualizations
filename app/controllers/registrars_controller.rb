@@ -17,6 +17,7 @@ class RegistrarsController < ApplicationController
     @average_time = average_time(regs)
     @full = (params[:full] == 'full')
     regs = regs.order("time_end DESC")
+    @num_regs_without_limit = regs.count
     regs = regs.limit(10) unless @full
     @registrations_and_divs = get_regs_by_date(regs)
   end
