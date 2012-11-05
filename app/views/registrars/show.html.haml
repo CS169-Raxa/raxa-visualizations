@@ -1,5 +1,7 @@
 = content_for :head do
   = stylesheet_link_tag :registrars
+  = javascript_include_tag :raxa
+  = javascript_include_tag :registrars
 
 %h2= "Dashboard for #{@name}"
 %div.rightbar
@@ -10,3 +12,6 @@
          :locals => {:registrations_and_divs => @registrations_and_divs,
                      :full => @full,
                      :num_regs_without_limit => @num_regs_without_limit}
+
+%div#registration_history
+  %svg#registration_history_graph.bigTimeGraph{'data-points' => @registration_history.to_json}

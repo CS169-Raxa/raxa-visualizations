@@ -10,7 +10,9 @@ RaxaVisualizations::Application.routes.draw do
       get 'registrars(/:full)' => 'registrars#index'
       get 'registrars/:id(/:full)' => 'registrars#show'
     end
-    resources :registrars
+    resources :registrars do 
+      get 'time_graph', :on => :member
+    end
   end
 
   # The priority is based upon order of creation:

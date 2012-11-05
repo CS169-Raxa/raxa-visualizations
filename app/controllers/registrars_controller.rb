@@ -1,12 +1,19 @@
 class RegistrarsController < ApplicationController
   def index
     @name = 'all registrars'
+    @registration_history = Hash.new {|hash, key| 0}
+    Registrar.all.each do |registrar|
+      registrar.registration_history(Date.today - 1.week, Date.today).each do |date, count|
+        @registration_history[date] += count
+      end
+    end
     index_or_show Registration.scoped
     render :show
   end
 
   def show
     registrar = Registrar.find(params[:id])
+    @registration_history = registrar.registration_history(Date.today - 1.week, Date.today)
     @name = registrar.name
     index_or_show registrar.registrations
   end
@@ -59,5 +66,4 @@ class RegistrarsController < ApplicationController
     end
     return regs_and_divs
   end
-
 end
