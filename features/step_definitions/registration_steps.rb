@@ -67,8 +67,10 @@ When /^(.*?) registers a (new|returning) patient from (.*) to (.*)$/ do |name, s
   registrar.registrations << registration
 end
 
-Then /^I should see a graph of (\d+) patients$/ do |num|
-  pending
+
+
+Then /^I should see a line graph$/ do |num|
+  page.should have_selector("svg#bigTimeGraph")
 end
 
 Then /^I should see a missing patients notification$/ do 
