@@ -33,7 +33,7 @@ class RegistrarsController < ApplicationController
     #    hash tables where the keys are
     #      :date => a string to show in the dividers in the view (nil if today)
     #      :regs => registrations that took place on that date
-    curr_regs = {}
+    curr_regs = {:regs => []}
     regs_and_divs = [curr_regs]
     last_reg = Chronic.parse('today').localtime.strftime('%^B %e, %Y')
     registrations.each do |reg|
