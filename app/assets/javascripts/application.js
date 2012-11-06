@@ -14,3 +14,19 @@
 //= require jquery_ujs
 //= require jquery.form
 //= require d3.v2.min
+
+/**
+ * Easily compose two functions:
+ *
+ *  var square = function(i) { return Math.pow(i, 2); };
+ *  var double = function(i) { return i * 2; };
+ *  var double_square = double.compose(square);
+ *
+ * Source: http://javascriptweblog.wordpress.com/2010/04/14/compose-functions-as-building-blocks/
+ */
+Function.prototype.compose  = function(argFunction) {
+  var invokingFunction = this;
+  return function() {
+    return invokingFunction.call(this, argFunction.apply(this, arguments));
+  }
+}
