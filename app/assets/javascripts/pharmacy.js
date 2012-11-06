@@ -75,13 +75,13 @@ Pharmacy.prototype.drawSparkline = function(drugID) {
 };
 
 Pharmacy.prototype.alertDrug = function(drugID) {
-  var drug = $(pharmacy.getDrugNodeID(drugID) + ' .info');
+  var drug = $(this.getDrugNodeID(drugID) + ' .info');
   drug.addClass('alert');
   drug.removeClass('no_alert');
 };
 
 Pharmacy.prototype.unAlertDrug = function(drugID) {
-  var drug = $(pharmacy.getDrugNodeID(drugID) + ' .info');
+  var drug = $(this.getDrugNodeID(drugID) + ' .info');
   drug.addClass('no_alert');
   drug.removeClass('alert');
 };
@@ -128,7 +128,7 @@ Pharmacy.prototype.drawDrugTimeGraph = function(drugID, how_long_ago, group_by_p
 };
 
 Pharmacy.prototype.displayNoTimeGraphHistoryNotice = function(drugID) {
-  var time_graph_div = $(pharmacy.getDrugNodeID(drugID) + ' .bigTimeGraph');
+  var time_graph_div = $(this.getDrugNodeID(drugID) + ' .bigTimeGraph');
   time_graph_div.find('svg').addClass('hidden');
   time_graph_div.find('.noHistory').removeClass('hidden');
   time_graph_div.removeClass('loading');
