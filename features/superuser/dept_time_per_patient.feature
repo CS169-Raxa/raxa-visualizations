@@ -30,6 +30,6 @@ Feature: loads on each department
 
   Scenario: display no history notification
     When I click on the "Screener" stage
-    Then I should see an average time of "-"
+    Then I should see a "-" for average time per patient
     And I should not see a graph
     And I should see "No screener history available"
