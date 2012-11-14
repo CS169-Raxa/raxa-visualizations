@@ -38,8 +38,9 @@ Pharmacy.prototype.initSparklines = function() {
   var drawSparkline = function() {
     pharmacy.drawSparkline(this.dataset['drug_id']);
   };
-  $('#drugs .drug').each(drawSparkline);
-  $('#drugs').on('reload-drug', '.drug', drawSparkline);
+  $('#drugs').on('reload-drug', '.drug', drawSparkline)
+    .find('.drug')
+    .trigger('reload-drug');
 };
 
 Pharmacy.prototype.drawSparkline = function(drugID) {
