@@ -10,15 +10,12 @@ Feature: loads on each department
 
     Given Patients A-B exist
     And Patient A has the following events:
-      | type  | department   | timestamp      |
-      | start | registration | 60 minutes ago |
-      | end   | registration | 54 minutes ago |
+      | department   | start_time     | end_time       |
+      | registration | 60 minutes ago | 54 minutes ago |
     And Patient B has the following events:
-      | type  | department   | timestamp             |
-      | start | registration | 1 day, 60 minutes ago |
-      | end   | registration | 1 day, 52 minutes ago |
-      | start | registration | 30 minutes ago        |
-      | end   | registration | 20 minutes ago        |
+      | department   | start_time            | end_time              |
+      | registration | 1 day, 60 minutes ago | 1 day, 52 minutes ago |
+      | registration | 30 minutes ago        | 20 minutes ago        |
 
     Given I am on the superuser dashboard
 
