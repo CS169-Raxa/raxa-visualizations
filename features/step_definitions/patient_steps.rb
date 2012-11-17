@@ -19,12 +19,12 @@ Given /^Patient (.*?) has the following encounters:$/ do |letter, table|
       Department.create!({:name => encounter[:department]})
     encounter.delete('department')
 
-    if encounter[:end_time] == ""
-       encounter[:end_time] = nil
+    if encounter['end_time'] == ""
+       encounter['end_time'] = nil
     end
 
-    encounter[:start_time] = Chronic::parse(encounter[:start_time])
-    encounter[:end_time] = Chronic::parse(encounter[:end_time])
+    encounter['start_time'] = Chronic::parse(encounter['start_time'])
+    encounter['end_time'] = Chronic::parse(encounter['end_time'])
 
     e = Encounter.create!(encounter)
 

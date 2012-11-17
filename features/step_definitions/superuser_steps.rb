@@ -4,11 +4,14 @@ end
 
 
 When /^I click on the "(.*?)" stage$/ do |arg1|
-  click_button(arg1)
+  if not Department.find_by_name(dept)
+    Department.create!({:name => dept})
+  end
+  click_link(arg1)
 end
 
 Then /^I should see an average time of (\d+) minutes per patient$/ do |minutes|
-  find('#average-time').text.should include "#{minutes}:00"
+  find('#average_time').text.should include "#{minutes}:00"
   pending # express the regexp above with the code you wish you had
 end
 

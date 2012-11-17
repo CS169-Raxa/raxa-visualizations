@@ -14,19 +14,19 @@ Feature: loads on each department
       | registration | 60 minutes ago | 54 minutes ago |
     And Patient B has the following encounters:
       | department   | start_time            | end_time              |
-      | registration | 1 day, 60 minutes ago | 1 day, 52 minutes ago |
+      | registration | 3660 minutes ago      | 3652 minutes ago      |
       | registration | 30 minutes ago        | 20 minutes ago        |
 
     Given I am on the superuser dashboard
 
   Scenario: display graph for registration
-    When I click on the "Registration" stage
+    When I click on the "registration" stage
     Then I should see an average time of 8 minutes per patient
     And I should see a graph
     And there should be 2 data items on the graph with averages: 6,9
 
   Scenario: display no history notification
-    When I click on the "Screener" stage
+    When I click on the "screener" stage
     Then I should see a "-" for average time per patient
     And I should not see a graph
     And I should see "No screener history available"
