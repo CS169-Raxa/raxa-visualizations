@@ -19,4 +19,4 @@ Feature: alerts for patients experiencing abnormal delays
     Then I should see an abnormal delay alert for Patient B
 
   Scenario: patients triggering alerts should be displayed first
-    Then I should list Patient B before Patient A
+    Then I should list "Patient B" before "Patient A"

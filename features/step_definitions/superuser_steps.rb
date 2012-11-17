@@ -9,6 +9,7 @@ end
 
 Then /^I should see an average time of (\d+) minutes per patient$/ do |minutes|
   find('#average-time').text.should include "#{minutes}:00"
+  pending # express the regexp above with the code you wish you had
 end
 
 Then /^I should see a graph$/ do
@@ -34,13 +35,17 @@ Given /^the average (.*?) time is (\d+) minutes$/ do |dept, minutes|
 end
 
 
-Given /^(\d+) has been in (\d+) for (\d+) minutes$/ do |patient, dept, minutes|
-  encounter = {:start_time = Chronic::parse("#{minutes} minutes ago")}
+Given /^(\d+) has been in (.*?) for (\d+) minutes$/ do |patient, dept, minutes|
+  encounter = {:start_time => Chronic::parse("#{minutes} minutes ago")}
   e = Encounter.create!(encounter)
   p = Patient.find_by_name(patient).encounters << e
   p.save!
   d = Department.find_by_name(dept).encounters << e
   d.save!
+end
+
+Then /^I should see an abnormal delay alert for (.*?)$/ do
+  pending # express the regexp above with the code you wish you had
 end
 
 Then /^I should not see an abnormal delay alert for (.*?)$/ do
@@ -52,5 +57,13 @@ When /^I look at the timeline for (.*?)$/ do
 end
 
 Then /^first I should see a (.*?) block for (\d+) minutes$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^then I should see a (.*?) block for (\d+) minutes$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^last I should see an (.*?) block for (\d+) minutes$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
