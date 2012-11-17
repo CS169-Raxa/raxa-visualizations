@@ -17,7 +17,7 @@ Given /^Patient (.*?) has the following encounters:$/ do |letter, table|
 
     department = Department.find_by_name(encounter[:department]) ||
       Department.create!({:name => encounter[:department]})
-    encounter.delete(:department)
+    encounter.delete('department')
 
     if encounter[:end_time] == ""
        encounter[:end_time] = nil
@@ -26,12 +26,9 @@ Given /^Patient (.*?) has the following encounters:$/ do |letter, table|
     encounter[:start_time] = Chronic::parse(encounter[:start_time])
     encounter[:end_time] = Chronic::parse(encounter[:end_time])
 
-    print encounter
     e = Encounter.create!(encounter)
 
-    department.encounters << e
-    department.save!
-    patient.encounters << e
-    patient.save!
+    e.department = department
+    e.patient = patient
   end
 end

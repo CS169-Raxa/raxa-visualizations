@@ -29,6 +29,8 @@ Then /^I should not see a graph$/ do
   page.should_not have_selector("svg")
 end
 
+require 'cucumber/rspec/doubles'
+
 Given /^the average (.*?) time is (\d+) minutes$/ do |dept, minutes|
   department = Department.find_by_name(dept) || Department.create!({:name => dept})
   department.should_receive(:average_time).and_return(ChronicDuration::parse("#{minutes} minutes"))
@@ -38,21 +40,19 @@ end
 Given /^(.*?) has been in (.*?) for (\d+) minutes$/ do |patient, dept, minutes|
   encounter = {:start_time => Chronic::parse("#{minutes} minutes ago")}
   e = Encounter.create!(encounter)
-  p = Patient.find_by_name(patient).encounters << e
-  p.save!
-  d = Department.find_by_name(dept).encounters << e
-  d.save!
+  Patient.find_by_name(patient).encounters << e
+  Department.find_by_name(dept).encounters << e
 end
 
-Then /^I should see an abnormal delay alert for (.*?)$/ do
+Then /^I should see an abnormal delay alert for (.*?)$/ do |patient|
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^I should not see an abnormal delay alert for (.*?)$/ do
+Then /^I should not see an abnormal delay alert for (.*?)$/ do |patient|
   pending # express the regexp above with the code you wish you had
 end
 
-When /^I look at the timeline for (.*?)$/ do
+When /^I look at the timeline for (.*?)$/ do |patient|
   pending # express the regexp above with the code you wish you had
 end
 
