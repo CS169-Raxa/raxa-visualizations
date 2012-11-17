@@ -35,7 +35,7 @@ Given /^the average (.*?) time is (\d+) minutes$/ do |dept, minutes|
 end
 
 
-Given /^(\d+) has been in (.*?) for (\d+) minutes$/ do |patient, dept, minutes|
+Given /^(.*?) has been in (.*?) for (\d+) minutes$/ do |patient, dept, minutes|
   encounter = {:start_time => Chronic::parse("#{minutes} minutes ago")}
   e = Encounter.create!(encounter)
   p = Patient.find_by_name(patient).encounters << e
