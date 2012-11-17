@@ -1,0 +1,16 @@
+#Encounters for patient 4
+---
+name: French Cheese
+---
+- start_time: 18 hours ago
+  end_time: 16 hours ago
+  department: registration
+- start_time: 16 hours ago
+  end_time: 15 hours ago
+  department: registration
+- start_time: 15 hours ago
+  end_time: 12 hours ago
+  department: pharmacy
+- start_time: 12 hours ago
+  end_time: 7 hours ago
+  department: gift shoppe
