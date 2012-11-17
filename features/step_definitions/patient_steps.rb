@@ -26,6 +26,7 @@ Given /^Patient (.*?) has the following encounters:$/ do |letter, table|
     encounter[:start_time] = Chronic::parse(encounter[:start_time])
     encounter[:end_time] = Chronic::parse(encounter[:end_time])
 
+    print encounter
     e = Encounter.create!(encounter)
 
     department.encounters << e
