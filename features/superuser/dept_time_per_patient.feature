@@ -9,10 +9,10 @@ Feature: loads on each department
   Background:
 
     Given Patients A-B exist
-    And Patient A has the following events:
+    And Patient A has the following encounters:
       | department   | start_time     | end_time       |
       | registration | 60 minutes ago | 54 minutes ago |
-    And Patient B has the following events:
+    And Patient B has the following encounters:
       | department   | start_time            | end_time              |
       | registration | 1 day, 60 minutes ago | 1 day, 52 minutes ago |
       | registration | 30 minutes ago        | 20 minutes ago        |
@@ -21,7 +21,7 @@ Feature: loads on each department
 
   Scenario: display graph for registration
     When I click on the "Registration" stage
-    Then I should an average time of 8 minutes per patient
+    Then I should see an average time of 8 minutes per patient
     And I should see a graph
     And there should be 2 data items on the graph with averages: 6,9
 
