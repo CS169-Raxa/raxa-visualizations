@@ -10,5 +10,6 @@ class DepartmentsController < ApplicationController
       datum['data'] = @department.get_quartiles(start_time, end_time)
       @department_history << datum
     end
+    @average_time = @department.average_time
   end
 end
