@@ -51,10 +51,6 @@ When /^(.*?) registers a patient$/ do |registrar_name|
   @dummy.registrations << reg
 end
 
-When /^I register a patient$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
 When /^it is the next day$/ do
   correct_time = Time.method(:now)
   Time.stub(:now) { correct_time.call + 1.day }
@@ -110,23 +106,28 @@ end
 
 Then /^I should see "(.*?)" before the "(.*?)" header$/ do |arg1, arg2|
   if arg2 != "yesterday"
-    header = Chronic::parse(arg2).strftime('%^B %e, %Y')
+    header = Chronic::parse(arg2).localtime.strftime('%^B %e, %Y')
   else
     header = "YESTERDAY"
   end
-  assert_match(/#{arg1}(.*)#{header}/m, page.body)
+  (page.body =~ Regexp.new(arg1)).should < (page.body =~ Regexp.new(header, 'i'))
+  #assert_match(/#{arg1}(.*)#{header}/im, page.body)
+end
+
+Then /^I should see a line graph$/ do 
+  page.should have_selector("svg#registration_history_graph")
 end
 
 Then /^I should see the "(.*?)" header before "(.*?)"$/ do |arg1, arg2|
   if arg1 != "yesterday"
-    header = Chronic::parse(arg1).strftime('%^B %e, %Y')
+    header = Chronic::parse(arg1).localtime.strftime('%^B %e, %Y')
   else
     header = "YESTERDAY"
   end
-  assert_match(/#{header}(.*)#{arg2}/m, page.body)
+  (page.body =~ Regexp.new(header, 'i')).should < (page.body =~ Regexp.new(arg2))
+  #assert_match(/#{header}([.\s]*)#{arg2}/im, page.body)
 end
 
 Then /^I should list "(.*?)" before "(.*?)"$/ do |arg1, arg2|
-  assert_match(/#{arg1}(.*)#{arg2}/m, page.body)
+  (page.body =~ Regexp.new(arg1)).should < (page.body =~ Regexp.new(arg2))
 end
-

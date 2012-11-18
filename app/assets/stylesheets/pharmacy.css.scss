@@ -60,27 +60,6 @@ $alert_bg: #faa;
         float: left;
       }
 
-      .bigTimeGraph {
-        border: 1px dashed black;
-        clear: both;
-        margin: 2px;
-        height: 230px;
-        text-align: center;
-
-        .line {
-          fill: none;
-          stroke: steelblue;
-          stroke-width: 1.5px;
-        }
-
-        .axis path,
-        .axis line {
-          fill: none;
-          stroke: #000;
-          shape-rendering: crispEdges;
-        }
-      }
-
       .bigTimeGraph.loading {
         background: url('/assets/ajax-loader.gif') no-repeat center center;
       }
@@ -96,6 +75,15 @@ $alert_bg: #faa;
       }
     }
   }
+}
+
+#registered-container {
+  display: none;
+  width: 50%;
+}
+
+#history-container {
+  width: 50%;
 }
 
 label {

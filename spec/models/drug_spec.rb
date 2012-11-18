@@ -24,22 +24,25 @@ describe Drug do
 
     it 'should summarize drug history by computing quantities' do
       @drug.history(5.days).should ==
-        [[Time.now.to_i, 200.0],
-         [(Time.now - 1.day ).to_i, 201.0],
-         [(Time.now - 2.days).to_i, 200.0],
-         [(Time.now - 3.days).to_i, 201.0],
-         [(Time.now - 4.days).to_i, 200.0],
-         [(Time.now - 5.days).to_i, 201.0]]
+        [{:date => Time.now.to_i, :count => 200.0},
+        {:date => (Time.now - 1.day ).to_i, :count => 201.0},
+        {:date => (Time.now - 2.days).to_i, :count => 200.0},
+        {:date => (Time.now - 3.days).to_i, :count => 201.0},
+        {:date => (Time.now - 4.days).to_i, :count => 200.0},
+        {:date => (Time.now - 5.days).to_i, :count => 201.0}]
     end
   end
 
   it 'should aggregate quantity data' do
     drug = create :drug
     drug.should_receive(:history).
-      and_return([[1351412553, 10], [1351326153, 20], [1351153353, 30], [1351066954, 20]])
+      and_return([{ :date => 1351412553, :count => 10 },
+                   { :date => 1351326153, :count => 20 },
+                   { :date => 1351153353, :count => 30 },
+                   { :date => 1351066954, :count => 20 }])
 
     drug.time_aggregated_data(1.week, 3.days).should ==
-      [[1351209600, 15], [1350950400, 25]]
+      [{ :date => 1351209600, :count => 15 }, { :date => 1350950400, :count => 25 }]
   end
 
   it 'should gracefully not aggregate quantity data if none available' do
