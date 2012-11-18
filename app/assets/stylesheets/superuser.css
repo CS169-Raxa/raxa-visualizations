@@ -1,4 +1,7 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+#reg-time {
+  float: right;
+  padding: 0 10px;
+  .stat {
+    @include main-box
+    text-align: center;
+  }

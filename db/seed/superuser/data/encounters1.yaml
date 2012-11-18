@@ -1,0 +1,16 @@
+#Encounters for patient 1 
+---
+name: Francis Chan
+---
+- type: start
+  department: registration
+  timestamp: 10 hours ago
+- type: end
+  department: registration
+  timestamp: 8 hours ago
+- type: start
+  department: pharmacy
+  timestamp: 8 hours ago
+- type: end
+  department: pharmacy 
+  timestamp: 6 hours ago
