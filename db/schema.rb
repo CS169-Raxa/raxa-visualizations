@@ -51,10 +51,19 @@ ActiveRecord::Schema.define(:version => 20121025171622) do
     t.datetime "time_start"
     t.datetime "time_end"
     t.string   "patient_status", :default => "new"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "patient_id"
     t.integer  "registrar_id"
   end
+
+  create_table "encounters", :force => true do |t|
+    t.datetime "time_start"
+    t.integer  "patient_id"
+    t.string   "stage"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+        
 
 end
