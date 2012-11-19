@@ -12,12 +12,12 @@ class SuperuserController < ApplicationController
     result = []
     encounters.group_by(&:patient_id).map do |patient_id, encounters|
       result << {
-        'name' => Patient.find(patient_id).name,
-        'stages' => encounters.map do |e|
+        :name => Patient.find(patient_id).name,
+        :stages => encounters.map do |e|
           {
-            'name' => e.department.name,
-            'start' => e.start_time,
-            'end' => e.end_time
+            :name => e.department.name,
+            :start => e.start_time,
+            :end => e.end_time
           }
         end
       }
