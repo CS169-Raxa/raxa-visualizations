@@ -3,209 +3,225 @@ var Superuser = function() { };
 Superuser.prototype = new Raxa();
 Superuser.prototype.init = function() {
   Raxa.prototype.init.call(this);
-  this.initEncountersHistory();
+  this.initTimelines();
 };
 
-Superuser.prototype.initEncountersHistory = function() {
-
-  var w = 520,
-      h = 300,
-      m = {top: 10,
-           right: 100,
-           bottom: 20,
-           left: 50 };
-
-  var chart = d3.box()
-              .width(w - m.right - m.left)
-              .height(h - m.top- m.bottom);
-
-  var max = -Infinity,
-      min = Infinity;
-  $.each(data.map (function(x)  { return x.data;}), function(i, d) {
-    max = Math.max(d.max, max);
-    min = Math.min(d.min, min);
-  });
-
-  var ys = d3.scale.linear()
-    .domain([min, max])
-    .range([chart.height(), 0]);
-
-  chart.yscale(ys);
-
-  var y_axis = d3.svg.axis()
-    .scale(ys)
-    .orient('left');
-
-  var dates = data.map(function(x) { return x.date; });
-  dates.sort(function(d1, d2) { return d1 - d2; })
-  var xs = d3.time.scale()
-    .domain([dates[0], dates[dates.length - 1]])
-    .range([0,chart.width()]);
-
-  chart.xscale(xs);
-
-  var x_axis = d3.svg.axis()
-    .scale(xs)
-    .ticks(d3.time.days,1)
-    .orient('bottom');
-
-  var svg = d3.select("body").selectAll("svg")
-    .data([data])
-    .enter().append("svg")
-      .attr("class", "box")
-      .attr("width", w + m.right + m.left)
-      .attr("height", h + m.top + m.bottom);
-
-  svg.append("g")
-    .attr("transform", "translate(" + m.right + "," + m.bottom + ")")
-    .call(chart);
-
-  svg.append("g")
-    .attr("class", "axis")
-    .attr("transform", "translate(" + m.right / 2 + ", " + m.bottom + ")")
-    .call(y_axis);
-
-  svg.append("g")
-    .attr("class", "axis")
-    .attr("transform", "translate(" + m.right + ", " + h + ")")
-    .call(x_axis);
-
+Superuser.prototype.initTimelines = function() {
+  this.retrievePatientInfo(function(data) {
+    this.drawTimelines(data);
+  }.bind(this));
 };
 
-var a = {
-min: 3,
-first: 7, 
-median: 10,
-third: 13,
-max: 15 
+Superuser.prototype.drawTimelines = function(data) {
+  var options = {
+    stage_bar_area_width: 650,
+    patient_height: 30,
+    stage_bar_height: 20,
+    patient_y_offset: 50,
+    total_width: 950,
+    future_area_width: 50
+  };
+
+  options.total_height = data.length * options.patient_height
+    + 2 * options.patient_y_offset;
+
+  var svg = d3.select('svg#patients-timelines')
+    .attr('width', options.total_width)
+    .attr('height', options.total_height);
+
+  var time_scale = d3.time.scale()
+    .domain(this.getTimeWindow())
+    .range([options.total_width - options.stage_bar_area_width
+            - options.future_area_width,
+            options.total_width - options.future_area_width]);
+  time_scale.tickFormat(d3.time.format('%I%p'));
+
+  options.time_scale = function(millisecond_input) {
+    return time_scale(new Date(millisecond_input));
+  };
+  options.time_scale.original = time_scale;
+
+  var time_axis = d3.svg.axis()
+    .scale(time_scale)
+    .orient('top')
+    .ticks(d3.time.hours, 1)
+    .tickSubdivide(3) // every 15 minutes
+    .tickSize(options.total_height - options.patient_y_offset,
+              options.total_height - options.patient_y_offset,
+              0);
+
+  svg.append('g')
+    .classed('time-axis', true)
+    .attr('transform', 'translate(0,'
+          + (options.total_height - options.patient_y_offset/4) + ')')
+    .call(time_axis);
+
+  var patients = svg.selectAll('g.patient')
+    .data(data)
+    .enter()
+    .append('g')
+    .classed('patient', true);
+
+  patients.each(this.drawTimeline(svg, options));
+};
+
+Superuser.prototype.getTimeWindow = function() {
+  var TIME_WINDOW = 43200; // 12 hours
+  return [new Date((new Date()).getTime() - (TIME_WINDOW * 1000)), new Date()];
 }
 
+Superuser.prototype.drawTimeline = function(svg, options) {
+  var superuser = this;
+  var stage_colour = d3.scale.category10();
 
-var b = {
-min: 2,
-first: 10,
-median: 14,
-third: 18,
-max: 20 
-}
+  /* Expects `this` to be the <g> DOM node representing a patient */
+  return function(patient, patient_index) {
+    var g = d3.select(this);
+    var y = patient_index * options.patient_height + options.patient_y_offset;
 
-var c = {
-min: 3,
-first: 7, 
-median: 10,
-third: 13,
-max: 15 
-}
+    g.append('text')
+      .classed('name', true)
+      .text(patient.name)
+      .attr('x', 30)
+      .attr('y', y + options.stage_bar_height);
 
-var data = [
-{date:new Date("November 13, 2012"),
-data: a },
-{date:new Date("November 14, 2012"),
-data: b },
-{date:new Date("November 15, 2012"),
-data: c },
-{date:new Date("November 16, 2012"),
-data: a },
-{date:new Date("November 17, 2012"),
-data: b },
-{date:new Date("November 18, 2012"),
-data: b },
-{date:new Date("November 19, 2012"),
-data: c } ];
+    var stages = g.selectAll('stages')
+      .data(patient.stages)
+      .enter()
+      .append('rect')
+      .classed('stage', true)
+      .attr('x', function(stage) {
+        return options.time_scale(stage.start);
+      })
+      .attr('y', y)
+      .attr('width', function(stage) {
+        return stage.end !== null
+          ? options.time_scale(stage.end) - options.time_scale(stage.start)
+          : options.stage_bar_area_width - options.time_scale(stage.start)
+            + options.total_width - options.stage_bar_area_width - options.future_area_width;
+      })
+      .attr('height', options.stage_bar_height)
+      .attr('rx', 2)
+      .attr('ry', 2)
+      .attr('fill', function(d) { return stage_colour(d.name); });
 
-d3.box = function() {
-  var width = 1,
-      height = 1,
-      value = Number,
-      tickFormat = null,
-      xscale = null,
-      yscale = null,
-      boxwidth = 0;
-
-  function box(g) {
-    g.each(function(d, i) {
-      boxwidth = Math.min(30, width/d.length);
-      var g = d3.select(this);
-      var plots = g.selectAll("g")
-        .data(d);
-      plots.enter().append("g").call(one_box);
+    stages.each(function(stage, stage_index) {
+      $(this).tipsy({
+        live: true,
+        gravity: 'sw',
+        trigger: 'hover',
+        title: function() {
+          return d3.select(this).datum().name;
+        }.bind(this)
+      });
     });
+
+    var separator_y = y + options.patient_height
+      - (options.patient_height - options.stage_bar_height)/2;
+    g.append('line')
+      .classed('separator', true)
+      .attr('x1', options.total_width - options.stage_bar_area_width
+                  - options.future_area_width)
+      .attr('y1', separator_y)
+      .attr('x2', options.total_width - options.future_area_width)
+      .attr('y2', separator_y);
   };
+};
 
-  function one_box(g) {
-    g.each(function(d, i) {
-      var g = d3.select(this);
+Superuser.prototype.retrievePatientInfo = function(callback) {
+  return callback([
+    {
+      name: 'France Toujours Attendant',
+      stages: [
+        {
+          name: 'Registration',
+          start: (new Date()).getTime() - 14400000, // 4 hours ago
+          end: (new Date()).getTime() - 12600000 // 3.5 hours ago
+        },
+        {
+          name: 'Waiting',
+          start: (new Date()).getTime() - 12600000,
+          end: null
+        }
+      ]
+    },
+    {
+      name: 'François Heureuse Chen',
+      stages: [
+        {
+          name: 'Registration',
+          start: (new Date()).getTime() - 21600000, // 6 hours ago
+          end: (new Date()).getTime() - 18000000 // 5 hours ago
+        },
+        {
+          name: 'Waiting',
+          start: (new Date()).getTime() - 18000000,
+          end: (new Date()).getTime() - 14400000, // 4 hrs ago
+        },
+        {
+          name: 'Screening',
+          start: (new Date()).getTime() - 14400000, // 4 hours ago
+          end: (new Date()).getTime() - 7200000 // 2 hours ago
+        },
+        {
+          name: 'Waiting',
+          start: (new Date()).getTime() - 7200000,
+          end: null
+        }
+      ]
+    },
+    {
+      name: 'François Heureuse Chen',
+      stages: [
+        {
+          name: 'Registration',
+          start: (new Date()).getTime() - 21600000, // 6 hours ago
+          end: (new Date()).getTime() - 18000000 // 5 hours ago
+        },
+        {
+          name: 'Waiting',
+          start: (new Date()).getTime() - 18000000,
+          end: (new Date()).getTime() - 14400000, // 4 hrs ago
+        },
+        {
+          name: 'Screening',
+          start: (new Date()).getTime() - 14400000, // 4 hours ago
+          end: (new Date()).getTime() - 7200000 // 2 hours ago
+        },
+        {
+          name: 'Waiting',
+          start: (new Date()).getTime() - 7200000,
+          end: null
+        }
+      ]
+    },
+    {
+      name: 'François Heureuse Chen',
+      stages: [
+        {
+          name: 'Registration',
+          start: (new Date()).getTime() - 21600000, // 6 hours ago
+          end: (new Date()).getTime() - 18000000 // 5 hours ago
+        },
+        {
+          name: 'Waiting',
+          start: (new Date()).getTime() - 18000000,
+          end: (new Date()).getTime() - 14400000, // 4 hrs ago
+        },
+        {
+          name: 'Screening',
+          start: (new Date()).getTime() - 14400000, // 4 hours ago
+          end: (new Date()).getTime() - 7200000 // 2 hours ago
+        },
+        {
+          name: 'Waiting',
+          start: (new Date()).getTime() - 7200000,
+          end: null
+        }
+      ]
+    }
 
-      g.attr("transform", "translate(" + xscale(d.date) + ",0)");
-      d = d.data;
-
-      var center = g.selectAll("line.center")
-        .data([[d.max, d.min]]);
-
-      center.enter().insert("line", "rect")
-        .attr("class", "center")
-        .attr("x1", 0)
-        .attr("y1", function(d) { return yscale(d[0]); })
-        .attr("x2", 0)
-        .attr("y2", function(d) { return yscale(d[1]); });
-
-      var box = g.selectAll("rect.box")
-        .data([[d.first, d.third]]);
-
-      box.enter().append("rect")
-        .attr("class", "box")
-        .attr("x", -boxwidth / 2)
-        .attr("y", function(d) { return yscale(d[1]); })
-        .attr("width", boxwidth)
-        .attr("height", function(d) { return yscale(d[0]) - yscale(d[1]); });
-
-      var medianLine = g.selectAll("line.median")
-        .data([d.median]);
-
-      medianLine.enter().append("line")
-        .attr("class", "median")
-        .attr("x1", -boxwidth/2)
-        .attr("y1", yscale)
-        .attr("x2", boxwidth/2)
-        .attr("y2", yscale);
-
-      var whisker = g.selectAll("line.whisker")
-        .data([d.min, d.max]);
-
-      whisker.enter().append("line") 
-        .attr("class", "whisker")
-        .attr("x1", -boxwidth/2)
-        .attr("y1", yscale)
-        .attr("x2", boxwidth/2)
-        .attr("y2", yscale);
-    });
-  };
-
-  box.height = function(x) {
-    if (!arguments.length) return height;
-    height = x;
-    return box;
-  };
-
-  box.width = function(x) {
-    if (!arguments.length) return width;
-    width = x;
-    return box;
-  };
-
-  box.yscale = function(x) {
-    if (!arguments.length) return yscale;
-    yscale = x;
-    return box;
-  };
-
-  box.xscale = function(x) {
-    if (!arguments.length) return xscale;
-    xscale = x;
-    return box;
-  };
-
-  return box;
+  ]);
 };
 
 $(document).ready(function() {

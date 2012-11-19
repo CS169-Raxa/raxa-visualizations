@@ -1,0 +1,29 @@
+body .tipsy {
+  font-size: 14px;
+}
+
+#patients-timelines {
+  max-height: 1024px;
+
+  .patient {
+    width: 100%;
+
+    line.separator {
+      fill: none;
+      stroke: #333;
+      stroke-dasharray: 3, 5;
+    }
+  }
+
+  .time-axis {
+    .tick {
+      fill: none;
+      stroke: #444;
+    }
+
+    .tick.minor {
+      stroke: #888;
+      stroke-dasharray: 10, 5;
+    }
+  }
+}
