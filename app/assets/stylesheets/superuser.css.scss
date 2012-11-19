@@ -5,12 +5,6 @@
   .patient {
     width: 100%;
 
-    .name {
-    }
-
-    .stage {
-    }
-
     line.separator {
       fill: none;
       stroke: #333;
@@ -21,7 +15,7 @@
   .time-axis {
     .tick {
       fill: none;
-      stroke: #000;
+      stroke: #444;
     }
 
     .tick.minor {
