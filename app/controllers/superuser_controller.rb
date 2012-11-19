@@ -20,7 +20,6 @@ class SuperuserController < ApplicationController
           }
         end
         stages.sort! {|s1, s2| s1[:start] <=> s2[:start]}
-        puts stages.inspect
 
         (0..stages.length-2).each do |i|
           stages[i][:end] = stages[i+1][:start]
@@ -29,7 +28,7 @@ class SuperuserController < ApplicationController
       end
     end
 
-    render :json => patients
+    render :json => patients.values
   end
 
   protected
@@ -49,8 +48,8 @@ class SuperuserController < ApplicationController
     patients = []
     encounter_types.each do |uuid, name|
       patients += get_json_data('raxacore/patientlist', {
-        :startDate => Chronic::parse('1 week ago'),
-        :endDate => Chronic::parse('today'),
+        :startDate => Chronic::parse('24 hours ago'),
+        :endDate => Chronic::parse('now'),
         :encounterType => uuid
       })['patients']
     end

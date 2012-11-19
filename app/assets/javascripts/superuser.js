@@ -12,6 +12,16 @@ Superuser.prototype.init = function() {
 
 Superuser.prototype.initTimelines = function() {
   this.retrievePatientInfo(function(data) {
+    for(var i = 0; i < data.length; i++) {
+      var stages = data[i].stages;
+      for(var j = 0; j < stages.length; j++) {
+        stages[j].start = new Date(stages[j].start).getTime();
+        if (stages[j].end) {
+          stages[j].end = new Date(stages[j].end).getTime();
+        }
+      }
+    }
+    console.log(data);
     this.drawTimelines(data);
   }.bind(this));
 };
@@ -70,7 +80,7 @@ Superuser.prototype.drawTimelines = function(data) {
 };
 
 Superuser.prototype.getTimeWindow = function() {
-  var TIME_WINDOW = 43200; // 12 hours
+  var TIME_WINDOW = 2*43200; // 12 hours
   return [new Date((new Date()).getTime() - (TIME_WINDOW * 1000)), new Date()];
 }
 
@@ -133,99 +143,12 @@ Superuser.prototype.drawTimeline = function(svg, options) {
 };
 
 Superuser.prototype.retrievePatientInfo = function(callback) {
-  return callback([
-    {
-      name: 'France Toujours Attendant',
-      stages: [
-        {
-          name: 'Registration',
-          start: (new Date()).getTime() - 14400000, // 4 hours ago
-          end: (new Date()).getTime() - 12600000 // 3.5 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 12600000,
-          end: null
-        }
-      ]
-    },
-    {
-      name: 'François Heureuse Chen',
-      stages: [
-        {
-          name: 'Registration',
-          start: (new Date()).getTime() - 21600000, // 6 hours ago
-          end: (new Date()).getTime() - 18000000 // 5 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 18000000,
-          end: (new Date()).getTime() - 14400000, // 4 hrs ago
-        },
-        {
-          name: 'Screening',
-          start: (new Date()).getTime() - 14400000, // 4 hours ago
-          end: (new Date()).getTime() - 7200000 // 2 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 7200000,
-          end: null
-        }
-      ]
-    },
-    {
-      name: 'François Heureuse Chen',
-      stages: [
-        {
-          name: 'Registration',
-          start: (new Date()).getTime() - 21600000, // 6 hours ago
-          end: (new Date()).getTime() - 18000000 // 5 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 18000000,
-          end: (new Date()).getTime() - 14400000, // 4 hrs ago
-        },
-        {
-          name: 'Screening',
-          start: (new Date()).getTime() - 14400000, // 4 hours ago
-          end: (new Date()).getTime() - 7200000 // 2 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 7200000,
-          end: null
-        }
-      ]
-    },
-    {
-      name: 'François Heureuse Chen',
-      stages: [
-        {
-          name: 'Registration',
-          start: (new Date()).getTime() - 21600000, // 6 hours ago
-          end: (new Date()).getTime() - 18000000 // 5 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 18000000,
-          end: (new Date()).getTime() - 14400000, // 4 hrs ago
-        },
-        {
-          name: 'Screening',
-          start: (new Date()).getTime() - 14400000, // 4 hours ago
-          end: (new Date()).getTime() - 7200000 // 2 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 7200000,
-          end: null
-        }
-      ]
-    }
-
-  ]);
+  return $.ajax({
+    type: 'GET',
+    url: 'superuser/patients'
+  }).done(function(data) {
+    callback(data);
+  });
 };
 
 $(document).ready(function() {

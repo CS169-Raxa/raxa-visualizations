@@ -63,7 +63,7 @@ RaxaVisualizations::Application.routes.draw do
   #   end
 
   match 'pharmacy' => 'pharmacy#index', :as => 'pharmacy'
-  match 'superuser/patients' => 'superuser#patients', :as => 'superuser'
+  match 'superuser/patients' => 'superuser#patients'
   match 'superuser' => 'superuser#index', :as => 'superuser'
   match 'registration' => 'registration#index', :as => 'registration'
   match 'screener' => 'screener#index', :as => 'screener'
