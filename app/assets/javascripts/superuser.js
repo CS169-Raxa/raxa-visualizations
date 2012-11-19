@@ -1,10 +1,6 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
-
-var Superuser = function() {};
+var Superuser = function() { };
 
 Superuser.prototype = new Raxa();
-
 Superuser.prototype.init = function() {
   Raxa.prototype.init.call(this);
   this.initTimelines();
