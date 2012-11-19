@@ -1,3 +1,5 @@
+require 'cucumber/rspec/doubles'
+
 Given /^I am on the superuser dashboard$/ do
   visit '/superuser'
 end
@@ -33,8 +35,6 @@ Then /^I should not see a graph$/ do
   print Nokogiri::HTML.parse(page.body).css('svg')
   page.should_not have_content("svg")
 end
-
-require 'cucumber/rspec/doubles'
 
 Given /^the average (.*?) time is (\d+) minutes$/ do |dept, minutes|
   department = Department.find_by_name(dept) || Department.create!({:name => dept})
