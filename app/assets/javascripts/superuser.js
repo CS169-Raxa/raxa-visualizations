@@ -21,7 +21,6 @@ Superuser.prototype.initTimelines = function() {
         }
       }
     }
-    console.log(data);
     this.drawTimelines(data);
   }.bind(this));
 };
