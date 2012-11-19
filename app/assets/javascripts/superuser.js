@@ -23,18 +23,20 @@ Superuser.prototype.drawTimelines = function(data) {
     stage_bar_height: 20,
     patient_y_offset: 50,
     total_width: 950,
-    total_height: 600,
     future_area_width: 50
   };
 
-  var svg = d3.select('svg#patients-timelines')
-    .attr('width', options.total_width);
+  options.total_height = data.length * options.patient_height
+    + 2 * options.patient_y_offset;
 
-  console.log(svg.style('height'));
+  var svg = d3.select('svg#patients-timelines')
+    .attr('width', options.total_width)
+    .attr('height', options.total_height);
 
   var time_scale = d3.time.scale()
     .domain(this.getTimeWindow())
-    .range([options.total_width - options.stage_bar_area_width - options.future_area_width,
+    .range([options.total_width - options.stage_bar_area_width
+            - options.future_area_width,
             options.total_width - options.future_area_width]);
   time_scale.tickFormat(d3.time.format('%I%p'));
 
