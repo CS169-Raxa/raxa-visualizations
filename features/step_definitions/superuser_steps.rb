@@ -49,26 +49,15 @@ Given /^(.*?) has been in (.*?) for (\d+) minutes$/ do |patient, dept, minutes|
   Department.find_by_name(dept).encounters << e
 end
 
-Then /^I should see an abnormal delay alert for (.*?)$/ do |patient|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^I should not see an abnormal delay alert for (.*?)$/ do |patient|
+Then /^I should (.*?) see an abnormal delay alert for (.*?)$/ do |arg1, patient|
   pending # express the regexp above with the code you wish you had
 end
 
 When /^I look at the timeline for (.*?)$/ do |patient|
+  @patient = Patient.find_by_name patient
+end
+
+Then /I should see a (.*?) block for (\d+) minutes$/ do |dept, time|
   pending # express the regexp above with the code you wish you had
 end
 
-Then /^first I should see a (.*?) block for (\d+) minutes$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^then I should see a (.*?) block for (\d+) minutes$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^last I should see an (.*?) block for (\d+) minutes$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
