@@ -4,7 +4,7 @@ class SuperuserController < ApplicationController
   end
 
   def timelines
-    encounters = Encounter.includes(:patient, :department).
+    encounters = Encounter.includes(:patient).includes(:department).
       where('patient_id IN (SELECT id FROM patients WHERE id IN ' \
       '(SELECT patient_id FROM encounters WHERE ' \
       'encounters.end_time IS NULL OR encounters.end_time >= ? ))',
