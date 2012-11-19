@@ -4,7 +4,7 @@ class SuperuserController < ApplicationController
   end
 
   def timelines
-    encounters = Encounter.includes(:patient).includes(:department).
+    encounters = Encounter.includes(:department).includes(:patient).
       where('patient_id IN (SELECT id FROM patients WHERE id IN ' \
       '(SELECT patient_id FROM encounters WHERE ' \
       'encounters.end_time IS NULL OR encounters.end_time >= ? ))',
@@ -13,7 +13,7 @@ class SuperuserController < ApplicationController
     result = []
     encounters.group_by(&:patient_id).map do |patient_id, encounters|
       result << {
-        :name => Patient.find(patient_id).name,
+        :name => encounters.first.patient.name,
         :stages => encounters.map do |e|
           {
             :name => e.department.name,
