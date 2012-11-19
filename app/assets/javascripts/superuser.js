@@ -72,7 +72,18 @@ Superuser.prototype.drawTimelines = function(data) {
 Superuser.prototype.getTimeWindow = function() {
   var TIME_WINDOW = 43200; // 12 hours
   return [new Date((new Date()).getTime() - (TIME_WINDOW * 1000)), new Date()];
-}
+};
+
+Superuser.prototype.time_filter_stages = function(stages, options) {
+  var early_cutoff = options.time_scale.original.domain()[0];
+  return stages.filter(function(stage) {
+    return new Date(stage.end * 1000) > early_cutoff;
+  });
+};
+
+Superuser.prototype.starts_before_graph = function(stage, options) {
+  return new Date(stage.start * 1000) > options.time_scale.original.domain()[0]
+};
 
 Superuser.prototype.drawTimeline = function(svg, options) {
   var superuser = this;
@@ -83,23 +94,19 @@ Superuser.prototype.drawTimeline = function(svg, options) {
     var g = d3.select(this);
     var y = patient_index * options.patient_height + options.patient_y_offset;
 
-    g.append('text')
-      .classed('name', true)
-      .text(patient.name)
-      .attr('x', 30)
-      .attr('y', y + options.stage_bar_height);
-
     var stages = g.selectAll('stages')
-      .data(patient.stages)
+      .data(superuser.time_filter_stages(patient.stages, options))
       .enter()
       .append('rect')
       .classed('stage', true)
       .attr('x', function(stage) {
-        return options.time_scale(stage.start);
+        return superuser.starts_before_graph(stage, options)
+          ? options.time_scale(stage.start)
+          : options.time_scale.original.range()[0];
       })
       .attr('y', y)
       .attr('width', function(stage) {
-        return stage.end !== null
+        return stage.end !== null && !superuser.starts_before_graph(stage, options)
           ? options.time_scale(stage.end) - options.time_scale(stage.start)
           : options.stage_bar_area_width - options.time_scale(stage.start)
             + options.total_width - options.stage_bar_area_width - options.future_area_width;
@@ -129,6 +136,13 @@ Superuser.prototype.drawTimeline = function(svg, options) {
       .attr('y1', separator_y)
       .attr('x2', options.total_width - options.future_area_width)
       .attr('y2', separator_y);
+
+    g.append('text')
+      .classed('name', true)
+      .text(patient.name)
+      .attr('x', 30)
+      .attr('y', y + options.stage_bar_height);
+
   };
 };
 
