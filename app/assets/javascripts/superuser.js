@@ -11,7 +11,7 @@ Superuser.prototype.init = function() {
 };
 
 Superuser.prototype.initTimelines = function() {
-  this.retrivePatientInfo(function(data) {
+  this.retrievePatientInfo(function(data) {
     this.drawTimelines(data);
   }.bind(this));
 };
@@ -109,6 +109,17 @@ Superuser.prototype.drawTimeline = function(svg, options) {
       .attr('ry', 2)
       .attr('fill', function(d) { return stage_colour(d.name); });
 
+    stages.each(function(stage, stage_index) {
+      $(this).tipsy({
+        live: true,
+        gravity: 'sw',
+        trigger: 'hover',
+        title: function() {
+          return d3.select(this).datum().name;
+        }.bind(this)
+      });
+    });
+
     var separator_y = y + options.patient_height
       - (options.patient_height - options.stage_bar_height)/2;
     g.append('line')
@@ -121,7 +132,7 @@ Superuser.prototype.drawTimeline = function(svg, options) {
   };
 };
 
-Superuser.prototype.retrivePatientInfo = function(callback) {
+Superuser.prototype.retrievePatientInfo = function(callback) {
   return callback([
     {
       name: 'France Toujours Attendant',
