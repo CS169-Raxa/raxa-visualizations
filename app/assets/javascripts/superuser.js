@@ -10,7 +10,6 @@ Superuser.prototype.initEncountersHistory = function() {
 
   var w = 520,
       h = 300,
-    //  m = [10, 100, 20, 50];
       m = {top: 10,
            right: 100,
            bottom: 20,
