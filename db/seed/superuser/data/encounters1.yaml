@@ -2,15 +2,12 @@
 ---
 name: Francis Chan
 ---
-- type: start
+- start_time: 10 hours ago
+  end_time: 8 hours ago
   department: registration
-  timestamp: 10 hours ago
-- type: end
-  department: registration
-  timestamp: 8 hours ago
-- type: start
+- start_time: 8 hours ago
+  end_time: 7 hours ago
   department: pharmacy
-  timestamp: 8 hours ago
-- type: end
-  department: pharmacy 
-  timestamp: 6 hours ago
+- start_time: 7 hours ago
+  end_time: 3 hours ago
+  department: gift shoppe
