@@ -114,7 +114,7 @@ Then /^I should see "(.*?)" before the "(.*?)" header$/ do |arg1, arg2|
   #assert_match(/#{arg1}(.*)#{header}/im, page.body)
 end
 
-Then /^I should see a line graph$/ do 
+Then /^I should see a line graph$/ do
   page.should have_selector("svg#registration_history_graph")
 end
 
@@ -129,5 +129,9 @@ Then /^I should see the "(.*?)" header before "(.*?)"$/ do |arg1, arg2|
 end
 
 Then /^I should list "(.*?)" before "(.*?)"$/ do |arg1, arg2|
-  (page.body =~ Regexp.new(arg1)).should < (page.body =~ Regexp.new(arg2))
+  index1 = (page.body =~ Regexp.new(arg1))
+  index2 = (page.body =~ Regexp.new(arg2))
+  index1.should_not == nil
+  index1.should_not == nil
+  index1.should < index2
 end
