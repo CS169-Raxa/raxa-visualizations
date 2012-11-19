@@ -6,17 +6,13 @@ Feature: time of patient paths
 
   Background: patients exist
     Given Patients A-B exist
-    And Patient B has the following events:
-      | type  | department   | timestamp      |
-      | start | registration | 60 minutes ago |
-      | end   | registration | 54 minutes ago |
-      | start | wait         | 54 minutes ago |
-      | end   | wait         | 40 minutes ago |
-      | start | screening    | 40 minutes ago |
-      | end   | screening    | 36 minutes ago |
-      | start | wait         | 36 minutes ago |
-      | end   | wait         | 15 minutes ago |
-      | start | inpatient    | 15 minutes ago |
+    And Patient B has the following encounters:
+      | department   | start_time     | end_time       |
+      | registration | 60 minutes ago | 54 minutes ago |
+      | wait         | 54 minutes ago | 40 minutes ago | 
+      | screening    | 40 minutes ago | 36 minutes ago |
+      | wait         | 36 minutes ago | 15 minutes ago |
+      | inpatient    | 15 minutes ago |                |
 
   Scenario: patients with no history display an error message
     When I look at the timeline for Patient A
