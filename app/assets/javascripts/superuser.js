@@ -21,7 +21,7 @@ Superuser.prototype.drawTimelines = function(data) {
   var options = {
     name_width: 100,
     stage_bar_area_width: 650,
-    patient_height: 20,
+    patient_height: 30,
     stage_bar_height: 20,
     patient_y_offset: 50
   };
@@ -69,7 +69,7 @@ Superuser.prototype.drawTimeline = function(svg, options) {
       .classed('name', true)
       .text(patient.name)
       .attr('x', 30)
-      .attr('y', y);
+      .attr('y', y + options.stage_bar_height);
 
     var stages = g.selectAll('stages')
       .data(patient.stages)
@@ -91,22 +91,6 @@ Superuser.prototype.drawTimeline = function(svg, options) {
       .attr('ry', 2)
       .attr('fill', function(d) { return stage_colour(d.name); });
 
-    stages.each(function(stage, stage_index) {
-      var stage_rect = d3.select(this);
-      var stage_x = stage_rect.attr('x');
-      var stage_y = stage_rect.attr('y');
-      var stage_width = stage_rect.attr('width');
-
-      if (stage_width > 30) {
-        g.append('text')
-          .classed('stage-label', true)
-          .text(stage.name)
-          .attr('x', parseInt(stage_x) + 10)
-          .attr('y', parseInt(stage_y) + options.stage_bar_height * 0.9)
-          .attr('width', stage_width - 10)
-          .attr('height', options.stage_bar_height);
-      }
-    });
   };
 };
 
