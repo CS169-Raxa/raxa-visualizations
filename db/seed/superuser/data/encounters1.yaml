@@ -1,0 +1,13 @@
+#Encounters for patient 1 
+---
+name: Francis Chan
+---
+- start_time: 10 hours ago
+  end_time: 8 hours ago
+  department: registration
+- start_time: 8 hours ago
+  end_time: 7 hours ago
+  department: pharmacy
+- start_time: 7 hours ago
+  end_time: 3 hours ago
+  department: gift shoppe

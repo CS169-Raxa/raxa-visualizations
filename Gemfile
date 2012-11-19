@@ -24,6 +24,7 @@ end
 # https://devcenter.heroku.com/articles/rails3#webserver
 # installed in all groups to allow for local testing before deployment
 gem 'thin'
+gem 'descriptive-statistics'
 
 # Gems used only for assets and not required
 # in production environments by default.
