@@ -8,4 +8,6 @@
 %h3 Hospital Overview Dashboard
 %svg#patients-timelines
 %h3 Statistics by Stage
--# TODO: Insert stages with per-stage links
+%ul
+- @departments.each do |dep|
+  %li= link_to dep.name, superuser_department_path(dep.id)
