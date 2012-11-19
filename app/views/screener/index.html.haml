@@ -40,7 +40,8 @@
             %td
               %span.bar-container
                 %span.bar{:style => "width: #{percent}%", :data => {:percent => percent},}<
-                  = '&nbsp;'.html_safe
+                  %span.bar_text<
+                    = doctor[:patients]
   %div.right
     %div.stat
       %div.bignum#patients_left<

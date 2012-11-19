@@ -1,7 +1,12 @@
+@import "compass/css3/transition";
 @import "main_box";
 
 $bar_background_colour: #aaa;
 $bar_colour: #333;
+
+@mixin fade-transition {
+  @include transition(opacity 0.3s linear);
+}
 
 #content {
   width: 900px;
@@ -15,9 +20,25 @@ $bar_colour: #333;
       background-color: $bar_background_colour;
       width: 300px;
     }
+
     .bar {
+      @include fade-transition;
       display: inline-block;
       background-color: $bar_colour;
+      text-align: center;
+      .bar_text {
+        @include fade-transition;
+        opacity: 0;
+      }
+    }
+    .bar:hover {
+      @include fade-transition;
+      opacity: 0.6;
+      text-align: center;
+      .bar_text {
+        @include fade-transition;
+        opacity: 1.0;
+      }
     }
   }
 
