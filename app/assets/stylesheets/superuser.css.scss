@@ -1,7 +1,5 @@
 
 #patients-timelines {
-  max-width: 800px;
-
   .patient {
     width: 100%;
   }
@@ -10,5 +8,12 @@
   }
 
   .stage {
+  }
+
+  .time-axis {
+    line {
+      fill: none;
+      stroke: #000;
+    }
   }
 }

@@ -17,14 +17,18 @@ Superuser.prototype.initTimelines = function() {
 };
 
 Superuser.prototype.drawTimelines = function(data) {
-  var svg = d3.select('svg#patients-timelines');
   var options = {
-    name_width: 100,
     stage_bar_area_width: 650,
     patient_height: 30,
     stage_bar_height: 20,
-    patient_y_offset: 50
+    patient_y_offset: 50,
+    total_width: 900,
+    total_height: 600,
+    future_area_width: 50
   };
+
+  var svg = d3.select('svg#patients-timelines')
+    .attr('width', options.total_width);
 
   var patients = svg.selectAll('g')
     .data(data)
@@ -34,19 +38,27 @@ Superuser.prototype.drawTimelines = function(data) {
 
   var time_scale = d3.time.scale()
     .domain(this.getTimeWindow())
-    .range([100, 750]);
+    .range([options.total_width - options.stage_bar_area_width,
+            options.total_width - options.future_area_width]);
   time_scale.tickFormat(d3.time.format('%I%p'));
 
   options.time_scale = function(millisecond_input) {
     return time_scale(new Date(millisecond_input));
   };
+  options.time_scale.original = time_scale;
 
   var time_axis = d3.svg.axis()
     .scale(time_scale)
     .orient('top')
     .ticks(d3.time.hours, 1)
-    .tickSubdivide(12) // every 5 minutes
+    .tickSubdivide(3) // every 15 minutes
     .tickSize(6, 3, 0);
+
+  svg.append('g')
+    .classed('time-axis', true)
+    .attr('transform', 'translate(0,'
+          + options.patient_y_offset + ')')
+    .call(time_axis);
 
   patients.each(this.drawTimeline(svg, options));
 };
@@ -84,13 +96,12 @@ Superuser.prototype.drawTimeline = function(svg, options) {
         return stage.end !== null
           ? options.time_scale(stage.end) - options.time_scale(stage.start)
           : options.stage_bar_area_width - options.time_scale(stage.start)
-            + options.name_width;
+            + options.total_width - options.stage_bar_area_width - options.future_area_width;
       })
       .attr('height', options.stage_bar_height)
       .attr('rx', 2)
       .attr('ry', 2)
       .attr('fill', function(d) { return stage_colour(d.name); });
-
   };
 };
 
@@ -112,7 +123,7 @@ Superuser.prototype.retrivePatientInfo = function(callback) {
       ]
     },
     {
-      name: 'patient 2',
+      name: 'François Heureuse Chen',
       stages: [
         {
           name: 'Registration',
