@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20121119012755) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "drug_delta", :force => true do |t|
+  create_table "drug_deltas", :force => true do |t|
     t.datetime "timestamp"
     t.float    "amount"
     t.string   "description"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20121119012755) do
     t.datetime "updated_at",  :null => false
   end
 
-  add_index "drug_delta", ["drug_id"], :name => "index_drug_delta_on_drug_id"
+  add_index "drug_deltas", ["drug_id"], :name => "index_drug_deltas_on_drug_id"
 
   create_table "drugs", :force => true do |t|
     t.string   "name"

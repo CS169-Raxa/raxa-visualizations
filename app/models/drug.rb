@@ -11,6 +11,12 @@ class Drug < ActiveRecord::Base
   end
 
   def recent_deltas time_period
+    10.times do
+      puts 'ddddd'
+    end
+    puts self.id
+    puts drug_deltas
+    puts 'aaa'
     drug_deltas.where('timestamp >= :time', {:time => Time.now - time_period})
   end
 
