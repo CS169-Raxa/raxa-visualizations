@@ -49,7 +49,11 @@ Given /^(.*?) has been in (.*?) for (\d+) minutes$/ do |patient, dept, minutes|
   Department.find_by_name(dept).encounters << e
 end
 
-Then /^I should (.*?) see an abnormal delay alert for (.*?)$/ do |arg1, patient|
+Then /^I should see an abnormal delay alert for (.*?)$/ do |patient|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should not see an abnormal delay alert for (.*?)$/ do |patient|
   pending # express the regexp above with the code you wish you had
 end
 
