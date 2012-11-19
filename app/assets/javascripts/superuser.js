@@ -10,17 +10,21 @@ Superuser.prototype.initEncountersHistory = function() {
 
   var w = 520,
       h = 300,
-      m = [10, 100, 20, 50];
+    //  m = [10, 100, 20, 50];
+      m = {top: 10,
+           right: 100,
+           bottom: 20,
+           left: 50 };
 
   var chart = d3.box()
-              .width(w - m[1] - m[3])
-              .height(h - m[0] - m[2]);
+              .width(w - m.right - m.left)
+              .height(h - m.top- m.bottom);
 
   var max = -Infinity,
       min = Infinity;
-  $.each(data.map (function(x)  { console.log(x); return x.data;}), function(i, d) {
-    max = d.max > max ? d.max : max;
-    min = d.min < min ? d.min : min;
+  $.each(data.map (function(x)  { return x.data;}), function(i, d) {
+    max = Math.max(d.max, max);
+    min = Math.min(d.min, min);
   });
 
   var ys = d3.scale.linear()
@@ -33,15 +37,8 @@ Superuser.prototype.initEncountersHistory = function() {
     .scale(ys)
     .orient('left');
 
-  //var xs = d3.scale.ordinal()
   var dates = data.map(function(x) { return x.date; });
-  var date_sort_asc = function (date1, date2) {
-    if (date1 > date2) return 1;
-    if (date1 < date2) return -1;
-    return 0;
-  };
-  dates.sort(date_sort_asc);
-  console.log(dates);
+  dates.sort(function(d1, d2) { return d1 - d2; })
   var xs = d3.time.scale()
     .domain([dates[0], dates[dates.length - 1]])
     .range([0,chart.width()]);
@@ -57,21 +54,21 @@ Superuser.prototype.initEncountersHistory = function() {
     .data([data])
     .enter().append("svg")
       .attr("class", "box")
-      .attr("width", w + m[1] + m[3])
-      .attr("height", h + m[0] + m[2]);
+      .attr("width", w + m.right + m.left)
+      .attr("height", h + m.top + m.bottom);
 
   svg.append("g")
-    .attr("transform", "translate(" + m[1] + "," + m[2] + ")")
+    .attr("transform", "translate(" + m.right + "," + m.bottom + ")")
     .call(chart);
 
   svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(" + m[1] / 2 + ", " + m[2] + ")")
+    .attr("transform", "translate(" + m.right / 2 + ", " + m.bottom + ")")
     .call(y_axis);
 
   svg.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(" + m[1] + ", " + h + ")")
+    .attr("transform", "translate(" + m.right + ", " + h + ")")
     .call(x_axis);
 
 };
@@ -149,7 +146,7 @@ d3.box = function() {
       center.enter().insert("line", "rect")
         .attr("class", "center")
         .attr("x1", 0)
-        .attr("y1", function(d) { console.log(yscale(d[0])); return yscale(d[0]); })
+        .attr("y1", function(d) { return yscale(d[0]); })
         .attr("x2", 0)
         .attr("y2", function(d) { return yscale(d[1]); });
 
@@ -176,7 +173,7 @@ d3.box = function() {
       var whisker = g.selectAll("line.whisker")
         .data([d.min, d.max]);
 
-      whisker.enter().append("line") //???
+      whisker.enter().append("line") 
         .attr("class", "whisker")
         .attr("x1", -boxwidth/2)
         .attr("y1", yscale)
