@@ -15,6 +15,12 @@ RaxaVisualizations::Application.routes.draw do
     end
   end
 
+  scope 'superuser', :as => :superuser do
+    resources :departments do
+      get 'departments/:id' => 'departments#show'
+    end
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
