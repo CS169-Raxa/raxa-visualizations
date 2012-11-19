@@ -40,8 +40,8 @@ Superuser.prototype.drawTimelines = function(data) {
             options.total_width - options.future_area_width]);
   time_scale.tickFormat(d3.time.format('%I%p'));
 
-  options.time_scale = function(millisecond_input) {
-    return time_scale(new Date(millisecond_input));
+  options.time_scale = function(second_input) {
+    return time_scale(new Date(second_input * 1000));
   };
   options.time_scale.original = time_scale;
 
@@ -133,99 +133,7 @@ Superuser.prototype.drawTimeline = function(svg, options) {
 };
 
 Superuser.prototype.retrievePatientInfo = function(callback) {
-  return callback([
-    {
-      name: 'France Toujours Attendant',
-      stages: [
-        {
-          name: 'Registration',
-          start: (new Date()).getTime() - 14400000, // 4 hours ago
-          end: (new Date()).getTime() - 12600000 // 3.5 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 12600000,
-          end: null
-        }
-      ]
-    },
-    {
-      name: 'François Heureuse Chen',
-      stages: [
-        {
-          name: 'Registration',
-          start: (new Date()).getTime() - 21600000, // 6 hours ago
-          end: (new Date()).getTime() - 18000000 // 5 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 18000000,
-          end: (new Date()).getTime() - 14400000, // 4 hrs ago
-        },
-        {
-          name: 'Screening',
-          start: (new Date()).getTime() - 14400000, // 4 hours ago
-          end: (new Date()).getTime() - 7200000 // 2 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 7200000,
-          end: null
-        }
-      ]
-    },
-    {
-      name: 'François Heureuse Chen',
-      stages: [
-        {
-          name: 'Registration',
-          start: (new Date()).getTime() - 21600000, // 6 hours ago
-          end: (new Date()).getTime() - 18000000 // 5 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 18000000,
-          end: (new Date()).getTime() - 14400000, // 4 hrs ago
-        },
-        {
-          name: 'Screening',
-          start: (new Date()).getTime() - 14400000, // 4 hours ago
-          end: (new Date()).getTime() - 7200000 // 2 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 7200000,
-          end: null
-        }
-      ]
-    },
-    {
-      name: 'François Heureuse Chen',
-      stages: [
-        {
-          name: 'Registration',
-          start: (new Date()).getTime() - 21600000, // 6 hours ago
-          end: (new Date()).getTime() - 18000000 // 5 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 18000000,
-          end: (new Date()).getTime() - 14400000, // 4 hrs ago
-        },
-        {
-          name: 'Screening',
-          start: (new Date()).getTime() - 14400000, // 4 hours ago
-          end: (new Date()).getTime() - 7200000 // 2 hours ago
-        },
-        {
-          name: 'Waiting',
-          start: (new Date()).getTime() - 7200000,
-          end: null
-        }
-      ]
-    }
-
-  ]);
+  d3.json('/superuser/timelines.json', callback);
 };
 
 $(document).ready(function() {
