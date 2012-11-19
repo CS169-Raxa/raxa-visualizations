@@ -16,6 +16,7 @@ Feature: loads on each department
       | department   | start_time            | end_time              |
       | registration | 3660 minutes ago      | 3652 minutes ago      |
       | registration | 30 minutes ago        | 20 minutes ago        |
+    And the screener department exists
 
     Given I am on the superuser dashboard
 

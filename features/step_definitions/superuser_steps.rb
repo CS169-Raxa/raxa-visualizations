@@ -2,17 +2,18 @@ Given /^I am on the superuser dashboard$/ do
   visit '/superuser'
 end
 
-
-When /^I click on the "(.*?)" stage$/ do |arg1|
+Given /^the (.*?) department exists$/ do |dept|
   if not Department.find_by_name(dept)
     Department.create!({:name => dept})
   end
-  click_link(arg1)
+end
+
+When /^I click on the "(.*?)" stage$/ do |dept|
+  click_link(dept)
 end
 
 Then /^I should see an average time of (\d+) minutes per patient$/ do |minutes|
-  find('#average_time').text.should include "#{minutes}:00"
-  pending # express the regexp above with the code you wish you had
+  assert_match("#{minutes}:00", page.body)
 end
 
 Then /^I should see a graph$/ do
@@ -25,11 +26,12 @@ Then /^there should be (\d+) data items on the graph with averages: (.*)$/ do |n
 end
 
 Then /^I should see a "(.*?)" for average time per patient$/ do |arg1|
-  find('#average-time').text.should include arg1
+  assert_match(arg1, page.body)
 end
 
 Then /^I should not see a graph$/ do
-  page.should_not have_selector("svg")
+  print Nokogiri::HTML.parse(page.body).css('svg')
+  page.should_not have_content("svg")
 end
 
 require 'cucumber/rspec/doubles'
