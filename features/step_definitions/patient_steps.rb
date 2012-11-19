@@ -1,9 +1,3 @@
-Given /^the following patients exist:$/ do |table|
-  table.hashes.each do |patient|
-    Patient.create!(patient)
-  end
-end
-
 Given /^Patients (.*?)\-(.*?) exist$/ do |let1, let2|
   (let1..let2).each do |letter|
     Patient.create!({:name => "Patient #{letter}"})

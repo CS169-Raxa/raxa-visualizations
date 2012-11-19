@@ -3,11 +3,11 @@ Given /^I am on the superuser dashboard$/ do
 end
 
 
-When /^I click on the "(.*?)" stage$/ do |arg1|
+When /^I click on the "(.*?)" stage$/ do |dept|
   if not Department.find_by_name(dept)
     Department.create!({:name => dept})
   end
-  click_link(arg1)
+  click_link(dept)
 end
 
 Then /^I should see an average time of (\d+) minutes per patient$/ do |minutes|
