@@ -4,10 +4,11 @@ class SuperuserController < ApplicationController
   end
 
   def timelines
-    encounters = Encounter.where('patient_id IN (SELECT id FROM patients WHERE id IN ' \
-                           '(SELECT patient_id FROM encounters WHERE ' \
-                           'encounters.end_time IS NULL OR encounters.end_time >= ? ))',
-                           12.hours.ago).order('end_time ASC').to_a
+    encounters = Encounter.includes(:patient, :department).
+      where('patient_id IN (SELECT id FROM patients WHERE id IN ' \
+      '(SELECT patient_id FROM encounters WHERE ' \
+      'encounters.end_time IS NULL OR encounters.end_time >= ? ))',
+      12.hours.ago).order('end_time ASC').to_a
 
     result = []
     encounters.group_by(&:patient_id).map do |patient_id, encounters|
