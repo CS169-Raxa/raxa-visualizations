@@ -108,7 +108,7 @@ Superuser.prototype.drawTimeline = function(svg, options) {
 Superuser.prototype.retrivePatientInfo = function(callback) {
   return callback([
     {
-      name: 'patient 1',
+      name: 'France Toujours Attendant',
       stages: [
         {
           name: 'Registration',
