@@ -1,22 +1,44 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-  */
+$main-background: #eee;
+$main-border: #000;
 
-#registered {
-  border: 1px solid #000;
-  background-color: #eee;
-  width: 400px;
+$content-padding: 10px;
+$registered-width: 400px;
+$history-width: 500px;
+$right-bar-width: 200px;
+
+@mixin main-box {
+  background-color: $main-background;
+  border: 1px solid $main-border;
 }
 
-.rightbar {
+#registered-container {
+  #registered {
+    @include main-box;
+    width: $registered-width;
+  }
+  float: left;
+  padding: $content-padding;
+}
+
+#history-container {
+  @include main-box;
+  #registration_history_graph {
+    margin: 10px;
+    padding: 10px;
+    width: $history-width;
+  }
+  margin: 10px;
+  float: left;
+  padding: $content-padding;
+}
+
+#rightbar {
   float: right;
   padding: 0 10px;
   .stat {
-    border: 1px solid #000;
+    @include main-box;
     text-align: center;
-    width: 200px;
-    background-color: #eee;
+    width: $right-bar-width;
     margin-bottom: 10px;
     padding: 5px;
     .bignum {
@@ -32,14 +54,18 @@
   color: #aaa;
   height: 30px;
   padding: 0 20px;
-  > div {
+  .divider-line {
     height: 1px;
     background-color: #aaa;
-    > span {
-      background-color: #eee;
+    .divider-date {
+      background-color: $main-background;
       padding: 0 0.5em;
       position: relative;
       top: -0.6em;
     }
   }
+}
+
+#content {
+  float: left;
 }

@@ -1,5 +1,3 @@
-%h3 Registered patients
-
 %table#registered
   %thead
     %tr
@@ -11,8 +9,8 @@
       - if regs_by_date[:date]
         %tr
           %td.divider{:colspan => 3}
-            %div
-              %span{:title => regs_by_date[:date]}= regs_by_date[:date]
+            %div.divider-line
+              %span.divider-date{:title => regs_by_date[:date]}= regs_by_date[:date]
       -regs_by_date[:regs].each do |registration|
         %tr
           %td= registration.time_end.localtime.strftime('%l:%M %P')
