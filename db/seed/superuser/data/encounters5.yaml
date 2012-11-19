@@ -1,0 +1,16 @@
+#Encounters for patient 5
+---
+name: patrick
+---
+- start_time: 8 hours ago
+  end_time: 6 hours ago
+  department: pharmacy
+- start_time: 6 hours ago
+  end_time: 5 hours ago
+  department: pharmacy
+- start_time: 5 hours ago
+  end_time: 4 hours ago
+  department: pharmacy
+- start_time: 4 hours ago
+  end_time: 2 hours ago
+  department: gift shoppe
