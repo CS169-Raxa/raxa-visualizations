@@ -3,6 +3,10 @@
 @import "compass/css3/border-radius";
 @import "tipsy";
 @import "graphs/time_graph.css.scss";
+@import "main_box";
+
+$stat_width: 200px;
+$stat_height: 130;
 
 body {
   margin: 0;
@@ -81,4 +85,16 @@ td {
 
 .hidden {
   display: none;
+}
+
+.stat {
+  @include main-box;
+  text-align: center;
+  width: $stat_width;
+  height: $stat_height;
+  margin-bottom: 10px;
+  padding: 5px;
+  .bignum {
+    font-size: 4em;
+  }
 }

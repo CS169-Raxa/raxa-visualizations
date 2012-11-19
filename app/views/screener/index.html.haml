@@ -1,0 +1,55 @@
+= content_for :head do
+  = stylesheet_link_tag :screener
+  = javascript_include_tag :raxa
+  = javascript_include_tag :screener
+
+- @name = 'Jennifer Doe'
+- @sorted_doctors = [
+-   { :name => 'Dr. Evil', :department => 'Shoes', :patients => 3 }, \
+-   { :name => 'Dr. Jekyll', :department => 'Leather and Hide', :patients => 8 }, \
+-   { :name => 'Dr. Horrible', :department => 'Jewelry', :patients => 8 }, \
+-   { :name => 'Dr. Mario', :department => 'Kitchenware', :patients => 11 }, \
+-   { :name => 'Dr. Strangelove', :department => 'Kitchenware', :patients => 12 }, \
+-   { :name => 'The Doctor', :department => 'Time and Relative Dimensions', :patients => 16 }, \
+-   { :name => 'Dr. Drake Ramore', :department => 'Jewelry', :patients => 18 }, \
+- ]
+- @max_patients = @sorted_doctors.last[:patients]
+- @patients_left = 7
+- @departments = @sorted_doctors.map {|d| d[:department]}.uniq
+
+%h2= "Dashboard for #{@name}"
+%h3 Screener
+%hr
+
+%div#content
+  %div.left
+    %table#doctors
+      %thead
+        %tr
+          %th Doctor
+          %th Department
+          %th Workload
+      %tbody
+        - @sorted_doctors.each do |doctor|
+          - percent = (100 * doctor[:patients].to_f / @max_patients).to_i
+          %tr
+            %td<
+              = doctor[:name]
+            %td<
+              = doctor[:department]
+            %td
+              %span.bar-container
+                %span.bar{:style => "width: #{percent}%", :data => {:percent => percent},}<
+                  = '&nbsp;'.html_safe
+  %div.right
+    %div.stat
+      %div.bignum#patients_left<
+        = @patients_left
+      = "#{'patient'.pluralize(@patients_left)} to assign"
+    %div#department_chooser
+      Filter by department:
+      %br
+      %select#department_select
+        - @departments.each do |department|
+          %option<
+            = department

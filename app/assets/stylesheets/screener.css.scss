@@ -1,0 +1,42 @@
+@import "main_box";
+
+$bar_background_colour: #aaa;
+$bar_colour: #333;
+
+#content {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+
+  #doctors {
+    @include main-box;
+    .bar-container {
+      display: inline-block;
+      background-color: $bar_background_colour;
+      width: 300px;
+    }
+    .bar {
+      display: inline-block;
+      background-color: $bar_colour;
+    }
+  }
+
+  #department_chooser {
+    @include main-box;
+    padding: 5px;
+    width: 200px;
+    #department_select {
+      width: 150px;
+    }
+  }
+
+  .left {
+    float: left;
+    padding: 10px;
+  }
+
+  .right {
+    float: left;
+    padding: 10px;
+  }
+}
