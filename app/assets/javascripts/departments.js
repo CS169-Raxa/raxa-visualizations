@@ -39,6 +39,8 @@ Department.prototype.initEncountersHistory = function() {
       min = Math.min(d.min, min);
     }
   });
+  min = min - 10;
+  max = max + 10;
 
   var ys = d3.scale.linear()
     .domain([min, max])
