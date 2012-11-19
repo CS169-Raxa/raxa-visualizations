@@ -8,4 +8,7 @@
 %h3 Performance history
 #box_plot{'data-points' => @department_history.to_json}
 
-%h3= "Average time per registration is: #{@average_time}"
+-if (@average_time.to_i == 0)
+  %h3= "No #{@department.name} history available" 
+-else 
+  %h3= "Average time per #{@department.name} visit is: #{@average_time}"
