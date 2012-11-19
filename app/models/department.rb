@@ -9,12 +9,17 @@ class Department < ActiveRecord::Base
     )
 
     times = encounters.map { |e| e.elapsed_time}.sort
-    return {
-      :min => times[0],
-      :first => times[times.length/4],
-      :median => times[times.length/2],
-      :third => times[3 * times.length/4],
-      :max => times[-1]
-    }
+
+    if encounters.length > 0
+      return {
+        :min => times[0],
+        :first => times[times.length/4],
+        :median => times[times.length/2],
+        :third => times[3 * times.length/4],
+        :max => times[-1]
+      }
+    else
+      return nil
+    end
   end
 end
