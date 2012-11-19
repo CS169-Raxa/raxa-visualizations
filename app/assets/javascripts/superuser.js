@@ -8,9 +8,9 @@ Superuser.prototype.init = function() {
 
 Superuser.prototype.initEncountersHistory = function() {
 
-  var w = 120,
-      h = 500,
-      m = [10, 50, 20, 50];
+  var w = 520,
+      h = 300,
+      m = [10, 100, 20, 50];
 
   var chart = d3.box()
               .width(w - m[1] - m[3])
@@ -18,13 +18,10 @@ Superuser.prototype.initEncountersHistory = function() {
 
   var max = -Infinity,
       min = Infinity;
-  console.log(data);
-  $.each(data, function(i, d) {
+  $.each(data.map (function(x)  { console.log(x); return x.data;}), function(i, d) {
     max = d.max > max ? d.max : max;
     min = d.min < min ? d.min : min;
   });
-  console.log(min);
-  console.log(max);
 
   var ys = d3.scale.linear()
     .domain([min, max])
@@ -36,16 +33,47 @@ Superuser.prototype.initEncountersHistory = function() {
     .scale(ys)
     .orient('left');
 
+  //var xs = d3.scale.ordinal()
+  var dates = data.map(function(x) { return x.date; });
+  var date_sort_asc = function (date1, date2) {
+    if (date1 > date2) return 1;
+    if (date1 < date2) return -1;
+    return 0;
+  };
+  dates.sort(date_sort_asc);
+  console.log(dates);
+  var xs = d3.time.scale()
+    .domain([dates[0], dates[dates.length - 1]])
+    .range([0,chart.width()]);
+
+  chart.xscale(xs);
+
+  var x_axis = d3.svg.axis()
+    .scale(xs)
+    .ticks(d3.time.days,1)
+    .orient('bottom');
+
   var svg = d3.select("body").selectAll("svg")
-    .data(data)
+    .data([data])
     .enter().append("svg")
       .attr("class", "box")
       .attr("width", w + m[1] + m[3])
-      .attr("height", h + m[0] + m[2])
-    .append("g")
-      .attr("transform", "translate(" + m[1] + "," + m[2] + ")")
-      .call(y_axis)
-      .call(chart);
+      .attr("height", h + m[0] + m[2]);
+
+  svg.append("g")
+    .attr("transform", "translate(" + m[1] + "," + m[2] + ")")
+    .call(chart);
+
+  svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(" + m[1] / 2 + ", " + m[2] + ")")
+    .call(y_axis);
+
+  svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(" + m[1] + ", " + h + ")")
+    .call(x_axis);
+
 };
 
 var a = {
@@ -73,27 +101,56 @@ third: 13,
 max: 15 
 }
 
-var data = [a, b, c];
+var data = [
+{date:new Date("November 13, 2012"),
+data: a },
+{date:new Date("November 14, 2012"),
+data: b },
+{date:new Date("November 15, 2012"),
+data: c },
+{date:new Date("November 16, 2012"),
+data: a },
+{date:new Date("November 17, 2012"),
+data: b },
+{date:new Date("November 18, 2012"),
+data: b },
+{date:new Date("November 19, 2012"),
+data: c } ];
 
 d3.box = function() {
   var width = 1,
       height = 1,
       value = Number,
       tickFormat = null,
-      yscale = null;
+      xscale = null,
+      yscale = null,
+      boxwidth = 0;
 
   function box(g) {
     g.each(function(d, i) {
+      boxwidth = Math.min(30, width/d.length);
       var g = d3.select(this);
+      var plots = g.selectAll("g")
+        .data(d);
+      plots.enter().append("g").call(one_box);
+    });
+  };
+
+  function one_box(g) {
+    g.each(function(d, i) {
+      var g = d3.select(this);
+
+      g.attr("transform", "translate(" + xscale(d.date) + ",0)");
+      d = d.data;
 
       var center = g.selectAll("line.center")
         .data([[d.max, d.min]]);
 
       center.enter().insert("line", "rect")
         .attr("class", "center")
-        .attr("x1", width / 2)
+        .attr("x1", 0)
         .attr("y1", function(d) { console.log(yscale(d[0])); return yscale(d[0]); })
-        .attr("x2", width / 2)
+        .attr("x2", 0)
         .attr("y2", function(d) { return yscale(d[1]); });
 
       var box = g.selectAll("rect.box")
@@ -101,9 +158,9 @@ d3.box = function() {
 
       box.enter().append("rect")
         .attr("class", "box")
-        .attr("x", 0)
+        .attr("x", -boxwidth / 2)
         .attr("y", function(d) { return yscale(d[1]); })
-        .attr("width", width)
+        .attr("width", boxwidth)
         .attr("height", function(d) { return yscale(d[0]) - yscale(d[1]); });
 
       var medianLine = g.selectAll("line.median")
@@ -111,9 +168,9 @@ d3.box = function() {
 
       medianLine.enter().append("line")
         .attr("class", "median")
-        .attr("x1", 0)
+        .attr("x1", -boxwidth/2)
         .attr("y1", yscale)
-        .attr("x2", width)
+        .attr("x2", boxwidth/2)
         .attr("y2", yscale);
 
       var whisker = g.selectAll("line.whisker")
@@ -121,9 +178,9 @@ d3.box = function() {
 
       whisker.enter().append("line") //???
         .attr("class", "whisker")
-        .attr("x1", 0)
+        .attr("x1", -boxwidth/2)
         .attr("y1", yscale)
-        .attr("x2", width)
+        .attr("x2", boxwidth/2)
         .attr("y2", yscale);
     });
   };
@@ -143,6 +200,12 @@ d3.box = function() {
   box.yscale = function(x) {
     if (!arguments.length) return yscale;
     yscale = x;
+    return box;
+  };
+
+  box.xscale = function(x) {
+    if (!arguments.length) return xscale;
+    xscale = x;
     return box;
   };
 

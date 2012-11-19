@@ -9,3 +9,10 @@
 .box .center {
   stroke-dasharray: 3,3;
 }
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
