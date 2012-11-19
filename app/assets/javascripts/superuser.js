@@ -79,7 +79,7 @@ Superuser.prototype.drawTimelines = function(data) {
 };
 
 Superuser.prototype.getTimeWindow = function() {
-  var TIME_WINDOW = 2*43200; // 12 hours
+  var TIME_WINDOW = 2*43200; // 24 hours
   return [new Date((new Date()).getTime() - (TIME_WINDOW * 1000)), new Date()];
 }
 
