@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require jquery.form
 //= require d3.v2.min
+//= require jquery.tipsy.js
