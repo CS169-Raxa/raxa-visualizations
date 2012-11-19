@@ -25,6 +25,7 @@ class Department < ActiveRecord::Base
 
   def average_time
     encounters = self.encounters.has_ended
+    return 0 if encounters.length == 0
     total_time = encounters.map {|e| e.elapsed_time}.reduce(:+)
     ChronicDuration.output((total_time/encounters.length).to_i, :format => :chrono)
   end
