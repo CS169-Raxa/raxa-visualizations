@@ -22,7 +22,7 @@ Superuser.prototype.drawTimelines = function(data) {
     patient_height: 30,
     stage_bar_height: 20,
     patient_y_offset: 50,
-    total_width: 900,
+    total_width: 950,
     total_height: 600,
     future_area_width: 50
   };
@@ -30,15 +30,11 @@ Superuser.prototype.drawTimelines = function(data) {
   var svg = d3.select('svg#patients-timelines')
     .attr('width', options.total_width);
 
-  var patients = svg.selectAll('g')
-    .data(data)
-    .enter()
-    .append('g')
-    .classed('patient', true);
+  console.log(svg.style('height'));
 
   var time_scale = d3.time.scale()
     .domain(this.getTimeWindow())
-    .range([options.total_width - options.stage_bar_area_width,
+    .range([options.total_width - options.stage_bar_area_width - options.future_area_width,
             options.total_width - options.future_area_width]);
   time_scale.tickFormat(d3.time.format('%I%p'));
 
@@ -52,13 +48,21 @@ Superuser.prototype.drawTimelines = function(data) {
     .orient('top')
     .ticks(d3.time.hours, 1)
     .tickSubdivide(3) // every 15 minutes
-    .tickSize(6, 3, 0);
+    .tickSize(options.total_height - options.patient_y_offset,
+              options.total_height - options.patient_y_offset,
+              0);
 
   svg.append('g')
     .classed('time-axis', true)
     .attr('transform', 'translate(0,'
-          + options.patient_y_offset + ')')
+          + (options.total_height - options.patient_y_offset/4) + ')')
     .call(time_axis);
+
+  var patients = svg.selectAll('g.patient')
+    .data(data)
+    .enter()
+    .append('g')
+    .classed('patient', true);
 
   patients.each(this.drawTimeline(svg, options));
 };
@@ -102,6 +106,16 @@ Superuser.prototype.drawTimeline = function(svg, options) {
       .attr('rx', 2)
       .attr('ry', 2)
       .attr('fill', function(d) { return stage_colour(d.name); });
+
+    var separator_y = y + options.patient_height
+      - (options.patient_height - options.stage_bar_height)/2;
+    g.append('line')
+      .classed('separator', true)
+      .attr('x1', options.total_width - options.stage_bar_area_width
+                  - options.future_area_width)
+      .attr('y1', separator_y)
+      .attr('x2', options.total_width - options.future_area_width)
+      .attr('y2', separator_y);
   };
 };
 
@@ -146,7 +160,58 @@ Superuser.prototype.retrivePatientInfo = function(callback) {
           end: null
         }
       ]
+    },
+    {
+      name: 'François Heureuse Chen',
+      stages: [
+        {
+          name: 'Registration',
+          start: (new Date()).getTime() - 21600000, // 6 hours ago
+          end: (new Date()).getTime() - 18000000 // 5 hours ago
+        },
+        {
+          name: 'Waiting',
+          start: (new Date()).getTime() - 18000000,
+          end: (new Date()).getTime() - 14400000, // 4 hrs ago
+        },
+        {
+          name: 'Screening',
+          start: (new Date()).getTime() - 14400000, // 4 hours ago
+          end: (new Date()).getTime() - 7200000 // 2 hours ago
+        },
+        {
+          name: 'Waiting',
+          start: (new Date()).getTime() - 7200000,
+          end: null
+        }
+      ]
+    },
+    {
+      name: 'François Heureuse Chen',
+      stages: [
+        {
+          name: 'Registration',
+          start: (new Date()).getTime() - 21600000, // 6 hours ago
+          end: (new Date()).getTime() - 18000000 // 5 hours ago
+        },
+        {
+          name: 'Waiting',
+          start: (new Date()).getTime() - 18000000,
+          end: (new Date()).getTime() - 14400000, // 4 hrs ago
+        },
+        {
+          name: 'Screening',
+          start: (new Date()).getTime() - 14400000, // 4 hours ago
+          end: (new Date()).getTime() - 7200000 // 2 hours ago
+        },
+        {
+          name: 'Waiting',
+          start: (new Date()).getTime() - 7200000,
+          end: null
+        }
+      ]
     }
+
   ]);
 };
 

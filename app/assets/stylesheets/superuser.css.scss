@@ -1,19 +1,32 @@
 
 #patients-timelines {
+  max-height: 1024px;
+
   .patient {
     width: 100%;
-  }
 
-  .name {
-  }
+    .name {
+    }
 
-  .stage {
+    .stage {
+    }
+
+    line.separator {
+      fill: none;
+      stroke: #333;
+      stroke-dasharray: 3, 5;
+    }
   }
 
   .time-axis {
-    line {
+    .tick {
       fill: none;
       stroke: #000;
+    }
+
+    .tick.minor {
+      stroke: #888;
+      stroke-dasharray: 10, 5;
     }
   }
 }
