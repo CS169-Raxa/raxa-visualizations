@@ -1,5 +1,11 @@
+= content_for :head do
+  = stylesheet_link_tag :superuser
+  = javascript_include_tag :raxa
+  = javascript_include_tag :superuser
+
 %h2 Superuser
+
 %h3 Hospital Overview Dashboard
--# TODO: Insert visualization
+%svg#patients-timelines
 %h3 Statistics by Stage
 -# TODO: Insert stages with per-stage links
