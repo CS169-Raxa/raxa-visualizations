@@ -1,19 +1,20 @@
 class Encounter < ActiveRecord::Base
-  attr_accessible :department, :start_time, :end_time
+  attr_accessible :start_time, :end_time
   validates :start_time, :presence => true
 
+  belongs_to :department
   belongs_to :patient
 
   scope :has_ended, lambda {
-    where(:conditions => 'end_time IS NOT NULL')
+    where('end_time IS NOT NULL')
   }
 
   def elapsed_time
-    (self.time_end or Chronic::now) - self.time_start
+    (self.end_time or Chronic::now) - self.start_time
   end
 
   def self.get_quartiles(start_time, end_time)
-    encounters_by_department = Encounters.has_ended.where(
+    encounters_by_department = Encounter.has_ended.where(
       'start_time >= :start_time and start_time <= :end_time',
       { :start_time => start_time, :end_time => end_time }
     ).group_by { |e| e.department }
