@@ -24,7 +24,6 @@ Feature: loads on each department
     When I click on the "registration" stage
     Then I should see an average time of 8 minutes per patient
     And I should see a graph
-    And there should be 2 data items on the graph with averages: 6,9
 
   Scenario: display no history notification
     When I click on the "screener" stage

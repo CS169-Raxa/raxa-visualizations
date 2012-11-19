@@ -17,7 +17,7 @@ Then /^I should see an average time of (\d+) minutes per patient$/ do |minutes|
 end
 
 Then /^I should see a graph$/ do
-  page.should have_selector("svg")
+  assert_match("box_plot", page.body)
 end
 
 Then /^there should be (\d+) data items on the graph with averages: (.*)$/ do |num, avgs_list|
