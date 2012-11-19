@@ -17,6 +17,10 @@ RaxaVisualizations::Application.routes.draw do
 
   scope 'superuser', :as => :superuser do
     get 'timelines' => 'superuser#timelines'
+
+    resources :departments do
+      get 'departments/:id' => 'departments#show'
+    end
   end
 
   # The priority is based upon order of creation:
