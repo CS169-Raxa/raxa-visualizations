@@ -12,24 +12,4 @@ class Encounter < ActiveRecord::Base
   def elapsed_time
     (self.end_time or Chronic::now) - self.start_time
   end
-
-  def self.get_quartiles(start_time, end_time)
-    encounters_by_department = Encounter.has_ended.where(
-      'start_time >= :start_time and start_time <= :end_time',
-      { :start_time => start_time, :end_time => end_time }
-    ).group_by { |e| e.department }
-
-    quartiles = {}
-    encounters_by_department.each do |department, encounters|
-      times = encounters.map { |e| e.elapsed_time}.sort
-      quartiles[department] = {
-        :min => times[0],
-        :first => times[times.length/4],
-        :median => times[times.length/2],
-        :third => times[3 * times.length/4],
-        :max => times[-1]
-      }
-    end
-    return quartiles
-  end
 end
