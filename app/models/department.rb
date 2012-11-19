@@ -8,15 +8,15 @@ class Department < ActiveRecord::Base
       { :start_time => start_time, :end_time => end_time }
     )
 
-    times = encounters.map { |e| e.elapsed_time}.sort
+    times = encounters.map { |e| e.elapsed_time}
 
-    if encounters.length > 0
+    if times.length > 0
       return {
-        :min => times[0],
-        :first => times[times.length/4],
-        :median => times[times.length/2],
-        :third => times[3 * times.length/4],
-        :max => times[-1]
+        :min => times.min,
+        :first => times.percentile(25),
+        :median => times.median,
+        :third => times.percentile(75),
+        :max => times.max
       }
     else
       return nil
