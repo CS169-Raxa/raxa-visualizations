@@ -80,6 +80,7 @@ Raxa.prototype.drawTimeGraph = function(graph, data, params) {
     .append('circle')
     .attr('cx', function (d) { return x(d.date); })
     .attr('cy', function (d) { return y(d.count); })
+    .attr('y', function(d) { return d.count; })
     .attr('r', '2px');
 
   graph.append('g')
