@@ -31,6 +31,32 @@ Pharmacy.prototype.initDOMListeners = function() {
       }
     });
   });
+
+  $('.bigTimeGraph').on('mouseover', 'circle', function() {
+    d3.select(this).transition()
+      .duration(500)
+      .attr('r', '5px')
+      .attr('opacity', .5);
+  });
+
+  $('.bigTimeGraph').on('mouseout', 'circle', function() {
+    d3.select(this).transition()
+      .duration(500)
+      .attr('r', '2px')
+      .attr('opacity', 1);
+  });
+
+  $('.bigTimeGraph circle').tipsy({
+    fade: true,
+    live: true,
+    offset: 10,
+    gravity: 'w',
+    html: false,
+    trigger: 'hover',
+    title: function() {
+      return d3.select(this).attr('y');
+    }
+  });
 };
 
 Pharmacy.prototype.initSparklines = function() {

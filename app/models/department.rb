@@ -8,15 +8,15 @@ class Department < ActiveRecord::Base
       { :start_time => start_time, :end_time => end_time }
     )
 
-    times = encounters.map { |e| e.elapsed_time}
+    stats = DescriptiveStatistics.new(encounters.map { |e| e.elapsed_time})
 
-    if times.length > 0
+    if stats.length > 0
       return {
-        :min => times.min,
-        :first => times.percentile(25),
-        :median => times.median,
-        :third => times.percentile(75),
-        :max => times.max
+        :min => stats.min,
+        :first => stats.value_from_percentile(25),
+        :median => stats.median,
+        :third => stats.value_from_percentile(75),
+        :max => stats.max
       }
     else
       return nil
