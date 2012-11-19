@@ -25,6 +25,7 @@ end
 # installed in all groups to allow for local testing before deployment
 gem 'thin'
 gem 'descriptive-statistics'
+gem 'http'
 
 # Gems used only for assets and not required
 # in production environments by default.
