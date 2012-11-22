@@ -19,4 +19,14 @@
         = flash[:notice]
 
   %div.wrapper
-    = yield
+    %h2
+      = yield :title
+    %h3
+      = yield :subtitle
+
+    %hr
+    %br
+    %div#content
+      = yield :content
+    %br
+    %hr

@@ -3,13 +3,18 @@
   = javascript_include_tag :raxa
   = javascript_include_tag :pharmacy
 
-%h1 Pharmacy stock
-%p Click a row to show additional details and options.
-%table#drugs
-  %thead
-    %tr
-      %th Name
-      %th Time left
-      %th History
-  - @drugs.each do |drug|
-    = render :partial => 'pharmacy/drug_edit', :locals => {:drug => drug}
+= content_for :title do
+  Pharmacy stock
+
+= content_for :subtitle do
+  Click a row to show additional details and options.
+
+= content_for :content do
+  %table#drugs
+    %thead
+      %tr
+        %th Name
+        %th Time left
+        %th History
+    - @drugs.each do |drug|
+      = render :partial => 'pharmacy/drug_edit', :locals => {:drug => drug}

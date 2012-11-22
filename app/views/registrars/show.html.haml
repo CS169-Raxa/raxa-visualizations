@@ -3,7 +3,11 @@
   = javascript_include_tag :raxa
   = javascript_include_tag :registrars
 
-%h2= "Dashboard for #{@name}"
+= content_for :title do
+  Dashboard for #{@name}
+
+= content_for :subtitle do
+  Registration
 
 %div#content
   %div#registered-container
