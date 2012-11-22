@@ -1,20 +1,22 @@
 @import "main_box";
 
 $content-padding: 10px;
-$registered-width: 400px;
+$registered-width: 300px;
 $history-width: 500px;
 $right-bar-width: 200px;
 
 #registered-container {
+  float: left;
   #registered {
     @include main-box;
     width: $registered-width;
   }
-  float: left;
   padding: $content-padding;
 }
 
 #history-container {
+  float: left;
+  width: $history-width + 4 * 10px;
   @include main-box;
   #registration_history_graph {
     margin: 10px;
@@ -22,23 +24,11 @@ $right-bar-width: 200px;
     width: $history-width;
   }
   margin: 10px;
-  float: left;
   padding: $content-padding;
 }
 
 #rightbar {
-  float: right;
   padding: 0 10px;
-  .stat {
-    @include main-box;
-    text-align: center;
-    width: $right-bar-width;
-    margin-bottom: 10px;
-    padding: 5px;
-    .bignum {
-      font-size: 4em;
-    }
-  }
 }
 
 .divider {
@@ -58,8 +48,4 @@ $right-bar-width: 200px;
       top: -0.6em;
     }
   }
-}
-
-#content {
-  float: left;
 }
