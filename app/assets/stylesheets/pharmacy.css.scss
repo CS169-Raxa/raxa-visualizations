@@ -57,14 +57,8 @@ $drug_table_width: 500px;
         display: inline-block;
       }
 
-      .details_left {
+      .left, .right {
         width: 50%;
-        float: left;
-      }
-
-      .details_right {
-        width: 50%;
-        float: left;
       }
 
       .bigTimeGraph.loading {

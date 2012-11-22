@@ -45,14 +45,15 @@
                   %span.bar_text<
                     = doctor[:patients]
   %div.right
-    %div.stat
-      %div.bignum#patients_left<
-        = @patients_left
-      = "#{'patient'.pluralize(@patients_left)} to assign"
-    %div#department_chooser
-      Filter by department:
-      %br
-      %select#department_select
-        - @departments.each do |department|
-          %option<
-            = department
+    %div#rightbar
+      %div.stat
+        %div.bignum#patients_left<
+          = @patients_left
+        = "#{'patient'.pluralize(@patients_left)} to assign"
+      %div#department_chooser
+        Filter by department:
+        %br
+        %select#department_select
+          - @departments.each do |department|
+            %option<
+              = department

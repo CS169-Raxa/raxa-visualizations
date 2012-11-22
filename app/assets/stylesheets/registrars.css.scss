@@ -1,14 +1,14 @@
 @import "main_box";
 @import "stat_box";
+@import "common";
 
-$padding: 10px;
 $registered_width: 400px;
 $graph_width: 500px;
-$history_width: $graph_width + 4 * $padding;
-$stat_width: 200px;
+$history_width: $graph_width + 4 * $margin;
 
 #content {
-  width: $registered_width + $history_width + $stat_width + (8 * $padding) + 4px;
+  width: $registered_width + $history_width + $stat_width +
+  (6 * $margin) + (2 * $padding) + 4px;
 }
 
 #registered-container {
@@ -16,23 +16,23 @@ $stat_width: 200px;
     @include main-box;
     width: $registered_width;
   }
-  padding: $padding;
+  margin: $margin;
 }
 
 #history-container {
   @include main-box;
   #registration_history_graph {
-    margin: 10px;
-    padding: 10px;
+    margin: $margin;
+    padding: $padding;
     width: $graph_width;
   }
   width: $history_width;
   padding: $padding;
-  margin: 10px;
+  margin: $margin;
 }
 
 #rightbar {
-  padding: $padding;
+  margin: $margin;
 }
 
 .divider {

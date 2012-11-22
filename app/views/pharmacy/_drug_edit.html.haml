@@ -10,7 +10,7 @@
   %tr
     %td.details{:colspan => 3}
       %div.details_container
-        %div.details_left
+        %div.left
           %div.drug_quantity
             Current quantity:
             = drug.quantity
@@ -24,7 +24,7 @@
               = f.text_field :alert_level, :id => "alert_level_field-#{drug.id}",
               :placeholder => "#{drug.units}"
               = submit_tag 'Update', :class => 'submit', :id => "alert_level_submit-#{drug.id}"
-        %div.details_right
+        %div.right
           %div.estimated_rate
             Estimated rate:
             = drug.estimated_rate * 1.week
