@@ -24,10 +24,11 @@
     %h3<
       = yield :subtitle
 
-    %hr
-    %br
-    %div#content
-      = yield :content
-      %div.clear
-    %br
-    %hr
+    - if content_for? :content
+      %hr
+      %div#content
+        = yield :content
+        %div.clear
+      %hr
+    - else
+      =yield

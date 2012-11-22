@@ -10,10 +10,10 @@
   Superuser
 
 = content_for :content do
-  %h3 Performance history
+  %h4 Performance history
   #box_plot{'data-points' => @department_history.to_json}
 
   -if (@average_time.to_i == 0)
-    %h3= "No #{@department.name} history available"
+    = "No #{@department.name} history available"
   -else
-    %h3= "Average time per #{@department.name} visit is: #{@average_time}"
+    = "Average time per #{@department.name} visit: #{@average_time}"
