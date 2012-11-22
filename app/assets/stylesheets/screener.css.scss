@@ -1,5 +1,6 @@
 @import "compass/css3/";
 @import "main_box";
+@import "stat_box";
 
 $bar_background_colour: #aaa;
 $bar_colour: #333;
@@ -48,9 +49,7 @@ hr {
 }
 
 #department_chooser {
-  @include main-box;
-  padding: 5px;
-  width: 200px;
+  @include stat-box;
   #department_select {
     width: 150px;
   }
