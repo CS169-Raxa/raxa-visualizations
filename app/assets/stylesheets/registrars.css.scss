@@ -1,15 +1,9 @@
-$main-background: #eee;
-$main-border: #000;
+@import "main_box";
 
 $content-padding: 10px;
 $registered-width: 400px;
 $history-width: 500px;
 $right-bar-width: 200px;
-
-@mixin main-box {
-  background-color: $main-background;
-  border: 1px solid $main-border;
-}
 
 #registered-container {
   #registered {

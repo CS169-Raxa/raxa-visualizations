@@ -1,0 +1,71 @@
+@import "compass/css3/";
+@import "main_box";
+
+$bar_background_colour: #aaa;
+$bar_colour: #333;
+
+@mixin fade-transition {
+  @include transition(opacity 0.3s linear);
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  @include background-image(
+    linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0))
+  ); 
+}
+
+#content {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+
+  #doctors {
+    @include main-box;
+    .bar-container {
+      display: inline-block;
+      background-color: $bar_background_colour;
+      width: 300px;
+    }
+
+    .bar {
+      @include fade-transition;
+      display: inline-block;
+      background-color: $bar_colour;
+      text-align: center;
+      .bar_text {
+        @include fade-transition;
+        opacity: 0;
+      }
+    }
+    .bar:hover {
+      @include fade-transition;
+      opacity: 0.6;
+      text-align: center;
+      .bar_text {
+        @include fade-transition;
+        opacity: 1.0;
+      }
+    }
+  }
+
+  #specialty_chooser {
+    @include main-box;
+    padding: 5px;
+    width: 200px;
+    #specialty_select {
+      width: 150px;
+    }
+  }
+
+  .left {
+    float: left;
+    padding: 10px;
+  }
+
+  .right {
+    float: left;
+    padding: 10px;
+  }
+}
