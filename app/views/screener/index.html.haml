@@ -5,17 +5,17 @@
 
 - @name = 'Jennifer Doe'
 - @sorted_doctors = [
--   { :name => 'Dr. Evil', :department => 'Shoes', :patients => 3 }, \
--   { :name => 'Dr. Jekyll', :department => 'Leather and Hide', :patients => 8 }, \
--   { :name => 'Dr. Horrible', :department => 'Jewelry', :patients => 8 }, \
--   { :name => 'Dr. Mario', :department => 'Kitchenware', :patients => 11 }, \
--   { :name => 'Dr. Strangelove', :department => 'Kitchenware', :patients => 12 }, \
--   { :name => 'The Doctor', :department => 'Time and Relative Dimensions', :patients => 16 }, \
--   { :name => 'Dr. Drake Ramore', :department => 'Jewelry', :patients => 18 }, \
+-   { :name => 'Dr. Evil', :specialty => 'Shoes', :patients => 3 }, \
+-   { :name => 'Dr. Jekyll', :specialty => 'Leather and Hide', :patients => 8 }, \
+-   { :name => 'Dr. Horrible', :specialty => 'Jewelry', :patients => 8 }, \
+-   { :name => 'Dr. Mario', :specialty => 'Kitchenware', :patients => 11 }, \
+-   { :name => 'Dr. Strangelove', :specialty => 'Kitchenware', :patients => 12 }, \
+-   { :name => 'The Doctor', :specialty => 'Time and Relative Dimensions', :patients => 16 }, \
+-   { :name => 'Dr. Drake Ramore', :specialty => 'Jewelry', :patients => 18 }, \
 - ]
 - @max_patients = @sorted_doctors.last[:patients]
 - @patients_left = 7
-- @departments = @sorted_doctors.map {|d| d[:department]}.uniq
+- @specialties = @sorted_doctors.map {|d| d[:specialty]}.uniq
 
 %h2= "Dashboard for #{@name}"
 %h3 Screener
@@ -27,7 +27,7 @@
       %thead
         %tr
           %th Doctor
-          %th Department
+          %th Specialty
           %th Workload
       %tbody
         - @sorted_doctors.each do |doctor|
@@ -36,7 +36,7 @@
             %td<
               = doctor[:name]
             %td<
-              = doctor[:department]
+              = doctor[:specialty]
             %td
               %span.bar-container
                 %span.bar{:style => "width: #{percent}%", :data => {:percent => percent},}<
@@ -47,13 +47,13 @@
       %div.bignum#patients_left<
         = @patients_left
       = "#{'patient'.pluralize(@patients_left)} to assign"
-    %div#department_chooser
-      Filter by department:
+    %div#specialty_chooser
+      Filter by specialty:
       %br
-      %select#department_select
-        - @departments.each do |department|
+      %select#specialty_select
+        - @specialties.each do |specialty|
           %option<
-            = department
+            = specialty
 %div.clear
 
 %hr

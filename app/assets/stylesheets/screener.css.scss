@@ -50,11 +50,11 @@ hr {
     }
   }
 
-  #department_chooser {
+  #specialty_chooser {
     @include main-box;
     padding: 5px;
     width: 200px;
-    #department_select {
+    #specialty_select {
       width: 150px;
     }
   }
