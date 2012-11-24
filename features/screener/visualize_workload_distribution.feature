@@ -15,9 +15,9 @@ Background:
   And I am on the screener dashboard
 
 Scenario: see correct workload per doctor
-  Then I should see Frankenstein at 100% workload
-  Then I should see Horrible at 20% workload
-  Then I should see Doogie Howser at 66% workload
+  Then I should see doctor Frankenstein at 100% workload
+  And I should see doctor Horrible at 20% workload
+  And I should see doctor Doogie Howser at 66% workload
 
 Scenario: see doctors in order of workload
   Then I should see Horrible before Doogie Howser
