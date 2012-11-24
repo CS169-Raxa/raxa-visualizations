@@ -1,8 +1,8 @@
-Feature: show a visualization of the current patient workload for each doctor
+Feature: show a visualization of the current workload for each doctor
 
   As a hospital screener,
-  I want to view the current distribution of patients to doctors
-  so I can ensure workload is being distributed evenly.
+  I want to view the workload of each doctor
+  so I can appropriately choose which doctor to assign a patient.
 
 Background:
 
