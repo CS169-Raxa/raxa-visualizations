@@ -1,0 +1,7 @@
+$main_background: #eee;
+$main_border: #000;
+
+@mixin main-box {
+  background-color: $main_background;
+  border: 1px solid $main_border;
+}
