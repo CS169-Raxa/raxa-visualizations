@@ -1,8 +1,3 @@
-= content_for :head do
-  = stylesheet_link_tag :screener
-  = javascript_include_tag :raxa
-  = javascript_include_tag :screener
-
 - @name = 'Jennifer Doe'
 - @sorted_doctors = [
 -   { :name => 'Dr. Evil', :specialty => 'Shoes', :patients => 3 }, \
@@ -17,11 +12,18 @@
 - @patients_left = 7
 - @specialties = @sorted_doctors.map {|d| d[:specialty]}.uniq
 
-%h2= "Dashboard for #{@name}"
-%h3 Screener
-%hr
+= content_for :head do
+  = stylesheet_link_tag :screener
+  = javascript_include_tag :raxa
+  = javascript_include_tag :screener
 
-%div#content
+= content_for :title do
+  Dashboard for #{@name}
+
+= content_for :subtitle do
+  Screener
+
+= content_for :content do
   %div.left
     %table#doctors
       %thead
@@ -43,17 +45,15 @@
                   %span.bar_text<
                     = doctor[:patients]
   %div.right
-    %div.stat
-      %div.bignum#patients_left<
-        = @patients_left
-      = "#{'patient'.pluralize(@patients_left)} to assign"
-    %div#specialty_chooser
-      Filter by specialty:
-      %br
-      %select#specialty_select
-        - @specialties.each do |specialty|
-          %option<
-            = specialty
-%div.clear
-
-%hr
+    %div#rightbar
+      %div.stat
+        %div.bignum#patients_left<
+          = @patients_left
+        = "#{'patient'.pluralize(@patients_left)} to assign"
+      %div#department_chooser
+        Filter by department:
+        %br
+        %select#department_select
+          - @specialties.each do |specialty|
+            %option<
+              = specialty

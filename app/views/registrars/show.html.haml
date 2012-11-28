@@ -3,17 +3,24 @@
   = javascript_include_tag :raxa
   = javascript_include_tag :registrars
 
-%h2= "Dashboard for #{@name}"
+= content_for :title do
+  Dashboard for #{@name}
 
-%div#content
-  %div#registered-container
-    = render :partial => 'registrars/regist_table',
-             :locals => {:registrations_and_divs => @registrations_and_divs,
-                         :full => @full,
-                         :num_regs_without_limit => @num_regs_without_limit}
-  %div#history-container
-    %svg#registration_history_graph.bigTimeGraph{'data-points' => @registration_history.to_json}
+= content_for :subtitle do
+  Registration
 
-%div#rightbar
-  = render :partial => 'registrars/rightbar',
-           :locals => {:num_today => @num_today, :average_time => @average_time}
+= content_for :content do
+  %div.left
+    %div.left
+      %div#registered-container
+        = render :partial => 'registrars/regist_table',
+                 :locals => {:registrations_and_divs => @registrations_and_divs,
+                             :full => @full,
+                             :num_regs_without_limit => @num_regs_without_limit}
+    %div.right
+      %div#history-container
+        %svg#registration_history_graph.bigTimeGraph{'data-points' => @registration_history.to_json}
+  %div.right
+    %div#rightbar
+      = render :partial => 'registrars/rightbar',
+               :locals => {:num_today => @num_today, :average_time => @average_time}

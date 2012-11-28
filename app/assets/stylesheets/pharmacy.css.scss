@@ -1,10 +1,17 @@
-@import "compass/css3/transition";
+@import "compass/css3";
+@import "input_placeholder";
 
 $no_alert_bg: #eee;
 $alert_bg: #faa;
 
+$drug_table_width: 500px;
+
+#content {
+  width: $drug_table_width;
+}
+
 #drugs {
-  width: 500px;
+  width: $drug_table_width;
   border-collapse: collapse;
 
   tbody {
@@ -50,40 +57,19 @@ $alert_bg: #faa;
         display: inline-block;
       }
 
-      .details_left {
+      .left, .right {
         width: 50%;
-        float: left;
-      }
-
-      .details_right {
-        width: 50%;
-        float: left;
       }
 
       .bigTimeGraph.loading {
         background: url('/assets/ajax-loader.gif') no-repeat center center;
       }
 
-      input::-webkit-input-placeholder {
-        text-align: right;
-      }
-      input:-moz-placeholder {
-        text-align: right;
-      }
-      input:-ms-input-placeholder {
+      @include input-placeholder('input') {
         text-align: right;
       }
     }
   }
-}
-
-#registered-container {
-  display: none;
-  width: 50%;
-}
-
-#history-container {
-  width: 50%;
 }
 
 label {
