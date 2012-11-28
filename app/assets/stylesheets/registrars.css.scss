@@ -1,44 +1,38 @@
 @import "main_box";
+@import "stat_box";
+@import "common";
 
-$content-padding: 10px;
-$registered-width: 400px;
-$history-width: 500px;
-$right-bar-width: 200px;
+$registered_width: 400px;
+$graph_width: 500px;
+$history_width: $graph_width + 4 * $margin;
+
+#content {
+  width: $registered_width + $history_width + $stat_width +
+  (6 * $margin) + (2 * $padding) + 4px;
+}
 
 #registered-container {
   #registered {
     @include main-box;
-    width: $registered-width;
+    width: $registered_width;
   }
-  float: left;
-  padding: $content-padding;
+  margin: $margin;
 }
 
 #history-container {
   @include main-box;
   #registration_history_graph {
-    margin: 10px;
-    padding: 10px;
-    width: $history-width;
+    margin: $margin;
+    padding: $padding;
+    width: $graph_width;
   }
-  margin: 10px;
-  float: left;
-  padding: $content-padding;
+  width: $history_width;
+  padding: $padding;
+  margin: $margin;
 }
 
 #rightbar {
-  float: right;
-  padding: 0 10px;
-  .stat {
-    @include main-box;
-    text-align: center;
-    width: $right-bar-width;
-    margin-bottom: 10px;
-    padding: 5px;
-    .bignum {
-      font-size: 4em;
-    }
-  }
+  margin: $margin;
 }
 
 .divider {
@@ -58,8 +52,4 @@ $right-bar-width: 200px;
       top: -0.6em;
     }
   }
-}
-
-#content {
-  float: left;
 }

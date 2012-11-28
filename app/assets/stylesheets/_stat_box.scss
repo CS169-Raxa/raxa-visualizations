@@ -1,0 +1,21 @@
+@import "common";
+
+$stat_width: 200px;
+$stat_height: 130;
+
+@mixin stat-box {
+  @include main-box;
+  text-align: center;
+  padding: $padding;
+  width: $stat_width - 2 * $padding;
+  height: $stat_height;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  .bignum {
+    font-size: 3.5em;
+  }
+}
+
+.stat {
+  @include stat-box;
+}

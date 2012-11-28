@@ -13,10 +13,22 @@
     %div.title
       = link_to 'Raxa Visualizations', root_path
 
-  %div#notices
+  %div#notices<
     - if flash[:notice]
       %div.notice
         = flash[:notice]
 
   %div.wrapper
-    = yield
+    %h2<
+      = yield :title
+    %h3<
+      = yield :subtitle
+
+    - if content_for? :content
+      %hr
+      %div#content
+        = yield :content
+        %div.clear
+      %hr
+    - else
+      =yield

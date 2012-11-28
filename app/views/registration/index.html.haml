@@ -1,11 +1,15 @@
-%h2 Registration
-%h3
+= content_for :title do
+  Registration
+
+= content_for :subtitle do
   %a{:href => registration_registrars_path} Registration dashboard
-%h3 Dashboards by registrar
-- if @registrars.empty?
-  %p No registrars found!
-- else
-  %ul
-    - @registrars.each do |registrar|
-      %li
-        %a{:href => registration_registrar_path(registrar.id)}= registrar.name
+
+= content_for :content do
+  %h3 Dashboards by registrar
+  - if @registrars.empty?
+    %p No registrars found!
+  - else
+    %ul
+      - @registrars.each do |registrar|
+        %li
+          %a{:href => registration_registrar_path(registrar.id)}= registrar.name

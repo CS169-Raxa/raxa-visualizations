@@ -3,11 +3,15 @@
   = javascript_include_tag :raxa
   = javascript_include_tag :superuser
 
-%h2 Superuser
+= content_for :title do
+  Superuser
 
-%h3 Hospital Overview Dashboard
-%svg#patients-timelines
-%h3 Statistics by Stage
-%ul
-- @departments.each do |dep|
-  %li= link_to dep.name, superuser_department_path(dep.id)
+= content_for :subtitle do
+  Hospital Overview Dashboard
+
+= content_for :content do
+  %svg#patients-timelines
+  %h3 Statistics by Stage
+  %ul
+  - @departments.each do |dep|
+    %li= link_to dep.name, superuser_department_path(dep.id)
