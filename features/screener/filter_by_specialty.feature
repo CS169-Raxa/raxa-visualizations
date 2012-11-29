@@ -7,10 +7,10 @@ Feature: filter displayed doctors by specialty
 Background:
 
   Given the following doctors exist:
-  | name          | specialty        | max_workload | number of patients |
-  | Frankenstein  | Mad Science      |            1 |                  1 |
-  | Horrible      | Mad Science      |           25 |                  5 |
-  | Doogie Howser | Resident Surgeon |           12 |                  8 |
+  | name          | specialty             | max_workload | number of patients |
+  | Frankenstein  | Mad Science           |            1 |                  1 |
+  | Horrible      | Mad Science, NPH      |           25 |                  5 |
+  | Doogie Howser | Resident Surgeon, NPH |           12 |                  8 |
 
   And I am on the screener dashboard
 

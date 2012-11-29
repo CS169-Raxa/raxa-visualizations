@@ -7,10 +7,10 @@ Feature: show a visualization of the current workload for each doctor
 Background:
 
   Given the following doctors exist:
-  | name          | specialty        | max_workload | number of patients |
-  | Frankenstein  | mad science      |            1 |                  1 |
-  | Horrible      | mad science      |           25 |                  5 |
-  | Doogie Howser | resident surgeon |           12 |                  8 |
+  | name          | specialty             | max_workload | number of patients |
+  | Frankenstein  | mad science           |            1 |                  1 |
+  | Horrible      | mad science, NPH      |           25 |                  5 |
+  | Doogie Howser | resident surgeon, NPH |           12 |                  8 |
 
   And I am on the screener dashboard
 
