@@ -18,7 +18,7 @@
           %th Workload
       %tbody
         - @sorted_doctors.each do |doctor|
-          - percent = doctor.workload
+          - percent = [doctor.workload, 5].max
           %tr
             %td<
               = doctor.name
