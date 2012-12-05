@@ -5,11 +5,9 @@ class Doctor < ActiveRecord::Base
   has_many :patients
   has_and_belongs_to_many :specialties
 
-  scope :sorted_by_num_patients, (lambda do
-    select("#{Doctor.table_name}.*, COUNT(#{Patient.table_name}.id) num_pats")
-      .joins(Patient.table_name.to_sym)
-      .order(:num_pats)
-  end)
+  def self.sorted_by_workload
+    all.sort{|doctor| doctor.workload}
+  end
 
   def num_patients
     return self.patients.size
@@ -17,5 +15,10 @@ class Doctor < ActiveRecord::Base
 
   def specialty_names
     self.specialties.map{|specialty| specialty.name}
+  end
+
+  def workload
+    # if the load is greater than 100, limit to 100
+    [(100 * num_patients.to_f / max_workload).to_i, 100].min
   end
 end
