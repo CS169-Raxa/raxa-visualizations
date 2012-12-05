@@ -19,7 +19,7 @@
       %tbody
         - @sorted_doctors.each do |doctor|
           - percent = [doctor.workload, 5].max
-          %tr
+          %tr{:id => "doctor-#{doctor.id}"}
             %td.doctor_name<
               = doctor.name
             %td<
