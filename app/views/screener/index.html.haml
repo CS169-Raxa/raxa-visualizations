@@ -20,7 +20,7 @@
         - @sorted_doctors.each do |doctor|
           - percent = [doctor.workload, 5].max
           %tr
-            %td<
+            %td.doctor_name<
               = doctor.name
             %td<
               = doctor.specialty_names.join(', ')
@@ -42,6 +42,6 @@
         %br
         = form_tag screener_path, :method => :get do
           = select_tag :specialty, options_from_collection_for_select(@specialties, "id", "name"), :id => :department_select
-          = submit_tag
+          = submit_tag nil, :id => :filter_submit
         - if @filtering
           = link_to "Clear filtering", screener_path
