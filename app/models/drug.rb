@@ -2,12 +2,16 @@ class Drug < ActiveRecord::Base
   has_many :drug_deltas
   attr_accessible :alert_level, :estimated_rate, :name, :user_rate, :units, :quantity
 
+  def quantity_alert?
+    self.alert_level and self.quantity and self.quantity <= self.alert_level
+  end
+
+  def time_alert?
+    self.time_left and self.time_left < 1.week
+  end
+
   def alert?
-    if self.alert_level and self.quantity
-      self.quantity <= self.alert_level
-    else
-      false
-    end
+    self.quantity_alert? or self.time_alert?
   end
 
   def recent_deltas time_period
