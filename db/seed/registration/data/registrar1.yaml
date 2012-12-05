@@ -1,29 +1,49 @@
-# Registrar 1
+#Registrations by registrar
 ---
-name: Keyser Soze
+name: Kimbra
 ---
-- patient_name: Christina Wong
-  registration_data:
-    patient_status: new
-    time_start: 3 September 1991 8:30 am
-    time_end: 3 September 1991 9:00 am
-- patient_name: Dan Wang
+- patient_name: Carl
   registration_data:
     patient_status: returning
-    time_start: 20 October 1991 5:15 pm
-    time_end: 20 October 1991 7:12 pm
-- patient_name: Eric Tzeng
+    time_start: 18 minutes ago 
+    time_end:   0 minutes ago
+- patient_name: Brittany
+  registration_data:
+    patient_status: new
+    time_start: 1 days ago 4:00 am
+    time_end:   1 days ago 6:00 am
+- patient_name: Esther
   registration_data:
     patient_status: returning
-    time_start: 8 April 1992 2:72 am
-    time_end: 8 April 1992 3:14 am
-- patient_name: Seshadri Mahalingam
+    time_start: 1 days ago 4:00 am
+    time_end:   1 days ago 6:00 am
+- patient_name: David
   registration_data:
     patient_status: new
-    time_start: 4 September 1992 5:30 am
-    time_end: 4 September 1992 1:00 pm
-- patient_name: Stephanie Ge
+    time_start: 2 days ago 8:00 am
+    time_end:   2 days ago 10:00 am
+- patient_name: Esther
+  registration_data:
+    patient_status: returning
+    time_start: 2 days ago 4:00 am
+    time_end:   2 days ago 6:00 am
+- patient_name: Carl
   registration_data:
     patient_status: new
-    time_start: 12 September 1992 9:30 pm
-    time_end: 12 September 1992 11:00 pm
+    time_start: 3 days ago 5:00 am
+    time_end:   3 days ago 7:00 am
+- patient_name: Alex
+  registration_data:
+    patient_status: returning
+    time_start: 3 days ago 2:00 am
+    time_end:   3 days ago 4:00 am
+- patient_name: Esther
+  registration_data:
+    patient_status: new
+    time_start: 4 days ago 1:00 am
+    time_end:   4 days ago 3:00 am
+- patient_name: Alex
+  registration_data:
+    patient_status: new
+    time_start: 4 days ago 1:00 am
+    time_end:   4 days ago 3:00 am

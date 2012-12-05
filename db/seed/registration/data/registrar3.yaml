@@ -1,0 +1,69 @@
+#Registrations by registrar
+---
+name: Chuck
+---
+- patient_name: David
+  registration_data:
+    patient_status: returning
+    time_start: 14 minutes ago 
+    time_end:   0 minutes ago
+- patient_name: Brittany
+  registration_data:
+    patient_status: new
+    time_start: 1 days ago 1:00 am
+    time_end:   1 days ago 3:00 am
+- patient_name: Carl
+  registration_data:
+    patient_status: returning
+    time_start: 1 days ago 2:00 am
+    time_end:   1 days ago 3:40 am
+- patient_name: David
+  registration_data:
+    patient_status: returning
+    time_start: 1 days ago 3:00 am
+    time_end:   1 days ago 7:00 am
+- patient_name: Esther
+  registration_data:
+    patient_status: returning
+    time_start: 1 days ago 1:00 am
+    time_end:   1 days ago 4:00 am
+- patient_name: David
+  registration_data:
+    patient_status: new
+    time_start: 2 days ago 6:00 am
+    time_end:   2 days ago 9:00 am
+- patient_name: Alex
+  registration_data:
+    patient_status: returning
+    time_start: 3 days ago 6:00 am
+    time_end:   3 days ago 8:00 am
+- patient_name: Alex
+  registration_data:
+    patient_status: new
+    time_start: 4 days ago 5:00 am
+    time_end:   4 days ago 9:00 am
+- patient_name: Alex
+  registration_data:
+    patient_status: returning
+    time_start: 4 days ago 7:00 am
+    time_end:   4 days ago 10:00 am
+- patient_name: Esther
+  registration_data:
+    patient_status: returning
+    time_start: 5 days ago 12:00 am
+    time_end:   5 days ago 10:00 am
+- patient_name: Esther
+  registration_data:
+    patient_status: returning
+    time_start: 5 days ago 8:00 am
+    time_end:   5 days ago 11:00 am
+- patient_name: Carl
+  registration_data:
+    patient_status: new
+    time_start: 6 days ago 9:00 am
+    time_end:   6 days ago 11:00 am
+- patient_name: Esther
+  registration_data:
+    patient_status: new
+    time_start: 6 days ago 11:00 am
+    time_end:   6 days ago 11:30 am

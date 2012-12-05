@@ -1,23 +1,23 @@
 # Registrar 2
 ---
-name: JOSEPH
+name: Joseph
 ---
-- patient_name: JACOB
+- patient_name: Jacob
   registration_data:
     patient_status: new
     time_start: 1 day ago 3:14 pm
     time_end: 1 day ago 5:10 pm
-- patient_name: JUSTIN
+- patient_name: Justin
   registration_data:
     patient_status: returning
     time_start: 1 day ago 4:15 pm
     time_end: 1 day ago 4:17 pm
-- patient_name: JERRY
+- patient_name: Jerry
   registration_data:
     patient_status: returning
     time_start: 2 days ago 10:31 am
     time_end: 2 days ago 12:56 pm
-- patient_name: JIMMY
+- patient_name: Jimmy
   registration_data:
     patient_status: new
     time_start: 2 days ago 1:23 pm
