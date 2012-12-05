@@ -4,8 +4,8 @@ class DrugsController < ApplicationController
     drug = Drug.find(id)
 
     drug_params = params[:drug]
-    drug.user_rate = drug_params[:user_rate]
-    drug.alert_level = drug_params[:alert_level]
+    drug.user_rate = drug_params[:user_rate] if drug_params[:user_rate]
+    drug.alert_level = drug_params[:alert_level] if drug_params[:alert_level]
     drug.save!
 
     success_message = %Q[#{drug.name} successfully saved]
