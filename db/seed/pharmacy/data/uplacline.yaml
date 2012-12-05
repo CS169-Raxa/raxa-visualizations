@@ -1,0 +1,342 @@
+# Drug seed file
+---
+name: Uplacline
+quantity: 30000
+units: mg
+---
+- amount: 42
+  timestamp: 0 hours ago
+- amount: -21
+  timestamp: 1 hours ago
+- amount: -15
+  timestamp: 2 hours ago
+- amount: -63
+  timestamp: 3 hours ago
+- amount: -34
+  timestamp: 4 hours ago
+- amount: -26
+  timestamp: 5 hours ago
+- amount: -5
+  timestamp: 6 hours ago
+- amount: 4
+  timestamp: 7 hours ago
+- amount: -50
+  timestamp: 8 hours ago
+- amount: -64
+  timestamp: 9 hours ago
+- amount: -51
+  timestamp: 10 hours ago
+- amount: -23
+  timestamp: 11 hours ago
+- amount: -1
+  timestamp: 12 hours ago
+- amount: -50
+  timestamp: 13 hours ago
+- amount: -63
+  timestamp: 14 hours ago
+- amount: -92
+  timestamp: 15 hours ago
+- amount: -15
+  timestamp: 16 hours ago
+- amount: -15
+  timestamp: 17 hours ago
+- amount: -90
+  timestamp: 18 hours ago
+- amount: -71
+  timestamp: 19 hours ago
+- amount: 20
+  timestamp: 20 hours ago
+- amount: -67
+  timestamp: 21 hours ago
+- amount: -72
+  timestamp: 22 hours ago
+- amount: -83
+  timestamp: 23 hours ago
+- amount: -43
+  timestamp: 24 hours ago
+- amount: 45
+  timestamp: 25 hours ago
+- amount: -7
+  timestamp: 26 hours ago
+- amount: -87
+  timestamp: 27 hours ago
+- amount: -14
+  timestamp: 28 hours ago
+- amount: 29
+  timestamp: 29 hours ago
+- amount: -88
+  timestamp: 30 hours ago
+- amount: -46
+  timestamp: 31 hours ago
+- amount: -69
+  timestamp: 32 hours ago
+- amount: -88
+  timestamp: 33 hours ago
+- amount: -88
+  timestamp: 34 hours ago
+- amount: -28
+  timestamp: 35 hours ago
+- amount: -81
+  timestamp: 36 hours ago
+- amount: -75
+  timestamp: 37 hours ago
+- amount: -15
+  timestamp: 38 hours ago
+- amount: 26
+  timestamp: 39 hours ago
+- amount: -7
+  timestamp: 40 hours ago
+- amount: -58
+  timestamp: 41 hours ago
+- amount: -37
+  timestamp: 42 hours ago
+- amount: -58
+  timestamp: 43 hours ago
+- amount: -12
+  timestamp: 44 hours ago
+- amount: -81
+  timestamp: 45 hours ago
+- amount: 25
+  timestamp: 46 hours ago
+- amount: -56
+  timestamp: 47 hours ago
+- amount: -50
+  timestamp: 48 hours ago
+- amount: -67
+  timestamp: 49 hours ago
+- amount: -54
+  timestamp: 50 hours ago
+- amount: -12
+  timestamp: 51 hours ago
+- amount: -70
+  timestamp: 52 hours ago
+- amount: 1
+  timestamp: 53 hours ago
+- amount: -46
+  timestamp: 54 hours ago
+- amount: -25
+  timestamp: 55 hours ago
+- amount: -73
+  timestamp: 56 hours ago
+- amount: -29
+  timestamp: 57 hours ago
+- amount: -90
+  timestamp: 58 hours ago
+- amount: -22
+  timestamp: 59 hours ago
+- amount: -66
+  timestamp: 60 hours ago
+- amount: -37
+  timestamp: 61 hours ago
+- amount: 34
+  timestamp: 62 hours ago
+- amount: -80
+  timestamp: 63 hours ago
+- amount: -48
+  timestamp: 64 hours ago
+- amount: -29
+  timestamp: 65 hours ago
+- amount: -49
+  timestamp: 66 hours ago
+- amount: -65
+  timestamp: 67 hours ago
+- amount: 19
+  timestamp: 68 hours ago
+- amount: -74
+  timestamp: 69 hours ago
+- amount: -11
+  timestamp: 70 hours ago
+- amount: -55
+  timestamp: 71 hours ago
+- amount: -66
+  timestamp: 72 hours ago
+- amount: 8
+  timestamp: 73 hours ago
+- amount: -76
+  timestamp: 74 hours ago
+- amount: -81
+  timestamp: 75 hours ago
+- amount: -25
+  timestamp: 76 hours ago
+- amount: -13
+  timestamp: 77 hours ago
+- amount: -16
+  timestamp: 78 hours ago
+- amount: -75
+  timestamp: 79 hours ago
+- amount: -28
+  timestamp: 80 hours ago
+- amount: -71
+  timestamp: 81 hours ago
+- amount: -100
+  timestamp: 82 hours ago
+- amount: -47
+  timestamp: 83 hours ago
+- amount: 49
+  timestamp: 84 hours ago
+- amount: -69
+  timestamp: 85 hours ago
+- amount: -37
+  timestamp: 86 hours ago
+- amount: -41
+  timestamp: 87 hours ago
+- amount: 28
+  timestamp: 88 hours ago
+- amount: -79
+  timestamp: 89 hours ago
+- amount: -21
+  timestamp: 90 hours ago
+- amount: -54
+  timestamp: 91 hours ago
+- amount: 6
+  timestamp: 92 hours ago
+- amount: -74
+  timestamp: 93 hours ago
+- amount: 18
+  timestamp: 94 hours ago
+- amount: -88
+  timestamp: 95 hours ago
+- amount: -33
+  timestamp: 96 hours ago
+- amount: -61
+  timestamp: 97 hours ago
+- amount: -84
+  timestamp: 98 hours ago
+- amount: -40
+  timestamp: 99 hours ago
+- amount: 0
+  timestamp: 100 hours ago
+- amount: -40
+  timestamp: 101 hours ago
+- amount: -51
+  timestamp: 102 hours ago
+- amount: -25
+  timestamp: 103 hours ago
+- amount: -55
+  timestamp: 104 hours ago
+- amount: -53
+  timestamp: 105 hours ago
+- amount: -19
+  timestamp: 106 hours ago
+- amount: -30
+  timestamp: 107 hours ago
+- amount: 0
+  timestamp: 108 hours ago
+- amount: 4
+  timestamp: 109 hours ago
+- amount: -97
+  timestamp: 110 hours ago
+- amount: 36
+  timestamp: 111 hours ago
+- amount: -100
+  timestamp: 112 hours ago
+- amount: 23
+  timestamp: 113 hours ago
+- amount: -80
+  timestamp: 114 hours ago
+- amount: -95
+  timestamp: 115 hours ago
+- amount: 6
+  timestamp: 116 hours ago
+- amount: -48
+  timestamp: 117 hours ago
+- amount: 13
+  timestamp: 118 hours ago
+- amount: -47
+  timestamp: 119 hours ago
+- amount: 29
+  timestamp: 120 hours ago
+- amount: -24
+  timestamp: 121 hours ago
+- amount: 42
+  timestamp: 122 hours ago
+- amount: 22
+  timestamp: 123 hours ago
+- amount: -2
+  timestamp: 124 hours ago
+- amount: -45
+  timestamp: 125 hours ago
+- amount: -34
+  timestamp: 126 hours ago
+- amount: -46
+  timestamp: 127 hours ago
+- amount: -27
+  timestamp: 128 hours ago
+- amount: -9
+  timestamp: 129 hours ago
+- amount: -33
+  timestamp: 130 hours ago
+- amount: -3
+  timestamp: 131 hours ago
+- amount: -66
+  timestamp: 132 hours ago
+- amount: -71
+  timestamp: 133 hours ago
+- amount: -41
+  timestamp: 134 hours ago
+- amount: -1
+  timestamp: 135 hours ago
+- amount: -28
+  timestamp: 136 hours ago
+- amount: 31
+  timestamp: 137 hours ago
+- amount: -76
+  timestamp: 138 hours ago
+- amount: -34
+  timestamp: 139 hours ago
+- amount: -21
+  timestamp: 140 hours ago
+- amount: -21
+  timestamp: 141 hours ago
+- amount: -87
+  timestamp: 142 hours ago
+- amount: -98
+  timestamp: 143 hours ago
+- amount: -50
+  timestamp: 144 hours ago
+- amount: -85
+  timestamp: 145 hours ago
+- amount: -62
+  timestamp: 146 hours ago
+- amount: -54
+  timestamp: 147 hours ago
+- amount: -62
+  timestamp: 148 hours ago
+- amount: -91
+  timestamp: 149 hours ago
+- amount: -74
+  timestamp: 150 hours ago
+- amount: -27
+  timestamp: 151 hours ago
+- amount: -9
+  timestamp: 152 hours ago
+- amount: -90
+  timestamp: 153 hours ago
+- amount: -53
+  timestamp: 154 hours ago
+- amount: -80
+  timestamp: 155 hours ago
+- amount: -80
+  timestamp: 156 hours ago
+- amount: -21
+  timestamp: 157 hours ago
+- amount: -64
+  timestamp: 158 hours ago
+- amount: -13
+  timestamp: 159 hours ago
+- amount: -16
+  timestamp: 160 hours ago
+- amount: -36
+  timestamp: 161 hours ago
+- amount: -42
+  timestamp: 162 hours ago
+- amount: -68
+  timestamp: 163 hours ago
+- amount: -13
+  timestamp: 164 hours ago
+- amount: -41
+  timestamp: 165 hours ago
+- amount: -76
+  timestamp: 166 hours ago
+- amount: -67
+  timestamp: 167 hours ago
