@@ -40,3 +40,15 @@ When /^I should (not )?see the following doctors: (.*)/ do |negate, doctors|
     end
   end
 end
+
+When /^Patients (.*?)\-(.*?) have been assigned$/ do |let1, let2|
+  doctor = Doctor.create(:name => 'YY_DOCTOR_NAME', :max_workload => 100)
+  (let1..let2).each do |letter|
+    doctor.patients << Patient.find_by_name("Patient #{letter}")
+  end
+  visit(current_path)
+end
+
+Then /^I should see (\d+) patient(s?) to assign$/ do |num, _|
+  find('#patients_left').should have_content num
+end
