@@ -17,30 +17,37 @@ $doctors_width: 600px;
 
   @include main-box;
   .bar-container {
+    position: relative;
     display: inline-block;
     background-color: $bar_background_colour;
     width: 300px;
   }
 
-  .bar_text {
+  .bar-container:hover {
+    .bar {
+      opacity: 0.6;
+    }
+    .bar-text {
+      opacity: 1.0;
+    }
+  }
+
+  .bar-text {
     @include transition(opacity 0.3s linear);
+    position: relative;
+    z-index: 1;
+    padding: $padding;
+    opacity: 0;
   }
 
   .bar {
     @include transition(opacity 0.3s linear);
-    display: inline-block;
+    position: absolute;
+    left: 0;
+    z-index: 0;
     background-color: $bar_colour;
-    text-align: center;
-    .bar_text {
+    .bar-text {
       opacity: 0;
-    }
-  }
-
-  .bar:hover {
-    opacity: 0.6;
-    text-align: center;
-    .bar_text {
-      opacity: 1.0;
     }
   }
 }
