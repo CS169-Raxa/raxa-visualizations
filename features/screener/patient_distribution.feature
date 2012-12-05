@@ -16,5 +16,5 @@ Background:
 
 Scenario: see correct number of patients per doctor
   Then Frankenstein should have 1 patient assigned
-  And Horrible sohuld have 5 patients assigned
+  And Horrible should have 5 patients assigned
   And Doogie Howser should have 8 patients assigned
