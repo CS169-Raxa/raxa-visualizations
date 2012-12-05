@@ -20,6 +20,6 @@ Scenario: see correct workload per doctor
   And I should see doctor Doogie Howser at 66% workload
 
 Scenario: see doctors in order of workload
-  Then I should see Horrible before Doogie Howser
-  And I should see Doogie Howser before Frankenstein
+  Then I should see doctor Horrible before doctor Doogie Howser
+  And I should see doctor Doogie Howser before doctor Frankenstein
 

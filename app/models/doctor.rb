@@ -1,6 +1,7 @@
 class Doctor < ActiveRecord::Base
   attr_accessible :max_workload, :name
   validates :name, :presence => true
+  validates :max_workload, :presence => true
 
   has_many :patients
   has_and_belongs_to_many :specialties
