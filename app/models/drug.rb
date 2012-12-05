@@ -3,8 +3,10 @@ class Drug < ActiveRecord::Base
   attr_accessible :alert_level, :estimated_rate, :name, :user_rate, :units, :quantity
 
   def alert?
-    if self.alert_level and self.quantity
-      self.quantity <= self.alert_level
+    if self.alert_level and self.quantity and self.quantity <= self.alert_level
+      true
+    elsif self.time_left and self.time_left < 1.week
+      true
     else
       false
     end
