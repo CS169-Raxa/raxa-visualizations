@@ -8,6 +8,8 @@
 
 = content_for :content do
   %div.left
+    - if @filtering
+      = "Showing only doctors with specialty: #{@specialty.name}"
     %table#doctors
       %thead
         %tr
@@ -37,7 +39,8 @@
       %div#department_chooser
         Filter by department:
         %br
-        %select#department_select
-          - @specialties.each do |specialty|
-            %option<
-              = specialty.name
+        = form_tag screener_path, :method => :get do
+          = select_tag :specialty, options_from_collection_for_select(@specialties, "id", "name"), :id => :department_select
+          = submit_tag
+        - if @filtering
+          = link_to "Clear filtering", screener_path

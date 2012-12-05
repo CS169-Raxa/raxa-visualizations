@@ -5,9 +5,10 @@ class Doctor < ActiveRecord::Base
   has_many :patients
   has_and_belongs_to_many :specialties
 
-  def self.sorted_by_workload
-    all.sort{|doctor| doctor.workload}
-  end
+  scope :has_specialty, (lambda do |specialty|
+    joins(Specialty.table_name.to_sym)
+      .where("#{Specialty.table_name}.id = ?", specialty)
+  end)
 
   def num_patients
     return self.patients.size
