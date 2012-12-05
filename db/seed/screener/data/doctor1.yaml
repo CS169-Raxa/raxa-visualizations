@@ -1,0 +1,9 @@
+---
+- name: Dr. Seuss
+  max_workload: 10
+  specialties:
+    - General Practicioner
+    - Cardiologist
+---
+- patient_name: Raphael
+- patient_name: Jonathan

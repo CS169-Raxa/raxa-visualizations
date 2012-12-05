@@ -1,0 +1,11 @@
+---
+- name: Dr. DoLittle
+  max_workload: 10
+  specialties:
+    - Optician
+    - Cardiologist
+---
+- patient_name: Esther
+- patient_name: Eric
+- patient_name: Dan
+- patient_name: Stephanie
