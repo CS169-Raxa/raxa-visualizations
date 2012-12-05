@@ -13,7 +13,7 @@ class ScreenerController < ApplicationController
       doctors = Doctor.all
       @filtering = false
     end
-    @sorted_doctors = doctors.sort{|doc| doc.workload}
+    @sorted_doctors = doctors.sort_by{|doc| doc.workload}
     @patients_left = Patient.where(:doctor_id => nil).count
     @specialties = Specialty.all
     render :index

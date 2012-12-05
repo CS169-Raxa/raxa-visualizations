@@ -65,5 +65,9 @@ Then /^I should see doctor (.*) at (\d+)% workload$/ do |name, workload|
 end
 
 Then /^I should see doctor (.*) before doctor (.*)$/ do |name1, name2|
-  page.body.should =~ /#{name1}.*#{name2}/
+  index1 = (page.body =~ Regexp.new(name1))
+  index2 = (page.body =~ Regexp.new(name2))
+  index1.should_not == nil
+  index1.should_not == nil
+  index1.should < index2
 end
