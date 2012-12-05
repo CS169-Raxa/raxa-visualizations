@@ -1,16 +1,247 @@
-#Encounters for patient 5
+#Encounters for patient
 ---
-name: patrick
+name: Christina
 ---
-- start_time: 8 hours ago
-  end_time: 6 hours ago
-  department: pharmacy
-- start_time: 6 hours ago
-  end_time: 5 hours ago
-  department: pharmacy
-- start_time: 5 hours ago
-  end_time: 4 hours ago
-  department: pharmacy
-- start_time: 4 hours ago
-  end_time: 2 hours ago
-  department: gift shoppe
+- start_time: 27 minutes ago
+  end_time:   0 minutes ago
+  department: Outpatient
+- start_time: 44 minutes ago
+  end_time:   27 minutes ago
+  department: Registration
+- start_time: 60 minutes ago
+  end_time:   44 minutes ago
+  department: Laboratory
+- start_time: 73 minutes ago
+  end_time:   60 minutes ago
+  department: Screening
+- start_time: 108 minutes ago
+  end_time:   73 minutes ago
+  department: Outpatient
+- start_time: 117 minutes ago
+  end_time:   108 minutes ago
+  department: Screening
+- start_time: 145 minutes ago
+  end_time:   117 minutes ago
+  department: Laboratory
+- start_time: 187 minutes ago
+  end_time:   145 minutes ago
+  department: Outpatient
+- start_time: 226 minutes ago
+  end_time:   187 minutes ago
+  department: Laboratory
+- start_time: 1 days ago 1:00 am
+  end_time:   1 days ago 1:36 am
+  department: Outpatient
+- start_time: 1 days ago 2:00 am
+  end_time:   1 days ago 2:29 am
+  department: Outpatient
+- start_time: 1 days ago 3:00 am
+  end_time:   1 days ago 3:37 am
+  department: Outpatient
+- start_time: 1 days ago 1:00 am
+  end_time:   1 days ago 1:23 am
+  department: Laboratory
+- start_time: 1 days ago 2:00 am
+  end_time:   1 days ago 2:25 am
+  department: Laboratory
+- start_time: 1 days ago 3:00 am
+  end_time:   1 days ago 3:22 am
+  department: Laboratory
+- start_time: 1 days ago 1:00 am
+  end_time:   1 days ago 1:15 am
+  department: Screening
+- start_time: 1 days ago 2:00 am
+  end_time:   1 days ago 2:16 am
+  department: Screening
+- start_time: 1 days ago 3:00 am
+  end_time:   1 days ago 3:08 am
+  department: Screening
+- start_time: 1 days ago 1:00 am
+  end_time:   1 days ago 1:05 am
+  department: Registration
+- start_time: 1 days ago 2:00 am
+  end_time:   1 days ago 2:19 am
+  department: Registration
+- start_time: 1 days ago 3:00 am
+  end_time:   1 days ago 3:18 am
+  department: Registration
+- start_time: 2 days ago 1:00 am
+  end_time:   2 days ago 1:40 am
+  department: Outpatient
+- start_time: 2 days ago 2:00 am
+  end_time:   2 days ago 2:36 am
+  department: Outpatient
+- start_time: 2 days ago 3:00 am
+  end_time:   2 days ago 3:19 am
+  department: Outpatient
+- start_time: 2 days ago 1:00 am
+  end_time:   2 days ago 1:22 am
+  department: Laboratory
+- start_time: 2 days ago 2:00 am
+  end_time:   2 days ago 2:37 am
+  department: Laboratory
+- start_time: 2 days ago 3:00 am
+  end_time:   2 days ago 3:24 am
+  department: Laboratory
+- start_time: 2 days ago 1:00 am
+  end_time:   2 days ago 1:14 am
+  department: Screening
+- start_time: 2 days ago 2:00 am
+  end_time:   2 days ago 2:18 am
+  department: Screening
+- start_time: 2 days ago 3:00 am
+  end_time:   2 days ago 3:16 am
+  department: Screening
+- start_time: 2 days ago 1:00 am
+  end_time:   2 days ago 1:19 am
+  department: Registration
+- start_time: 2 days ago 2:00 am
+  end_time:   2 days ago 2:20 am
+  department: Registration
+- start_time: 2 days ago 3:00 am
+  end_time:   2 days ago 3:16 am
+  department: Registration
+- start_time: 3 days ago 1:00 am
+  end_time:   3 days ago 1:29 am
+  department: Outpatient
+- start_time: 3 days ago 2:00 am
+  end_time:   3 days ago 2:30 am
+  department: Outpatient
+- start_time: 3 days ago 3:00 am
+  end_time:   3 days ago 3:27 am
+  department: Outpatient
+- start_time: 3 days ago 1:00 am
+  end_time:   3 days ago 1:40 am
+  department: Laboratory
+- start_time: 3 days ago 2:00 am
+  end_time:   3 days ago 2:25 am
+  department: Laboratory
+- start_time: 3 days ago 3:00 am
+  end_time:   3 days ago 3:23 am
+  department: Laboratory
+- start_time: 3 days ago 1:00 am
+  end_time:   3 days ago 1:16 am
+  department: Screening
+- start_time: 3 days ago 2:00 am
+  end_time:   3 days ago 2:21 am
+  department: Screening
+- start_time: 3 days ago 3:00 am
+  end_time:   3 days ago 3:16 am
+  department: Screening
+- start_time: 3 days ago 1:00 am
+  end_time:   3 days ago 1:12 am
+  department: Registration
+- start_time: 3 days ago 2:00 am
+  end_time:   3 days ago 2:20 am
+  department: Registration
+- start_time: 3 days ago 3:00 am
+  end_time:   3 days ago 3:17 am
+  department: Registration
+- start_time: 4 days ago 1:00 am
+  end_time:   4 days ago 1:40 am
+  department: Outpatient
+- start_time: 4 days ago 2:00 am
+  end_time:   4 days ago 2:16 am
+  department: Outpatient
+- start_time: 4 days ago 3:00 am
+  end_time:   4 days ago 3:29 am
+  department: Outpatient
+- start_time: 4 days ago 1:00 am
+  end_time:   4 days ago 1:27 am
+  department: Laboratory
+- start_time: 4 days ago 2:00 am
+  end_time:   4 days ago 2:30 am
+  department: Laboratory
+- start_time: 4 days ago 3:00 am
+  end_time:   4 days ago 3:24 am
+  department: Laboratory
+- start_time: 4 days ago 1:00 am
+  end_time:   4 days ago 1:13 am
+  department: Screening
+- start_time: 4 days ago 2:00 am
+  end_time:   4 days ago 2:12 am
+  department: Screening
+- start_time: 4 days ago 3:00 am
+  end_time:   4 days ago 3:20 am
+  department: Screening
+- start_time: 4 days ago 1:00 am
+  end_time:   4 days ago 1:16 am
+  department: Registration
+- start_time: 4 days ago 2:00 am
+  end_time:   4 days ago 2:14 am
+  department: Registration
+- start_time: 4 days ago 3:00 am
+  end_time:   4 days ago 3:11 am
+  department: Registration
+- start_time: 5 days ago 1:00 am
+  end_time:   5 days ago 1:19 am
+  department: Outpatient
+- start_time: 5 days ago 2:00 am
+  end_time:   5 days ago 2:28 am
+  department: Outpatient
+- start_time: 5 days ago 3:00 am
+  end_time:   5 days ago 3:30 am
+  department: Outpatient
+- start_time: 5 days ago 1:00 am
+  end_time:   5 days ago 1:31 am
+  department: Laboratory
+- start_time: 5 days ago 2:00 am
+  end_time:   5 days ago 2:17 am
+  department: Laboratory
+- start_time: 5 days ago 3:00 am
+  end_time:   5 days ago 3:42 am
+  department: Laboratory
+- start_time: 5 days ago 1:00 am
+  end_time:   5 days ago 1:17 am
+  department: Screening
+- start_time: 5 days ago 2:00 am
+  end_time:   5 days ago 2:16 am
+  department: Screening
+- start_time: 5 days ago 3:00 am
+  end_time:   5 days ago 3:18 am
+  department: Screening
+- start_time: 5 days ago 1:00 am
+  end_time:   5 days ago 1:12 am
+  department: Registration
+- start_time: 5 days ago 2:00 am
+  end_time:   5 days ago 2:10 am
+  department: Registration
+- start_time: 5 days ago 3:00 am
+  end_time:   5 days ago 3:19 am
+  department: Registration
+- start_time: 6 days ago 1:00 am
+  end_time:   6 days ago 1:34 am
+  department: Outpatient
+- start_time: 6 days ago 2:00 am
+  end_time:   6 days ago 2:28 am
+  department: Outpatient
+- start_time: 6 days ago 3:00 am
+  end_time:   6 days ago 3:25 am
+  department: Outpatient
+- start_time: 6 days ago 1:00 am
+  end_time:   6 days ago 1:24 am
+  department: Laboratory
+- start_time: 6 days ago 2:00 am
+  end_time:   6 days ago 2:32 am
+  department: Laboratory
+- start_time: 6 days ago 3:00 am
+  end_time:   6 days ago 3:23 am
+  department: Laboratory
+- start_time: 6 days ago 1:00 am
+  end_time:   6 days ago 1:12 am
+  department: Screening
+- start_time: 6 days ago 2:00 am
+  end_time:   6 days ago 2:19 am
+  department: Screening
+- start_time: 6 days ago 3:00 am
+  end_time:   6 days ago 3:11 am
+  department: Screening
+- start_time: 6 days ago 1:00 am
+  end_time:   6 days ago 1:16 am
+  department: Registration
+- start_time: 6 days ago 2:00 am
+  end_time:   6 days ago 2:16 am
+  department: Registration
+- start_time: 6 days ago 3:00 am
+  end_time:   6 days ago 3:17 am
+  department: Registration
