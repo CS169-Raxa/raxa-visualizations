@@ -1,0 +1,10 @@
+---
+- name: The Doctor
+  max_workload: 20
+  specialties:
+    - Cardiologist
+---
+- patient_name: Sesh
+- patient_name: Francis
+- patient_name: Jerry
+- patient_name: Gabriel
