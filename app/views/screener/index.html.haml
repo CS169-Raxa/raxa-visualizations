@@ -18,7 +18,7 @@
           %th Workload
       %tbody
         - @sorted_doctors.each do |doctor|
-          - percent = doctor.workload
+          - percent = [doctor.workload, 5].max
           %tr
             %td<
               = doctor.name
@@ -26,10 +26,11 @@
               = doctor.specialty_names.join(', ')
             %td
               %span.bar-container
+                %span.bar-text<
+                  = "#{doctor.num_patients} / #{doctor.max_workload}"
                 %span.bar{:style => "width: #{percent}%",
                           :data => {:percent => percent},}<
-                  %span.bar_text<
-                    = "#{doctor.num_patients} / #{doctor.max_workload}"
+                  = '&nbsp;'.html_safe
   %div.right
     %div#rightbar
       %div.stat
