@@ -41,7 +41,7 @@
         Filter by department:
         %br
         = form_tag screener_path, :method => :get do
-          = select_tag :specialty, options_from_collection_for_select(@specialties, "id", "name"), :id => :department_select
+          = select_tag :specialty, options_from_collection_for_select(@specialties, "id", "name", @specialty ? @specialty.id : nil), :id => :department_select
           = submit_tag nil, :id => :filter_submit
         - if @filtering
           = link_to "Clear filtering", screener_path
