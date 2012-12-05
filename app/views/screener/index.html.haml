@@ -1,49 +1,35 @@
-- @name = 'Jennifer Doe'
-- @sorted_doctors = [
--   { :name => 'Dr. Evil', :specialty => 'Shoes', :patients => 3 }, \
--   { :name => 'Dr. Jekyll', :specialty => 'Leather and Hide', :patients => 8 }, \
--   { :name => 'Dr. Horrible', :specialty => 'Jewelry', :patients => 8 }, \
--   { :name => 'Dr. Mario', :specialty => 'Kitchenware', :patients => 11 }, \
--   { :name => 'Dr. Strangelove', :specialty => 'Kitchenware', :patients => 12 }, \
--   { :name => 'The Doctor', :specialty => 'Time and Relative Dimensions', :patients => 16 }, \
--   { :name => 'Dr. Drake Ramore', :specialty => 'Jewelry', :patients => 18 }, \
-- ]
-- @max_patients = @sorted_doctors.last[:patients]
-- @patients_left = 7
-- @specialties = @sorted_doctors.map {|d| d[:specialty]}.uniq
-
 = content_for :head do
   = stylesheet_link_tag :screener
   = javascript_include_tag :raxa
   = javascript_include_tag :screener
 
 = content_for :title do
-  Dashboard for #{@name}
-
-= content_for :subtitle do
-  Screener
+  Screening Dashboard
 
 = content_for :content do
   %div.left
+    - if @filtering
+      = "Showing only doctors with specialty: #{@specialty.name}"
     %table#doctors
       %thead
         %tr
           %th Doctor
-          %th Specialty
+          %th Specialties
           %th Workload
       %tbody
         - @sorted_doctors.each do |doctor|
-          - percent = (100 * doctor[:patients].to_f / @max_patients).to_i
+          - percent = doctor.workload
           %tr
             %td<
-              = doctor[:name]
+              = doctor.name
             %td<
-              = doctor[:specialty]
+              = doctor.specialty_names.join(', ')
             %td
               %span.bar-container
-                %span.bar{:style => "width: #{percent}%", :data => {:percent => percent},}<
+                %span.bar{:style => "width: #{percent}%",
+                          :data => {:percent => percent},}<
                   %span.bar_text<
-                    = doctor[:patients]
+                    = "#{doctor.num_patients} / #{doctor.max_workload}"
   %div.right
     %div#rightbar
       %div.stat
@@ -53,7 +39,8 @@
       %div#department_chooser
         Filter by department:
         %br
-        %select#department_select
-          - @specialties.each do |specialty|
-            %option<
-              = specialty
+        = form_tag screener_path, :method => :get do
+          = select_tag :specialty, options_from_collection_for_select(@specialties, "id", "name"), :id => :department_select
+          = submit_tag
+        - if @filtering
+          = link_to "Clear filtering", screener_path
